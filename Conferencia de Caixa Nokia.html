@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:mso="urn:schemas-microsoft-com:office:office" xmlns:msdt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #2c2c2c;
+            color: #ffffff;
+            margin: 0;
+            display: flex;
+            min-width: 600px;
+            min-height: 100vh;
+        }
+
+        .sidebar {
+            width: 250px;
+            height: 100vh;
+            background-color: #333;
+            padding: 20px;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
+            position: fixed;
+            top: 0;
+        }
+
+        .sidebar h2 {
+            margin: 0 0 20px;
+        }
+
+        .sidebar a {
+            color: #ffffff;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .sidebar a:hover {
+            background-color: #444;
+        }
+
+        .sidebar img {
+            margin-right: 10px;
+            width: 20px;
+            height: 20px;
+        }
+
+        .main-content {
+            flex: 1;
+            padding: 20px;
+            margin-left: 300px;
+            overflow-y: auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        h1, h2 {
+            color: #ffffff;
+            margin-bottom: 15px;
+            font-size: 24px;
+        }
+
+        .container {
+            display: flex;
+            gap: 20px; /* Espaçamento entre os textareas */
+            margin-bottom: 20px;
+        }
+
+        .textarea-container {
+            flex: 1; /* Para ocupar o mesmo espaço */
+            display: flex;
+            flex-direction: column;
+        }
+
+        .textarea-title-container {
+            background-color: #eee;
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            border-radius: 10px 10px 0 0;
+            margin-bottom: 0px;
+            height: 20px;
+        }
+
+        .textarea-title {
+            flex: 1;
+            color: #212121;
+            font-size: 16px;
+            font-weight: 500;
+        }
+
+        .lock-btn {
+            background: #888888;
+            border: none;
+            color: #ffffff;
+            cursor: pointer;
+            font-size: 18px;
+            margin-left: 10px;
+            padding: 0;
+        }
+
+        textarea {
+            width: 100%;
+            height: 200px;
+            background-color: #3c3c3c;
+            color: #ffffff;
+            border: 1px solid #777;
+            padding: 10px;
+            box-sizing: border-box;
+            resize: none;
+            border-radius: 0 0 10px 10px;
+            transition: background-color 0.3s;
+            font-size: 16px;
+        }
+
+        textarea::placeholder {
+            font-size: 14px;
+            color: #ccc;
+        }
+
+        textarea:focus {
+            outline: none;
+            border-color: #fff;
+            border-width: 2px;
+        }
+
+        .button-container {
+            display: flex;
+            gap: 10px;
+        }
+
+        button {
+            color: #ffffff;
+            border: none;
+            padding: 15px;
+            cursor: pointer;
+            flex: 1;
+            font-size: 16px;
+            border-radius: 5px;
+            transition: background-color 0.3s, opacity 0.3s;
+        }
+
+        .compare-btn {
+            background-color: #4CAF50;
+        }
+
+        .toggle-down-btn {
+            background-color: #FF6347;
+        }
+
+        .toggle-result-btn {
+            background-color: #008CBA;
+        }
+
+        button:hover {
+            opacity: 0.8;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        th, td {
+            border: 1px solid #777;
+            padding: 12px;
+            text-align: left;
+            color: #ffffff;
+            word-wrap: break-word;
+        }
+
+        th {
+            background-color: #444;
+        }
+
+        .remove-btn {
+            background-color: #ff6347;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+            color: white;
+            font-size: 12px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .remove-btn:hover {
+            background-color: #ff3333;
+        }
+
+        .message {
+            color: #ff6347;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+
+        .difference {
+            background-color: #000;
+            font-weight: bold;
+        }
+
+        footer {
+            width: 100%;
+            margin-top: 20px;
+            text-align: center;
+            font-size: 16px;
+            color: #ccc;
+            border-top: 1px solid #777;
+            padding-top: 10px;
+            position: relative;
+            bottom: 0;
+        }
+
+        #progressContainer {
+            width: 100%;
+            background-color: #444;
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 10px;
+            display: none;
+            z-index: 1000;
+        }
+
+        #progressBar {
+            width: 0;
+            height: 100%;
+            background-color: #008cba;
+            transition: width 1s;
+        }
+    </style>
+
+<!--[if gte mso 9]><xml>
+<mso:CustomDocumentProperties>
+<mso:display_urn_x003a_schemas-microsoft-com_x003a_office_x003a_office_x0023_Editor msdt:dt="string">Higor Vinicius Rodrigues Brito</mso:display_urn_x003a_schemas-microsoft-com_x003a_office_x003a_office_x0023_Editor>
+<mso:_ExtendedDescription msdt:dt="string"></mso:_ExtendedDescription>
+<mso:display_urn_x003a_schemas-microsoft-com_x003a_office_x003a_office_x0023_Author msdt:dt="string">Higor Vinicius Rodrigues Brito</mso:display_urn_x003a_schemas-microsoft-com_x003a_office_x003a_office_x0023_Author>
+<mso:ComplianceAssetId msdt:dt="string"></mso:ComplianceAssetId>
+<mso:TriggerFlowInfo msdt:dt="string"></mso:TriggerFlowInfo>
+<mso:ContentTypeId msdt:dt="string">0x01010021ED50D87D25944EB54959777692050F</mso:ContentTypeId>
+<mso:_SourceUrl msdt:dt="string"></mso:_SourceUrl>
+<mso:_SharedFileIndex msdt:dt="string"></mso:_SharedFileIndex>
+</mso:CustomDocumentProperties>
+</xml><![endif]-->
+</head>
+<body>
+
+    <div class="sidebar">
+        <h3>Menu (Em construção...)</h3>
+        <a href="#">Procurar ONU</a>
+        <a href="#">Provisionar/Desprovisionar</a>
+        <a href="#">Configurar Wi-Fi</a>
+        <a href="#">Configurar Telefone Fixo</a>
+        <a href="#">Configurar Vlan/Pppoe</a>
+        <a href="#">Configurar Acesso Web</a>
+        <a href="#">Configurar Nomenclatura ONU</a>
+        <a href="#">Configurar Nomenclatura Caixa</a>
+    </div>
+
+    <div class="main-content">
+        <header>
+            <h1>Conferência de Caixa</h1>
+            <p>Utilize a ferramenta para comparar tabelas e visualizar resultados.</p>
+        </header>
+
+        <div id="progressContainer">
+            <div id="progressBar"></div>
+        </div>
+
+        <div class="container" id="tabelas">
+            <div class="textarea-container">
+                <div class="textarea-title-container">
+                    <div class="textarea-title">Tabela Antes</div>
+                    <button class="lock-btn" onclick="toggleLock()">Travar tabela 🔒</button>
+                </div>
+                <textarea id="table1" placeholder="Insira a tabela antes de retirar qualquer porta da caixa"></textarea>
+            </div>
+
+            <div class="textarea-container">
+                <div class="textarea-title-container">
+                    <div class="textarea-title">Tabela Depois</div>
+                </div>
+                <textarea id="table2" placeholder="Insira a tabela após o técnico retirar alguma porta"></textarea>
+            </div>
+        </div>
+
+        <div class="button-container">
+            <button class="compare-btn" onclick="handleButtonClick(compareTables)">Comparar Tabelas</button>
+            <button class="toggle-down-btn" onclick="handleButtonClick(toggleDownTable)">Mostrar/Ocultar Tabela Clientes Down</button>
+            <button class="toggle-result-btn" onclick="handleButtonClick(toggleResultTable)">Mostrar/Ocultar Tabela de Resultados</button>
+        </div>
+
+        <table id="downTable" style="display: none;">
+            <thead>
+                <tr>
+                    <th>Linha</th>
+                    <th>Clientes Down</th>
+                </tr>
+            </thead>
+            <tbody id="downBody">
+            </tbody>
+        </table>
+
+        <table id="resultTable" style="display: none;">
+            <thead>
+                <tr>
+                    <th>Linha</th>
+                    <th>Primeira Tabela</th>
+                    <th>Segunda Tabela</th>
+                </tr>
+            </thead>
+            <tbody id="resultBody">
+            </tbody>
+        </table>
+
+        <h2>Conferência Armazenada</h2>
+        <div id="message" class="message"></div>
+
+        <table id="storedDifferencesTable">
+            <thead>
+                <tr>
+                    <th>Porta</th>
+                    <th>Primeira Tabela</th>
+                    <th>Segunda Tabela</th>
+                    <th>Ação</th>
+                </tr>
+            </thead>
+            <tbody id="storedDifferencesBody">
+            </tbody>
+        </table>
+
+        <footer>
+            © 2024 Solução Network - Feito por Higor Brito
+        </footer>
+    </div>
+
+    <script>
+        let storedDifferences = [];
+        let portaCounter = 1;
+        let isLocked = false;
+
+        function handleButtonClick(callback) {
+            const progressContainer = document.getElementById('progressContainer');
+            const progressBar = document.getElementById('progressBar');
+            progressContainer.style.display = 'block';
+            progressBar.style.width = '0%';
+
+            setTimeout(() => {
+                progressBar.style.width = '100%';
+                setTimeout(() => {
+                    progressBar.style.width = '0%';
+                    progressContainer.style.display = 'none';
+                }, 1000);
+                callback();
+            }, 100);
+        }
+
+        function compareTables() {
+            const table1Data = document.getElementById('table1').value.split('\n');
+            const table2Data = document.getElementById('table2').value.split('\n');
+            
+            const maxLength = Math.max(table1Data.length, table2Data.length);
+            const resultBody = document.getElementById('resultBody');
+            resultBody.innerHTML = '';
+
+            const downBody = document.getElementById('downBody');
+            downBody.innerHTML = '';
+
+            let differences = [];
+            let hasDifferences = false;
+
+            for (let i = 0; i < maxLength; i++) {
+                const row1 = (table1Data[i] || '').trim();
+                const row2 = (table2Data[i] || '').trim();
+                
+                const tr = document.createElement('tr');
+                
+                const lineNumber = document.createElement('td');
+                lineNumber.textContent = i + 1;
+
+                const cell1 = document.createElement('td');
+                const cell2 = document.createElement('td');
+
+                cell1.textContent = row1;
+                cell2.textContent = row2;
+
+                const cols1 = row1.split(/\s+/);
+                const cols2 = row2.split(/\s+/);
+
+                const index1 = cols1.findIndex(col => col.startsWith('-'));
+                const index2 = cols2.findIndex(col => col.startsWith('-'));
+
+                const compareLength = Math.min(index1 >= 0 ? index1 : cols1.length, index2 >= 0 ? index2 : cols2.length);
+
+                for (let j = 0; j < compareLength; j++) {
+                    if (cols1[j] !== cols2[j]) {
+                        hasDifferences = true;
+                        tr.classList.add('difference');
+                        cell1.classList.add('difference');
+                        cell2.classList.add('difference');
+                        differences.push({ line: `Porta ${portaCounter++}`, row1: row1, row2: row2 });
+                        break;
+                    }
+                }
+
+                tr.appendChild(lineNumber);
+                tr.appendChild(cell1);
+                tr.appendChild(cell2);
+                
+                resultBody.appendChild(tr);
+
+                if (row1.toLowerCase().includes("down")) {
+                    const downRow = document.createElement('tr');
+                    const downLineNumber = document.createElement('td');
+                    downLineNumber.textContent = i + 1;
+                    const downCell = document.createElement('td');
+                    downCell.textContent = row1;
+
+                    downRow.appendChild(downLineNumber);
+                    downRow.appendChild(downCell);
+                    downBody.appendChild(downRow);
+                }
+            }
+
+            storeDifferences(differences);
+            
+            const messageElement = document.getElementById('message');
+            if (!hasDifferences) {
+                messageElement.textContent = "Nenhuma diferença entre as tabelas.";
+            } else {
+                messageElement.textContent = "";
+            }
+        }
+
+        function storeDifferences(differences) {
+            const storedDifferencesBody = document.getElementById('storedDifferencesBody');
+            storedDifferences = storedDifferences.concat(differences);
+            updateStoredDifferencesTable();
+        }
+
+        function updateStoredDifferencesTable() {
+            const storedDifferencesBody = document.getElementById('storedDifferencesBody');
+            storedDifferencesBody.innerHTML = '';
+
+            storedDifferences.forEach((diff, index) => {
+                const tr = document.createElement('tr');
+                
+                const lineNumber = document.createElement('td');
+                lineNumber.textContent = `Porta ${index + 1}`;
+                
+                const cell1 = document.createElement('td');
+                cell1.textContent = diff.row1;
+                
+                const cell2 = document.createElement('td');
+                cell2.textContent = diff.row2;
+                
+                const removeCell = document.createElement('td');
+                const removeBtn = document.createElement('button');
+                removeBtn.textContent = 'Remover';
+                removeBtn.classList.add('remove-btn');
+                removeBtn.onclick = () => removeDifference(index);
+
+                removeCell.appendChild(removeBtn);
+                
+                tr.appendChild(lineNumber);
+                tr.appendChild(cell1);
+                tr.appendChild(cell2);
+                tr.appendChild(removeCell);
+                
+                storedDifferencesBody.appendChild(tr);
+            });
+        }
+
+        function removeDifference(index) {
+            storedDifferences.splice(index, 1);
+            updateStoredDifferencesTable();
+        }
+
+        function toggleResultTable() {
+            const resultTable = document.getElementById('resultTable');
+            resultTable.style.display = resultTable.style.display === 'none' ? 'table' : 'none';
+        }
+
+        function toggleDownTable() {
+            const downTable = document.getElementById('downTable');
+            downTable.style.display = downTable.style.display === 'none' ? 'table' : 'none';
+        }
+
+        function toggleLock() {
+            const textarea = document.getElementById('table1');
+            isLocked = !isLocked;
+            textarea.disabled = isLocked; // Habilita ou desabilita o textarea
+            document.querySelector('.lock-btn').textContent = isLocked ? 'Destravar tabela 🔒' : 'Travar tabela 🔒'; // Altera o ícone do botão
+        }
+    </script>
+
+</body>
+</html>

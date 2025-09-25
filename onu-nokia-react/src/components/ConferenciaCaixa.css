@@ -1,0 +1,476 @@
+.conferencia-caixa {
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: "Orbitron", "Roboto Mono", monospace;
+  padding: 2rem;
+  border-radius: 15px;
+  border: 2px solid var(--accent-cyan);
+  box-shadow: 0 0 30px rgba(0, 255, 255, 0.3);
+  margin: 1rem 0;
+  animation: neonPulse 3s ease-in-out infinite alternate;
+  width: 100%;
+  max-width: none;
+}
+
+@keyframes neonPulse {
+  from {
+    box-shadow: 0 0 30px rgba(0, 255, 255, 0.3);
+  }
+  to {
+    box-shadow: 0 0 40px rgba(255, 0, 255, 0.4);
+  }
+}
+
+.conferencia-caixa header {
+  text-align: center;
+  margin-bottom: 2rem;
+  position: relative;
+}
+
+.conferencia-caixa header::after {
+  content: "";
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 200px;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    var(--accent-cyan),
+    var(--accent-magenta),
+    var(--accent-cyan)
+  );
+  box-shadow: 0 0 10px rgba(0, 255, 255, 0.8);
+}
+
+.conferencia-caixa h1 {
+  background: linear-gradient(45deg, var(--accent-cyan), var(--accent-magenta));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-size: 2.5rem;
+  font-weight: 700;
+  text-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+  margin: 0;
+  letter-spacing: 2px;
+}
+
+.conferencia-caixa h2 {
+  color: var(--accent-cyan);
+  font-size: 1.8rem;
+  font-weight: 600;
+  text-shadow: 0 0 15px rgba(0, 255, 255, 0.7);
+  margin: 2rem 0 1rem 0;
+  letter-spacing: 1px;
+}
+
+.conferencia-caixa p {
+  color: var(--text-secondary);
+  font-size: 1.1rem;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+/* Progress Bar */
+.progress-container {
+  width: 100%;
+  background: var(--bg-secondary);
+  border-radius: 10px;
+  height: 8px;
+  margin-bottom: 2rem;
+  overflow: hidden;
+  border: 1px solid var(--accent-cyan);
+  position: relative;
+}
+
+.progress-bar {
+  height: 100%;
+  background: linear-gradient(90deg, var(--accent-cyan), var(--accent-magenta));
+  border-radius: 10px;
+  animation: progressAnimation 1s ease-in-out;
+  box-shadow: 0 0 10px rgba(0, 255, 255, 0.8);
+}
+
+@keyframes progressAnimation {
+  0% {
+    width: 0%;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
+/* Container das tabelas */
+.container {
+  display: flex;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.textarea-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.textarea-title-container {
+  background: linear-gradient(135deg, var(--bg-secondary), var(--bg-card));
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  border-radius: 10px 10px 0 0;
+  border: 1px solid var(--accent-cyan);
+  border-bottom: none;
+  box-shadow: 0 0 15px rgba(0, 255, 255, 0.2);
+}
+
+.textarea-title {
+  flex: 1;
+  color: var(--text-primary);
+  font-size: 1.1rem;
+  font-weight: 600;
+  text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+  letter-spacing: 1px;
+}
+
+.lock-btn {
+  background: var(--bg-secondary);
+  border: 1px solid var(--accent-magenta);
+  color: var(--text-primary);
+  cursor: pointer;
+  font-size: 0.9rem;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 10px rgba(255, 0, 255, 0.3);
+}
+
+.lock-btn:hover {
+  background: var(--accent-magenta);
+  color: var(--bg-primary);
+  box-shadow: 0 0 20px rgba(255, 0, 255, 0.6);
+  transform: scale(1.05);
+}
+
+.conferencia-caixa textarea {
+  width: 100%;
+  height: 200px;
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+  border: 1px solid var(--accent-cyan);
+  padding: 1rem;
+  box-sizing: border-box;
+  resize: none;
+  border-radius: 0 0 10px 10px;
+  font-family: "Roboto Mono", monospace;
+  font-size: 0.95rem;
+  line-height: 1.4;
+  box-shadow: inset 0 0 20px rgba(0, 255, 255, 0.1);
+  transition: all 0.3s ease;
+}
+
+.conferencia-caixa textarea::placeholder {
+  color: var(--text-secondary);
+  opacity: 0.7;
+}
+
+.conferencia-caixa textarea:focus {
+  outline: none;
+  border-color: var(--accent-magenta);
+  box-shadow: 0 0 25px rgba(255, 0, 255, 0.4);
+  background: rgba(13, 0, 26, 0.9);
+}
+
+.conferencia-caixa textarea:disabled {
+  background: var(--bg-secondary);
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Botões */
+.button-container {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+}
+
+.conferencia-caixa button {
+  color: var(--text-primary);
+  border: 1px solid var(--accent-cyan);
+  padding: 1rem 1.5rem;
+  cursor: pointer;
+  flex: 1;
+  min-width: 200px;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 10px;
+  font-family: "Orbitron", monospace;
+  letter-spacing: 1px;
+  transition: all 0.3s ease;
+  background: linear-gradient(135deg, var(--bg-secondary), var(--bg-card));
+  position: relative;
+  overflow: hidden;
+}
+
+.conferencia-caixa button::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.1),
+    transparent
+  );
+  transition: left 0.5s;
+}
+
+.conferencia-caixa button:hover::before {
+  left: 100%;
+}
+
+.compare-btn {
+  border-color: var(--success-color);
+  box-shadow: 0 0 15px rgba(76, 175, 80, 0.3);
+}
+
+.compare-btn:hover {
+  background: linear-gradient(
+    135deg,
+    var(--success-color),
+    rgba(76, 175, 80, 0.8)
+  );
+  box-shadow: 0 0 30px rgba(76, 175, 80, 0.6);
+  transform: translateY(-2px);
+}
+
+.toggle-down-btn {
+  border-color: var(--danger-color);
+  box-shadow: 0 0 15px rgba(255, 0, 64, 0.3);
+}
+
+.toggle-down-btn:hover {
+  background: linear-gradient(
+    135deg,
+    var(--danger-color),
+    rgba(255, 0, 64, 0.8)
+  );
+  box-shadow: 0 0 30px rgba(255, 0, 64, 0.6);
+  transform: translateY(-2px);
+}
+
+.toggle-result-btn {
+  border-color: var(--accent-cyan);
+  box-shadow: 0 0 15px rgba(0, 255, 255, 0.3);
+}
+
+.toggle-result-btn:hover {
+  background: linear-gradient(
+    135deg,
+    var(--accent-cyan),
+    rgba(0, 255, 255, 0.8)
+  );
+  color: var(--bg-primary);
+  box-shadow: 0 0 30px rgba(0, 255, 255, 0.6);
+  transform: translateY(-2px);
+}
+
+/* Tabelas */
+.conferencia-caixa table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0;
+  border-radius: 10px;
+  overflow: hidden;
+  background: var(--bg-card);
+  box-shadow: 0 0 20px rgba(0, 255, 255, 0.2);
+  animation: tableGlow 2s ease-in-out infinite alternate;
+}
+
+@keyframes tableGlow {
+  from {
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.2);
+  }
+  to {
+    box-shadow: 0 0 25px rgba(255, 0, 255, 0.3);
+  }
+}
+
+.conferencia-caixa th,
+.conferencia-caixa td {
+  border: 1px solid var(--accent-cyan);
+  padding: 1rem;
+  text-align: left;
+  color: var(--text-primary);
+  word-wrap: break-word;
+  position: relative;
+}
+
+.conferencia-caixa th {
+  background: linear-gradient(135deg, var(--bg-secondary), var(--bg-card));
+  color: var(--accent-cyan);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+}
+
+.conferencia-caixa tr:hover {
+  background: rgba(0, 255, 255, 0.1);
+}
+
+.remove-btn {
+  background: linear-gradient(
+    135deg,
+    var(--danger-color),
+    rgba(255, 0, 64, 0.8)
+  );
+  border: 1px solid var(--danger-color);
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  color: var(--text-primary);
+  font-size: 0.9rem;
+  font-weight: 600;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 10px rgba(255, 0, 64, 0.3);
+  min-width: auto;
+  flex: none;
+}
+
+.remove-btn:hover {
+  background: var(--danger-color);
+  box-shadow: 0 0 20px rgba(255, 0, 64, 0.6);
+  transform: scale(1.05);
+}
+
+.message {
+  color: var(--danger-color);
+  font-weight: bold;
+  margin: 1rem 0;
+  padding: 1rem;
+  background: rgba(255, 0, 64, 0.1);
+  border: 1px solid var(--danger-color);
+  border-radius: 10px;
+  text-align: center;
+  font-size: 1.1rem;
+  text-shadow: 0 0 10px rgba(255, 0, 64, 0.5);
+}
+
+.difference {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 0, 64, 0.2),
+    rgba(255, 170, 0, 0.2)
+  );
+  font-weight: bold;
+  border-color: var(--warning-color);
+  animation: differenceHighlight 2s ease-in-out infinite alternate;
+}
+
+@keyframes differenceHighlight {
+  from {
+    background: linear-gradient(
+      135deg,
+      rgba(255, 0, 64, 0.2),
+      rgba(255, 170, 0, 0.2)
+    );
+    box-shadow: inset 0 0 10px rgba(255, 0, 64, 0.3);
+  }
+  to {
+    background: linear-gradient(
+      135deg,
+      rgba(255, 170, 0, 0.3),
+      rgba(255, 0, 64, 0.3)
+    );
+    box-shadow: inset 0 0 15px rgba(255, 170, 0, 0.4);
+  }
+}
+
+.conferencia-footer {
+  width: 100%;
+  margin-top: 3rem;
+  text-align: center;
+  font-size: 1rem;
+  color: var(--text-secondary);
+  border-top: 1px solid var(--accent-cyan);
+  padding-top: 1.5rem;
+  position: relative;
+}
+
+.conferencia-footer::before {
+  content: "";
+  position: absolute;
+  top: -1px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 2px;
+  background: linear-gradient(90deg, var(--accent-cyan), var(--accent-magenta));
+  box-shadow: 0 0 10px rgba(0, 255, 255, 0.8);
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .button-container {
+    flex-direction: column;
+  }
+
+  .conferencia-caixa button {
+    min-width: auto;
+    flex: none;
+  }
+
+  .conferencia-caixa {
+    padding: 1rem;
+    margin: 0.5rem 0;
+  }
+
+  .conferencia-caixa h1 {
+    font-size: 2rem;
+  }
+
+  .conferencia-caixa th,
+  .conferencia-caixa td {
+    padding: 0.8rem;
+    font-size: 0.9rem;
+  }
+}
+
+/* Efeito scan-line para dar um toque mais cyberpunk */
+.conferencia-caixa::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--accent-cyan),
+    transparent
+  );
+  animation: scanLine 3s linear infinite;
+  z-index: 1;
+  pointer-events: none;
+}
+
+@keyframes scanLine {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}

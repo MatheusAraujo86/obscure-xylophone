@@ -1,0 +1,124 @@
+:root{
+    --colorPrimary: #212121;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding-top: 0px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-content: space-around;
+    background-color: #212121; /* Fundo muito escuro para maior conforto noturno */
+    color: #e0e0e0; /* Texto claro para bom contraste */
+}
+
+.container {
+    width: 30%;
+    display: block;
+    background-color: transparent; /* Fundo das containers, levemente mais claro que o fundo do body */
+    border-radius: 6px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+input[type="text"] {
+    width: 100%; /* Ajuste para compensar o padding */
+    margin-bottom: 10px;
+    padding: 10px;
+    box-sizing: border-box;
+    border: 1px solid #333; /* Cor da borda, mais escura para melhor contraste */
+    border-radius: 4px;
+    color: #e0e0e0; /* Texto claro */
+    background-color: #212121; /* Fundo dos inputs */
+    
+}
+
+::-webkit-input-placeholder  { color:#b3b3b3; }
+input:-moz-placeholder { color:#b3b3b3; }
+textarea:-moz-placeholder { color:#b3b3b3; }
+
+select {
+    width: 100%; /* Ajuste para compensar o padding */
+    margin-bottom: 10px;
+    padding: 15px;
+    box-sizing: border-box;
+    border: 1px solid #212121; /* Cor da borda */
+    border-radius: 4px;
+    color: #b3b3b3; /* Texto claro */
+    background-color: #212121; /* Fundo dos selects */
+}
+
+.button {
+    display: inline-block;
+    margin: 5px 0;
+    padding: 15px 10px;
+    color: #fff; /* Texto dos botões */
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    width: auto;
+}
+
+button {
+    display: block;
+    margin: 10px 0;
+    padding: 20px 20px;
+    background-color: #131313; /* Cor de fundo dos botões principais, mais visível */
+    color: #e0e0e0; /* Texto dos botões principais */
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100%;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+button:hover {
+    background-color: #212121; /* Cor ao passar o mouse nos botões principais */
+    text-decoration: underline;
+}
+
+.titulo {
+    text-align: center;
+    font-weight: bold;
+    color: #e0e0e0; /* Cor do texto dos títulos */
+}
+
+#desprovisionar {
+    background-color: #131313; /* Cor de fundo do botão desprovisionar */
+}
+
+#desprovisionar:hover {
+    background-color:#212121; /* Cor ao passar o mouse no botão desprovisionar */
+}
+
+.container_into {
+    background-color: #333; /* Cor de fundo */
+    border-radius: 6px;
+    border: 1px solid #333; /* Cor da borda */
+    padding: 20px 24px;
+    text-shadow: 0px 1px 0px #000; /* Sombra do texto */
+    margin-bottom: 20px;
+}
+
+#copy {
+    margin-top: 20px;
+    background-color: #1c1c1c; /* Cor de fundo do copy */
+    color: #b0b0b0; /* Texto um pouco mais claro */
+    display: flex; /* Usa flexbox para layout */
+    align-items: center; /* Alinha itens verticalmente no centro */
+    justify-content: center; /* Centraliza o conteúdo horizontalmente */
+    padding: 10px; /* Adiciona um pouco de espaço interno */
+    font-size: 14px; /* Ajusta o tamanho da fonte para um pouco menor */
+    width: 100%;
+}
+
+#logo {
+    margin-right: 20px; /* Espaço entre o logo e o texto */
+}
+
+#logo img {
+    height: 60px; /* Ajusta a altura do logo */
+}

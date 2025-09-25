@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:mso="urn:schemas-microsoft-com:office:office" xmlns:msdt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="stylesheet" href="./src/style.css">    
+    <link rel="shortcut icon" href="./src/svg/imagem_2024_05_23_094541353_x03_1.ico" type="image/x-icon">
+    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.11.0/dist/sweetalert2.min.css" rel="stylesheet">
+    
+
+<!--[if gte mso 9]><xml>
+<mso:CustomDocumentProperties>
+<mso:display_urn_x003a_schemas-microsoft-com_x003a_office_x003a_office_x0023_Editor msdt:dt="string">Higor Vinicius Rodrigues Brito</mso:display_urn_x003a_schemas-microsoft-com_x003a_office_x003a_office_x0023_Editor>
+<mso:_ExtendedDescription msdt:dt="string"></mso:_ExtendedDescription>
+<mso:display_urn_x003a_schemas-microsoft-com_x003a_office_x003a_office_x0023_Author msdt:dt="string">Higor Vinicius Rodrigues Brito</mso:display_urn_x003a_schemas-microsoft-com_x003a_office_x003a_office_x0023_Author>
+<mso:ComplianceAssetId msdt:dt="string"></mso:ComplianceAssetId>
+<mso:TriggerFlowInfo msdt:dt="string"></mso:TriggerFlowInfo>
+<mso:ContentTypeId msdt:dt="string">0x01010021ED50D87D25944EB54959777692050F</mso:ContentTypeId>
+<mso:_SourceUrl msdt:dt="string"></mso:_SourceUrl>
+<mso:_SharedFileIndex msdt:dt="string"></mso:_SharedFileIndex>
+</mso:CustomDocumentProperties>
+</xml><![endif]-->
+</head>
+<body>
+    <div class="container">
+        <div class="container_into">
+            <p class="titulo">POSIÇÃO DO CLIENTE</p>    
+            <form id="">
+                <input type="text" id="inputSlot" placeholder="Slot GPON">
+                <input type="text" id="inputGpon" placeholder="Porta PON">
+                <input type="text" id="inputIndex" placeholder="Posição da ONT">
+            </form>
+        </div>
+
+        <div class="container_into">
+            <form id="">
+            <p class="titulo">PESQUISAR CLIENTE</p>
+            <input type="text" id="pesquisarALCL" placeholder="Inserir ALCL">
+            <input type="text" id="pesquisarNOME" placeholder="Inserir nome">
+            <button type="button" onclick="buttonPESQUISA()">Pesquisar cliente</button>
+            </form>
+        </div>
+            <div class="container_into">
+                <p class="titulo">OUTRAS OPÇÕES</p>
+            <button type="button" onclick="buttonPESQUISAPON()">Pesquisa da PON inteira</button>    
+            <button type="button" onclick="buttonALARM()">Pesquisa dos alarmes</button>    
+            <button type="button" onclick="reiniciarONU()">Reiniciar ONU</button>    
+            <button type="button" onclick="onuSolicitandoProvisionamento()">ONU p/ provisionar</button>    
+            <button type="button" onclick="verificarFibra()">Verificar fibra</button>    
+            <button type="button" onclick="desprovisionarONU()" id="desprovisionar">Desprovisionar ONU</button>   
+        </div>
+</div>
+    <div class="container">
+        <div class="container_into">
+        <p class="titulo">PROVISIONAR CLIENTE</p>
+        <form id="codeForm2">
+            <input type="text" id="ProvNOME" placeholder="Nome do cliente">
+            <input type="text" id="ProvALCL" placeholder="Novo ALCL">
+            <input type="text" id="ProvCAIXA" placeholder="Caixa e Porta">
+            <input type="text" id="ProvPPPOE" placeholder="Usuário PPPOE">
+            <input type="text" id="ProvPASS" placeholder="Senha PPPOE">
+            <select name="VLAN" id="ProvVLAN">
+                <option value="2800">VLAN de NOVA ANDRADINA - MS</option>
+                <option value="2710">VLAN de MANDAGUAÇU - PR</option>
+                <option value="2820">VLAN de NOVA ESPERANÇA - PR</option>
+                <option value="2714">VLAN de TERRA RICA - PR</option>
+                <option value="2821">VLAN de PAIÇANDU - PR</option>
+                <option value="2700">VLAN de PARANAVAÍ - PR</option>
+                <option value="2760">VLAN de MARINGÁ - PR</option>
+                <option value="3050">VLAN de NOVA ALIANÇA - PR</option>
+                <option value="2750">VLAN de DOURADOS - MS</option>
+                <option value="2869">VLAN de IVINHEMA - MS</option>
+                <option value="2825">VLAN de BAYTAPORÃ - MS</option>
+            </select> 
+            <button type="button" onclick="ProvONU()">PROVISIONAR ONU</button>
+        </form>
+        </div>
+
+        <div class="container_into">
+            <p class="titulo">CONFIGURAR REDE Wi-Fi</p>
+            <form id="codeForm3">
+                <input type="text" id="inputAlterarNomeWifi" placeholder="Nome da rede Wi-Fi">
+                <input type="text" id="inputAlterarNomeSenha" placeholder="Senha da rede Wi-Fi">
+            </form>
+            <button type="button" onclick="alterarNomeDaRede()">Alterar somente NOME</button>
+            <button type="button" onclick="alterarSenhaDaRede()">Alterar somente SENHA</button>
+            <button type="button" onclick="alterarNomeESenhaDaRede()">Alterar NOME e SENHA</button>
+        </div>
+    </div>
+    
+    <div class="container">
+        <div class="container_into">
+            <p class="titulo">CONFIGURAR TELEFONE</p>
+        <form id="codeForm3">
+            <!-- <input type="text" id="inputPortaTelefone" placeholder="Porta do telefone"> -->
+            <select name="selecionaPortaTelefonica" id="portaTelefonica" >
+                <option value="1">PORTA 1</option>
+                <option value="2">PORTA 2</option>
+               
+            </select> 
+
+            <input type="text" id="inputUsuarioSIP" placeholder="Usuário SIP">
+            <input type="text" id="inputSenhaSIP" placeholder="Senha SIP">
+            <button type="button" onclick="provisionarTelefone()">Configurar telefone</button>
+        </form>
+        </div>
+
+        <div class="container_into">
+                
+            <form id="codeForm4">
+                <p class="titulo">ALTERAR VLAN E PPPOE</p>
+                <input type="text" id="inputAlterarPPPOE" placeholder="Usuário PPPOE">
+                <input type="text" id="inputAlterarSenha" placeholder="Senha PPPOE">
+                <select name="VLAN" id="ProvVLAN2">
+                    <option value="2800">VLAN de NOVA ANDRADINA - MS</option>
+                    <option value="2710">VLAN de MANDAGUAÇU - PR</option>
+                    <option value="2820">VLAN de NOVA ESPERANÇA - PR</option>
+                    <option value="2714">VLAN de TERRA RICA - PR</option>
+                    <option value="2821">VLAN de PAIÇANDU - PR</option>
+                    <option value="2700">VLAN de PARANAVAÍ - PR</option>
+                    <option value="2760">VLAN de MARINGÁ - PR</option>
+                    <option value="3050">VLAN de NOVA ALIANÇA - PR</option>
+                    <option value="2750">VLAN de DOURADOS - MS</option>
+                    <option value="2869">VLAN de IVINHEMA - MS</option>
+                    <option value="2825">VLAN de BAYTAPORÃ - MS</option>
+                </select> 
+                <button type="button" onclick="alterarVlanPppoe()">Alterar VLAN e PPPOE</button>
+            </form>
+            </div>
+
+        <div class="container_into">
+            <p class="titulo">ALTERAR SENHA DE ACESSO WEB</p>
+            <input type="text" id="inputAlterarAlclONU" placeholder="Adicione a senha web(ALCL) ">
+            <button type="button" onclick="alterarSenhaOnu()">Alterar senha web</button>
+            </div>
+
+
+
+    </div>
+    
+<!--   <div class="container">
+ <p class="titulo">REALIZAR BRIDGE</p>
+            <p style="color: red; font-weight: bold;margin: 0 auto;">em produção, não funcional</p>
+
+            <input type="text" name="" id="" placeholder="Nome do cliente">
+            <input type="text" name="" id="" placeholder="Inserir ALCL">
+
+
+            <select name="PORTALAN" id="inptBridgeLan">
+                <option value="1">LAN 1</option>
+                <option value="2">LAN 2</option>
+                <option value="3">LAN 3</option>
+                <option value="4">LAN 4</option>
+            </select> 
+            <select name="UPSTREAM" id="inptBridgeUpstream">
+                <option value="HSO_100M_UP">HSO_100M_UP</option>
+                <option value="HSO_50M_UP">HSO_50M_UP</option>
+                <option value="HSO_20M_UP">HSO_20M_UP</option>
+                <option value="HSO_15M_UP">HSO_15M_UP</option>
+                <option value="HSI_1G_UP">HSI_1G_UP</option>
+            </select> 
+            <select name="TIPOVLAN" id="inptBridgeTipoVlan">
+                <option value="DUPLO TAG">DUPLO TAG</option>
+                <option value="COMUM">COMUM</option>
+            </select> 
+            <input type="text" name="" id="" placeholder="VLAN">
+            <input type="text" name="" id="" placeholder="CUSTUMER VLAN">
+            <button type="button" onclick=" ">realizar</button> 
+    </div>
+-->
+  
+
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="./src/main.js" ></script>
+
+<div id="copy">
+    <div id="logo">
+        <img src="src/logo.png" alt="Logo">
+    </div>
+    <p>&copy; 2024 Solução Network. Desenvolvido por Higor Brito e Vitor Odorico</p>
+</div>
+</body>
+</html>

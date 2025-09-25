@@ -5,11 +5,11 @@
 ![Nokia ONU](https://img.shields.io/badge/Nokia-ONU_Manager-00FFFF?style=for-the-badge&logo=nokia&logoColor=white)
 ![React](https://img.shields.io/badge/React-18.3.1-61DAFB?style=for-the-badge&logo=react&logoColor=black)
 ![Vite](https://img.shields.io/badge/Vite-7.1.7-646CFF?style=for-the-badge&logo=vite&logoColor=white)
-![CSS3](https://img.shields.io/badge/CSS3-Cyberpunk_Theme-1572B6?style=for-the-badge&logo=css3&logoColor=white)
+![GitHub Pages](https://img.shields.io/badge/GitHub-Pages-222222?style=for-the-badge&logo=github&logoColor=white)
 
 _A futuristic cyberpunk-themed management system for Nokia ONU devices_
 
-[🚀 Live Demo](#-getting-started) • [📖 Features](#-features) • [🛠️ Installation](#-installation) • [🎨 Screenshots](#-screenshots)
+[🚀 Live Demo](https://MatheusAraujo86.github.io/obscure-xylophone/) • [📖 Features](#-features) • [🛠️ Installation](#-installation) • [🌐 Deploy](#-github-pages-deployment)
 
 ---
 
@@ -52,47 +52,14 @@ _A futuristic cyberpunk-themed management system for Nokia ONU devices_
 
 ## 🛠️ Tech Stack
 
-| Technology      | Version | Purpose                   |
-| --------------- | ------- | ------------------------- |
-| **React**       | 18.3.1  | Frontend framework        |
-| **Vite**        | 7.1.7   | Build tool and dev server |
-| **CSS3**        | Custom  | Cyberpunk styling system  |
-| **SweetAlert2** | 11.23.0 | Enhanced notifications    |
-| **ESLint**      | 9.36.0  | Code quality and linting  |
-
-## 📁 Project Structure
-
-```
-onu-nokia-react/
-├── 📁 public/
-│   ├── cyberpunk-favicon.svg     # Custom cyberpunk favicon
-│   └── vite.svg
-├── 📁 src/
-│   ├── 📁 components/
-│   │   ├── PosicaoCliente.jsx    # Client positioning
-│   │   ├── PesquisaCliente.jsx   # Client search
-│   │   ├── ProvisionarCliente.jsx # Client provisioning
-│   │   ├── ConfiguracaoWifi.jsx  # Wi-Fi setup
-│   │   ├── ConfiguracaoTelefone.jsx # Phone config
-│   │   ├── AlterarVlanPppoe.jsx  # VLAN management
-│   │   ├── AlterarSenhaWeb.jsx   # Web access
-│   │   └── ConferenciaCaixa.jsx  # Box conference tool
-│   ├── 📁 hooks/
-│   │   └── useSweetAlert.js      # Custom alert hook
-│   ├── 📁 services/
-│   │   ├── onuService.js         # ONU API calls
-│   │   ├── phoneService.js       # Phone services
-│   │   └── wifiService.js        # Wi-Fi services
-│   ├── 📁 utils/
-│   │   └── validation.js         # Input validation
-│   ├── App.jsx                   # Main application
-│   ├── App.css                   # Global cyberpunk styles
-│   ├── main.jsx                  # React entry point
-│   └── index.css                 # Base styles
-├── index.html                    # HTML template
-├── package.json                  # Dependencies
-└── vite.config.js               # Vite configuration
-```
+| Technology       | Version | Purpose                   |
+| ---------------- | ------- | ------------------------- |
+| **React**        | 18.3.1  | Frontend framework        |
+| **Vite**         | 7.1.7   | Build tool and dev server |
+| **CSS3**         | Custom  | Cyberpunk styling system  |
+| **SweetAlert2**  | 11.23.0 | Enhanced notifications    |
+| **ESLint**       | 9.36.0  | Code quality and linting  |
+| **GitHub Pages** | -       | Static site hosting       |
 
 ## 🚀 Getting Started
 
@@ -136,7 +103,77 @@ npm run build
 
 # Preview production build
 npm run preview
+
+# Deploy to GitHub Pages
+npm run deploy
 ```
+
+## 🌐 GitHub Pages Deployment
+
+This project is configured for automatic deployment to GitHub Pages. Here's how to set it up:
+
+### **🤖 Automatic Deployment (Recommended)**
+
+1. **Enable GitHub Pages**:
+
+   - Go to your repository Settings → Pages
+   - Under "Source", select **"GitHub Actions"**
+   - Save the configuration
+
+2. **Push to main/master branch**:
+
+   ```bash
+   git add .
+   git commit -m "Deploy to GitHub Pages"
+   git push origin master
+   ```
+
+3. **Access your live site**:
+   ```
+   🌍 https://MatheusAraujo86.github.io/obscure-xylophone/
+   ```
+
+### **🔧 Manual Deployment**
+
+If you prefer manual deployment:
+
+```bash
+# Build and deploy manually
+npm run deploy
+```
+
+### **⚙️ Configuration Details**
+
+- **Base URL**: `/obscure-xylophone/` (configured in `vite.config.js`)
+- **Build Output**: `dist/` folder
+- **GitHub Action**: `.github/workflows/deploy.yml`
+- **Node Version**: 18 (specified in workflow)
+- **Deployment Branch**: `gh-pages` (auto-created)
+
+### **🛠️ Troubleshooting GitHub Pages**
+
+If you encounter deployment issues:
+
+1. **Check GitHub Actions tab** for build/deployment status
+2. **Ensure Pages is enabled** in repository settings
+3. **Verify base URL** matches your repository name in `vite.config.js`
+4. **Check build logs** for any compilation errors
+5. **Wait 5-10 minutes** for DNS propagation
+
+```bash
+# Test build locally before deploying
+npm run build
+npm run preview
+```
+
+### **📋 Step-by-Step GitHub Pages Setup**
+
+1. Fork/Clone this repository
+2. Go to **Settings** → **Pages**
+3. Select **"GitHub Actions"** as source
+4. Push any changes to trigger deployment
+5. Visit your live site at the provided URL
+6. ✨ Enjoy your cyberpunk ONU manager!
 
 ## 🎮 Usage Guide
 
@@ -165,18 +202,14 @@ The Conference tool allows you to:
 - **Full-Width Mode**: Conference tool automatically expands for better visibility
 - **Responsive Design**: Works on mobile and desktop devices
 
-## 🎨 Screenshots
-
-_Screenshots would be added here showing the cyberpunk interface, different tools, and the conference system in action_
-
 ## 🧪 Testing
 
 ```bash
 # Run linting
 npm run lint
 
-# Check for code issues
-npm run lint:fix
+# Build and test locally
+npm run build && npm run preview
 ```
 
 ## 🤝 Contributing
@@ -214,6 +247,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - Nokia for ONU technology and documentation
 - React team for the amazing framework
 - Vite for lightning-fast development experience
+- GitHub Pages for free hosting
 - Cyberpunk aesthetic inspiration from futuristic design trends
 
 ## 🆘 Support
@@ -233,134 +267,6 @@ If you encounter any issues or have questions:
 
 _Transform your Nokia ONU management experience with cyberpunk style!_ 🔮
 
+**🌍 [View Live Demo](https://MatheusAraujo86.github.io/obscure-xylophone/)**
+
 </div>
-- Configuração de PPPOE
-- Validações de ALCL
-
-### 📶 Configuração Wi-Fi
-
-- Alteração de nome da rede
-- Alteração de senha (mínimo 8 caracteres)
-- Configuração simultânea de nome e senha
-- Suporte a redes 2.4GHz e 5GHz
-
-### 📞 Configuração de Telefone
-
-- Configuração SIP para portas 1 e 2
-- Usuário e senha SIP
-- Integração com servidor de telefonia
-
-### 🔧 Alterações Avançadas
-
-- Modificação de VLAN e PPPOE
-- Alteração de senha de acesso web
-- Validações robustas
-
-## 🚀 Tecnologias Utilizadas
-
-- **React 19** - Biblioteca principal
-- **Material UI** - Interface moderna e responsiva
-- **Vite** - Build tool rápida
-- **SweetAlert2** - Notificações elegantes
-- **Emotion** - Styling system
-
-## 🎨 Design System
-
-### Tema Escuro
-
-- Cores primárias: Azul (#2196F3) e Laranja (#FF9800)
-- Fundo escuro (#212121) para conforto visual
-- Componentes Paper com elevação 3
-- Ícones descritivos para cada funcionalidade
-
-### Componentes Material UI
-
-- **TextField** - Inputs com labels flutuantes
-- **Button** - Botões com ícones e cores semânticas
-- **Paper** - Cartões com sombra e padding
-- **AppBar** - Barra superior com gradient
-- **Grid** - Layout responsivo 12 colunas
-
-## 📱 Responsividade
-
-- **Desktop**: 3 colunas (md=4)
-- **Tablet**: 2 colunas adaptáveis
-- **Mobile**: 1 coluna (xs=12)
-
-## 🔒 Validações
-
-- Campos numéricos (Slot, PON, Posição)
-- ALCL de 12 caracteres
-- Senhas Wi-Fi mínimo 8 caracteres
-- Campos obrigatórios
-- Validação de portas telefônicas
-
-## 🎯 Usabilidade
-
-- **Auto-cópia**: Comandos copiados automaticamente
-- **Notificações**: Feedback visual com SweetAlert2
-- **Confirmações**: Diálogos para ações críticas
-- **Estados**: Loading e erro tratados
-- **Acessibilidade**: Labels e ARIA adequados
-
-## 🏗️ Arquitetura
-
-```
-src/
-├── components/          # Componentes React
-├── services/           # Lógica de negócio
-├── hooks/             # Hooks customizados
-├── utils/             # Funções utilitárias
-└── theme.js           # Configuração Material UI
-```
-
-## 🚀 Como Executar
-
-```bash
-# Instalar dependências
-npm install
-
-# Executar em desenvolvimento
-npm run dev
-
-# Build para produção
-npm run build
-```
-
-## 📋 Dependências Principais
-
-```json
-{
-  "@mui/material": "^5.x",
-  "@emotion/react": "^11.x",
-  "@emotion/styled": "^11.x",
-  "@mui/icons-material": "^5.x",
-  "sweetalert2": "^11.x",
-  "react": "^19.x",
-  "vite": "^7.x"
-}
-```
-
-## 👥 Desenvolvido por
-
-- **Higor Brito**
-- **Vitor Odorico**
-
----
-
-© 2024 Solução Network. Sistema de gerenciamento ONU Nokia.+ Vite
-
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## React Compiler
-
-The React Compiler is not enabled on this template. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.

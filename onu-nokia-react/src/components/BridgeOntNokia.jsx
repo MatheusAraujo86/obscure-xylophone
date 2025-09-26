@@ -365,35 +365,35 @@ ENT-HGUTR069-SPARAM::HGUTR069SPARAM-1-1-${inputSlot}-${inputGpon}-${inputIndex}-
                             className="btn btn-outline"
                             onClick={verificarMac}
                         >
-                            Verificar se pegou MAC
+                            ◈ Verificar se pegou MAC
                         </button>
                         <button
                             type="button"
                             className="btn btn-outline"
                             onClick={verificarVlan}
                         >
-                            Verificar VLAN
+                            ◊ Verificar VLAN
                         </button>
                         <button
                             type="button"
                             className="btn btn-outline"
                             onClick={verificarVelocidade}
                         >
-                            Verificar velocidade
+                            ◐ Verificar velocidade
                         </button>
                         <button
                             type="button"
                             className="btn btn-outline"
                             onClick={verificarIp}
                         >
-                            Verificar IP do PPPoE
+                            ◎ Verificar IP do PPPoE
                         </button>
                         <button
                             type="button"
                             className="btn btn-outline"
                             onClick={verificarIpp}
                         >
-                            Verificar PPPoE do IP
+                            ◯ Verificar PPPoE do IP
                         </button>
                     </div>
                 </div>
@@ -406,7 +406,7 @@ ENT-HGUTR069-SPARAM::HGUTR069SPARAM-1-1-${inputSlot}-${inputGpon}-${inputIndex}-
                         <div className="modal-header">
                             <h3>Comandos Gerados</h3>
                             <button className="modal-close" onClick={closeModal}>
-                                ✕
+                                ◈
                             </button>
                         </div>
                         <div className="modal-body">
@@ -425,14 +425,14 @@ ENT-HGUTR069-SPARAM::HGUTR069SPARAM-1-1-${inputSlot}-${inputGpon}-${inputIndex}-
                                     copyToClipboard(comandos);
                                 }}
                             >
-                                📋 Copiar Comandos
+                                ◇ Copiar Comandos
                             </button>
                             <button
                                 type="button"
                                 className="btn btn-secondary"
                                 onClick={closeModal}
                             >
-                                Fechar
+                                ◆ Fechar
                             </button>
                         </div>
                     </div>

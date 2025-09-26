@@ -1,3 +1,6 @@
+/* Fontes Cyberpunk */
+@import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Roboto+Mono:wght@300;400;500;700&display=swap");
+
 /* Reset e estilos globais */
 * {
   box-sizing: border-box;
@@ -32,9 +35,6 @@ body {
   min-height: 100vh;
   position: relative;
 }
-
-/* Fontes Cyberpunk */
-@import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Roboto+Mono:wght@300;400;500;700&display=swap");
 
 /* Scrollbar customizada */
 ::-webkit-scrollbar {

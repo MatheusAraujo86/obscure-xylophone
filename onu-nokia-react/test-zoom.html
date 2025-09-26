@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Teste de Zoom - Componentes</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+        background: #f0f0f0;
+      }
+      .test-container {
+        margin: 20px 0;
+        padding: 20px;
+        border: 2px solid #ccc;
+        background: white;
+      }
+      .zoom-controls {
+        position: fixed;
+        top: 10px;
+        right: 10px;
+        background: white;
+        padding: 10px;
+        border: 1px solid #ccc;
+        z-index: 1000;
+      }
+      .zoom-controls button {
+        margin: 5px;
+        padding: 5px 10px;
+        cursor: pointer;
+      }
+      .grid-test {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 20px;
+        margin: 20px 0;
+      }
+      .card-test {
+        border: 2px solid #007acc;
+        border-radius: 8px;
+        padding: 20px;
+        background: #f9f9f9;
+        min-height: fit-content;
+        height: auto;
+      }
+      .card-content {
+        height: 200px;
+        background: linear-gradient(45deg, #e3f2fd, #bbdefb);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="zoom-controls">
+      <p>Controles de Zoom de Teste:</p>
+      <button onclick="setZoom(0.5)">50%</button>
+      <button onclick="setZoom(0.75)">75%</button>
+      <button onclick="setZoom(1.0)">100%</button>
+      <button onclick="setZoom(1.25)">125%</button>
+      <button onclick="setZoom(1.5)">150%</button>
+    </div>
+
+    <div class="test-container">
+      <h1>Teste de Responsividade para Componentes</h1>
+      <p>
+        Este teste simula o comportamento dos componentes "Provisionar Cliente"
+        e "Bridge ONT Nokia" em diferentes zooms.
+      </p>
+    </div>
+
+    <div class="test-container">
+      <h2>Grid com minmax(280px, 1fr) - Novo</h2>
+      <div class="grid-test">
+        <div class="card-test">
+          <h3>Provisionar Cliente</h3>
+          <div class="card-content">
+            Componente 1<br />
+            <small>Largura mínima: 280px</small>
+          </div>
+        </div>
+        <div class="card-test">
+          <h3>Bridge ONT Nokia</h3>
+          <div class="card-content">
+            Componente 2<br />
+            <small>Largura mínima: 280px</small>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="test-container">
+      <h2>Teste de Conteúdo com Height Auto</h2>
+      <div class="grid-test">
+        <div class="card-test">
+          <h3>Card com Conteúdo Variável</h3>
+          <div style="padding: 20px">
+            <p>Este card tem height: auto e min-height: fit-content</p>
+            <p>Formulário simulado:</p>
+            <div style="margin: 10px 0; padding: 8px; border: 1px solid #ccc">
+              Campo 1
+            </div>
+            <div style="margin: 10px 0; padding: 8px; border: 1px solid #ccc">
+              Campo 2
+            </div>
+            <div style="margin: 10px 0; padding: 8px; border: 1px solid #ccc">
+              Campo 3
+            </div>
+            <div style="margin: 10px 0; padding: 8px; border: 1px solid #ccc">
+              Campo 4
+            </div>
+            <div style="margin: 10px 0; padding: 8px; border: 1px solid #ccc">
+              Campo 5
+            </div>
+          </div>
+        </div>
+        <div class="card-test">
+          <h3>Outro Card</h3>
+          <div style="padding: 20px">
+            <p>Conteúdo mais curto</p>
+            <div style="margin: 10px 0; padding: 8px; border: 1px solid #ccc">
+              Campo A
+            </div>
+            <div style="margin: 10px 0; padding: 8px; border: 1px solid #ccc">
+              Campo B
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      function setZoom(level) {
+        document.body.style.zoom = level;
+        console.log("Zoom definido para:", level * 100 + "%");
+      }
+
+      // Log inicial
+      console.log(
+        "Teste de zoom carregado. Use os botões para testar diferentes níveis."
+      );
+
+      // Teste automático de redimensionamento
+      window.addEventListener("resize", function () {
+        console.log(
+          "Janela redimensionada:",
+          window.innerWidth + "x" + window.innerHeight
+        );
+      });
+    </script>
+  </body>
+</html>

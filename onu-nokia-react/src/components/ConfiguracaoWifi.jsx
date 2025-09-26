@@ -108,7 +108,7 @@ function ConfiguracaoWifi({ posicaoData }) {
     return (
         <div className="card">
             <div className="card-header">
-                <span className="icon">📶</span>
+                <span className="icon">◈</span>
                 <h3>CONFIGURAR REDE Wi-Fi</h3>
             </div>
             <form className="form">

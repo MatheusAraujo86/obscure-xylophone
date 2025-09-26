@@ -9,6 +9,7 @@ import ConfiguracaoTelefone from './components/ConfiguracaoTelefone';
 import AlterarVlanPppoe from './components/AlterarVlanPppoe';
 import AlterarSenhaWeb from './components/AlterarSenhaWeb';
 import ConferenciaCaixa from './components/ConferenciaCaixa';
+import BridgeOntNokia from './components/BridgeOntNokia';
 
 function App() {
   const [posicaoData, setPosicaoData] = useState({
@@ -25,14 +26,15 @@ function App() {
   };
 
   const menuItems = [
-    { id: 'pesquisar', label: 'Pesquisar Cliente', icon: '🔍' },
-    { id: 'provisionar', label: 'Provisionar Cliente', icon: '👤' },
-    { id: 'wifi', label: 'Configurar Wi-Fi', icon: '📶' },
-    { id: 'telefone', label: 'Configurar Telefone', icon: '📞' },
-    { id: 'vlan', label: 'Alterar VLAN PPPOE', icon: '🔑' },
-    { id: 'senha', label: 'Alterar Senha Web', icon: '🔒' },
-    { id: 'conferencia', label: 'Conferência de Caixa', icon: '📊' },
-    { id: 'outras', label: 'Outras Opções', icon: '⚙️' }
+    { id: 'pesquisar', label: 'Pesquisar Cliente', icon: '◯' },
+    { id: 'provisionar', label: 'Provisionar Cliente', icon: '◯' },
+    { id: 'bridge', label: 'Bridge ONT Nokia', icon: '◪' },
+    { id: 'wifi', label: 'Configurar Wi-Fi', icon: '◈' },
+    { id: 'telefone', label: 'Configurar Telefone', icon: '◐' },
+    { id: 'vlan', label: 'Alterar VLAN PPPOE', icon: '◊' },
+    { id: 'senha', label: 'Alterar Senha Web', icon: '◇' },
+    { id: 'conferencia', label: 'Conferência de Caixa', icon: '◎' },
+    { id: 'outras', label: 'Outras Opções', icon: '◆' }
   ];
 
   const renderActiveComponent = () => {
@@ -41,6 +43,8 @@ function App() {
         return <PesquisaCliente />;
       case 'provisionar':
         return <ProvisionarCliente posicaoData={posicaoData} />;
+      case 'bridge':
+        return <BridgeOntNokia posicaoData={posicaoData} />;
       case 'wifi':
         return <ConfiguracaoWifi posicaoData={posicaoData} />;
       case 'telefone':
@@ -68,8 +72,7 @@ function App() {
           >
             ☰
           </button>
-          <span className="router-icon">📡</span>
-          <h1 className="app-title">Gerenciador ONU Nokia</h1>
+          
         </div>
       </header>
 

@@ -85,7 +85,7 @@ function AlterarVlanPppoe({ posicaoData }) {
     return (
         <div className="card">
             <div className="card-header">
-                <span className="icon">🔑</span>
+                <span className="icon">◊</span>
                 <h3>ALTERAR VLAN PPPOE</h3>
             </div>
             <form className="form">

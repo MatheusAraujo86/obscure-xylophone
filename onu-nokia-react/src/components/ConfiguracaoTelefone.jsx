@@ -90,7 +90,7 @@ function ConfiguracaoTelefone({ posicaoData }) {
     return (
         <div className="card">
             <div className="card-header">
-                <span className="icon">📞</span>
+                <span className="icon">◐</span>
                 <h3>CONFIGURAR TELEFONE</h3>
             </div>
             <form className="form">

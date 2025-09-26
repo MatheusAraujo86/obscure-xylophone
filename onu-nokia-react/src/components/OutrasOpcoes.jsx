@@ -95,7 +95,7 @@ function OutrasOpcoes({ posicaoData }) {
     return (
         <div className="card">
             <div className="card-header">
-                <span className="icon">⚙️</span>
+                <span className="icon">◆</span>
                 <h3>OUTRAS OPÇÕES</h3>
             </div>
             <div className="button-group">

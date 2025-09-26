@@ -53,7 +53,7 @@ function PesquisaCliente() {
     return (
         <div className="card">
             <div className="card-header">
-                <span className="icon">🔍</span>
+                <span className="icon">◯</span>
                 <h3>PESQUISAR CLIENTE</h3>
             </div>
             <form className="form">

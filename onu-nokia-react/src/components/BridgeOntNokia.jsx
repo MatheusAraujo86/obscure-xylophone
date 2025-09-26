@@ -16,6 +16,7 @@ function BridgeOntNokia({ posicaoData }) {
     });
 
     const [comandos, setComandos] = useState('');
+    const [showModal, setShowModal] = useState(false);
     const { showSuccessAlert, showErrorAlert, showInfoAlert } = useSweetAlert();
 
     // Lista de cidades
@@ -154,15 +155,20 @@ ENT-HGUTR069-SPARAM::HGUTR069SPARAM-1-1-${inputSlot}-${inputGpon}-${inputIndex}-
         `.trim();
 
         setComandos(comandosGerados);
+        setShowModal(true);
         showSuccessAlert("Comandos gerados com sucesso!");
     };
 
     const copyToClipboard = (text) => {
         navigator.clipboard.writeText(text).then(() => {
-            showSuccessAlert();
+            showSuccessAlert("Comandos copiados para área de transferência!");
         }).catch(() => {
             showErrorAlert("Erro ao copiar comando.");
         });
+    };
+
+    const closeModal = () => {
+        setShowModal(false);
     };
 
     const getPath = () => {
@@ -351,30 +357,6 @@ ENT-HGUTR069-SPARAM::HGUTR069SPARAM-1-1-${inputSlot}-${inputGpon}-${inputIndex}-
                     ◪ Gerar Comandos
                 </button>
 
-                {comandos && (
-                    <div className="form-group">
-                        <label>Comandos Gerados</label>
-                        <textarea
-                            className="form-input"
-                            value={comandos}
-                            readOnly
-                            rows="15"
-                            style={{ fontFamily: 'monospace', fontSize: '0.85rem' }}
-                        />
-                        <button
-                            type="button"
-                            className="btn btn-secondary"
-                            onClick={() => {
-                                copyToClipboard(comandos);
-                                showInfoAlert("Comandos copiados para área de transferência!");
-                            }}
-                            style={{ marginTop: '0.5rem' }}
-                        >
-                            📋 Copiar Comandos
-                        </button>
-                    </div>
-                )}
-
                 <div className="form-group" style={{ borderTop: '1px solid rgba(0, 255, 255, 0.2)', paddingTop: '1rem', marginTop: '2rem' }}>
                     <label>Consultas</label>
                     <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '0.5rem' }}>
@@ -416,6 +398,46 @@ ENT-HGUTR069-SPARAM::HGUTR069SPARAM-1-1-${inputSlot}-${inputGpon}-${inputIndex}-
                     </div>
                 </div>
             </form>
+
+            {/* Modal de Comandos */}
+            {showModal && (
+                <div className="modal-overlay" onClick={closeModal}>
+                    <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+                        <div className="modal-header">
+                            <h3>Comandos Gerados</h3>
+                            <button className="modal-close" onClick={closeModal}>
+                                ✕
+                            </button>
+                        </div>
+                        <div className="modal-body">
+                            <textarea
+                                className="modal-textarea"
+                                value={comandos}
+                                readOnly
+                                rows="20"
+                            />
+                        </div>
+                        <div className="modal-footer">
+                            <button
+                                type="button"
+                                className="btn btn-primary"
+                                onClick={() => {
+                                    copyToClipboard(comandos);
+                                }}
+                            >
+                                📋 Copiar Comandos
+                            </button>
+                            <button
+                                type="button"
+                                className="btn btn-secondary"
+                                onClick={closeModal}
+                            >
+                                Fechar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            )}
         </div>
     );
 }

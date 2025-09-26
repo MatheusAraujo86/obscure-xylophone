@@ -157,9 +157,11 @@ body[data-theme="light"] {
   border: 1px solid var(--border-primary);
   position: relative;
   backdrop-filter: blur(10px);
-  /* Melhor adaptabilidade para diferentes zooms */
-  min-height: fit-content;
+  /* Altura consistente e proporcional */
+  min-height: 500px;
   height: auto;
+  display: flex;
+  flex-direction: column;
 }
 
 .card::before {
@@ -230,6 +232,9 @@ body[data-theme="light"] {
 /* Formulários */
 .form {
   padding: 1.5rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
 }
 
 .form-group {
@@ -642,31 +647,36 @@ body[data-theme="light"] {
   flex: 1;
   padding: 2rem;
   transition: margin-left 0.3s ease;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  align-items: start;
   max-width: 100%;
-  /* Melhor responsividade para diferentes tamanhos */
   overflow-x: auto;
 }
 
 .fixed-section {
-  margin-bottom: 2rem;
   width: 100%;
-  max-width: 600px;
-  /* Garantir que não seja cortado */
   min-width: 280px;
 }
 
 .dynamic-section {
   width: 100%;
-  max-width: 600px;
-  /* Garantir que não seja cortado */
   min-width: 280px;
+}
+
+/* Garantir altura uniforme entre os cards */
+.fixed-section .card,
+.dynamic-section .card {
+  height: 100%;
+  min-height: 500px;
 }
 
 /* Layout de largura completa para Conferência de Caixa */
 .main-content-full {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   max-width: 95%;
 }
 
@@ -695,6 +705,30 @@ body[data-theme="light"] {
   }
 }
 
+/* Ajustes para tablet - layout vertical */
+@media (max-width: 1200px) {
+  .main-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .fixed-section {
+    margin-bottom: 2rem;
+    max-width: 600px;
+  }
+
+  .dynamic-section {
+    max-width: 600px;
+  }
+
+  /* Manter altura mínima proporcional em tablets */
+  .fixed-section .card,
+  .dynamic-section .card {
+    min-height: 400px;
+  }
+}
+
 /* Ajustes para mobile */
 @media (max-width: 768px) {
   .main-content {
@@ -710,6 +744,12 @@ body[data-theme="light"] {
   .dynamic-section {
     max-width: 100%;
     width: 100%;
+  }
+
+  /* Altura menor para mobile para melhor usabilidade */
+  .fixed-section .card,
+  .dynamic-section .card {
+    min-height: 350px;
   }
 }
 
@@ -730,10 +770,10 @@ body[data-theme="light"] {
 
   .card {
     border-radius: 8px;
-    /* Força o card a se ajustar ao conteúdo */
+    /* Para telas muito pequenas, altura adaptável */
     height: auto !important;
     max-height: none !important;
-    min-height: auto !important;
+    min-height: 250px !important;
   }
 
   .form {

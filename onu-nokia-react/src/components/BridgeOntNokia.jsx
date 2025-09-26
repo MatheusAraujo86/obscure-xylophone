@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useSweetAlert } from '../hooks/useSweetAlert';
+import { copyToClipboard } from '../utils/validation';
 
 /**
  * Componente para configuração de Bridge ONT Nokia
@@ -91,6 +92,26 @@ function BridgeOntNokia({ posicaoData }) {
         setBridgeData({ ...bridgeData, [field]: processedValue });
     };
 
+    const handleVerificarMac = async () => {
+        const { inputSlot, inputGpon, inputIndex } = posicaoData;
+        const { cardType, portaLan } = bridgeData;
+        
+        if (!inputSlot || !inputGpon || !inputIndex) {
+            showErrorAlert("⚠️ Preencha todos os campos: Slot, PON e Posição.");
+            return;
+        }
+        
+        const path = `${inputSlot}/${inputGpon}/${inputIndex}/${cardType}/${portaLan}`;
+        const comando = `info configure equipment ont interface 1/1/${path}`;
+        const result = await copyToClipboard(comando);
+        
+        if (result.success) {
+            showInfoAlert("Comando para verificar MAC copiado!");
+        } else {
+            showErrorAlert("Erro ao copiar comando.");
+        }
+    };
+
     // Atualizar VLANs quando tipo de bridge muda ou componente monta
     useEffect(() => {
         if (bridgeData.tipoBridge && getVlanOptions().length > 0) {
@@ -169,72 +190,6 @@ ENT-HGUTR069-SPARAM::HGUTR069SPARAM-1-1-${inputSlot}-${inputGpon}-${inputIndex}-
 
     const closeModal = () => {
         setShowModal(false);
-    };
-
-    const getPath = () => {
-        const { inputSlot, inputGpon, inputIndex } = posicaoData;
-        const { cardType, portaLan } = bridgeData;
-        
-        if (!inputSlot || !inputGpon || !inputIndex || !cardType || !portaLan) {
-            return null;
-        }
-        
-        return `${inputSlot}/${inputGpon}/${inputIndex}/${cardType}/${portaLan}`;
-    };
-
-    const verificarMac = () => {
-        const path = getPath();
-        if (!path) {
-            showErrorAlert("⚠️ Preencha todos os campos: Slot, PON, Posição, CardType e PortaLAN.");
-            return;
-        }
-        const comando = `info configure equipment ont interface 1/1/${path}`;
-        copyToClipboard(comando);
-        showInfoAlert("Comando para verificar MAC copiado!");
-    };
-
-    const verificarVlan = () => {
-        const path = getPath();
-        if (!path) {
-            showErrorAlert("⚠️ Preencha todos os campos: Slot, PON, Posição, CardType e PortaLAN.");
-            return;
-        }
-        const comando = `info configure bridge port 1/1/${path}`;
-        copyToClipboard(comando);
-        showInfoAlert("Comando para verificar VLAN copiado!");
-    };
-
-    const verificarVelocidade = () => {
-        const path = getPath();
-        if (!path) {
-            showErrorAlert("⚠️ Preencha todos os campos: Slot, PON, Posição, CardType e PortaLAN.");
-            return;
-        }
-        const comando = `show interface port uni:1/1/${path} detail`;
-        copyToClipboard(comando);
-        showInfoAlert("Comando para verificar velocidade copiado!");
-    };
-
-    const verificarIp = () => {
-        if (!bridgeData.inputDesc2) {
-            showErrorAlert("⚠️ Preencha o campo Descrição 2 (PPPoE).");
-            return;
-        }
-        const comando = `show subscriber pppoe username ${bridgeData.inputDesc2}`;
-        copyToClipboard(comando);
-        showInfoAlert("Comando para verificar IP do PPPoE copiado!");
-    };
-
-    const verificarIpp = () => {
-        // Solicita o IP ao usuário (simulando um prompt)
-        const ip = prompt("Digite o IP para verificar qual PPPoE está vinculado:");
-        if (!ip) {
-            showErrorAlert("IP não informado.");
-            return;
-        }
-        const comando = `show subscriber pppoe ip-address ${ip}`;
-        copyToClipboard(comando);
-        showInfoAlert(`Comando para verificar PPPoE do IP ${ip} copiado!`);
     };
 
     return (
@@ -349,6 +304,16 @@ ENT-HGUTR069-SPARAM::HGUTR069SPARAM-1-1-${inputSlot}-${inputGpon}-${inputIndex}-
                     </select>
                 </div>
 
+                <div className="form-group">
+                    <button
+                        type="button"
+                        className="btn btn-secondary btn-full"
+                        onClick={handleVerificarMac}
+                    >
+                        ◈ Verificar MAC
+                    </button>
+                </div>
+
                 <button
                     type="button"
                     className="btn btn-primary btn-full"
@@ -356,47 +321,6 @@ ENT-HGUTR069-SPARAM::HGUTR069SPARAM-1-1-${inputSlot}-${inputGpon}-${inputIndex}-
                 >
                     ◪ Gerar Comandos
                 </button>
-
-                <div className="form-group" style={{ borderTop: '1px solid rgba(0, 255, 255, 0.2)', paddingTop: '1rem', marginTop: '2rem' }}>
-                    <label>Consultas</label>
-                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '0.5rem' }}>
-                        <button
-                            type="button"
-                            className="btn btn-secondary"
-                            onClick={verificarMac}
-                        >
-                            ◈ Verificar se pegou MAC
-                        </button>
-                        <button
-                            type="button"
-                            className="btn btn-secondary"
-                            onClick={verificarVlan}
-                        >
-                            ◊ Verificar VLAN
-                        </button>
-                        <button
-                            type="button"
-                            className="btn btn-secondary"
-                            onClick={verificarVelocidade}
-                        >
-                            ◐ Verificar velocidade
-                        </button>
-                        <button
-                            type="button"
-                            className="btn btn-secondary"
-                            onClick={verificarIp}
-                        >
-                            ◎ Verificar IP do PPPoE
-                        </button>
-                        <button
-                            type="button"
-                            className="btn btn-secondary"
-                            onClick={verificarIpp}
-                        >
-                            ◯ Verificar PPPoE do IP
-                        </button>
-                    </div>
-                </div>
             </form>
 
             {/* Modal de Comandos */}

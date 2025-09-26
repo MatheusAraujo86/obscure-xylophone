@@ -270,3 +270,4 @@ _Transform your Nokia ONU management experience with cyberpunk style!_ 🔮
 **🌍 [View Live Demo](https://MatheusAraujo86.github.io/obscure-xylophone/)**
 
 </div>
+# Deploy com correções de zoom implementadas

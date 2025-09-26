@@ -733,9 +733,9 @@
   border: 2px solid rgba(0, 255, 255, 0.3);
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(0, 255, 255, 0.2),
     0 0 40px rgba(0, 255, 255, 0.1);
-  width: 95vw;
-  max-width: 1200px;
-  max-height: 90vh;
+  width: 98vw;
+  max-width: 1800px;
+  max-height: 95vh;
   display: flex;
   flex-direction: column;
   overflow: hidden;
@@ -802,14 +802,14 @@
 
 .modal-textarea {
   width: 100%;
-  min-height: 400px;
+  min-height: 500px;
   background: linear-gradient(145deg, #000000, #1a1a2e);
   color: #00ffff;
   border: 2px solid rgba(0, 255, 255, 0.3);
   border-radius: 12px;
   padding: 1.5rem;
   font-family: "Roboto Mono", monospace;
-  font-size: 0.9rem;
+  font-size: 0.95rem;
   line-height: 1.6;
   resize: vertical;
   box-sizing: border-box;
@@ -896,11 +896,25 @@
 
 @media (min-width: 1400px) {
   .modal-content {
-    max-width: 1400px;
+    max-width: 1900px;
+    width: 99vw;
   }
 
   .modal-textarea {
     font-size: 1rem;
-    min-height: 500px;
+    min-height: 600px;
+  }
+}
+
+/* Para telas ultra-largas */
+@media (min-width: 2000px) {
+  .modal-content {
+    max-width: 95vw;
+    width: 95vw;
+  }
+
+  .modal-textarea {
+    font-size: 1.1rem;
+    min-height: 700px;
   }
 }

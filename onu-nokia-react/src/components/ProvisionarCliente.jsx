@@ -184,7 +184,7 @@ function ProvisionarCliente({ posicaoData }) {
                     className="btn btn-primary btn-full btn-large"
                     onClick={handleProvisionar}
                 >
-                    👤 PROVISIONAR ONU
+                    ◯ PROVISIONAR ONU
                 </button>
             </form>
         </div>

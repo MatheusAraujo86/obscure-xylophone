@@ -85,7 +85,7 @@ function PesquisaCliente() {
                     className="btn btn-primary btn-full"
                     onClick={handlePesquisar}
                 >
-                    🔍 Pesquisar cliente
+                    ◈ Pesquisar cliente
                 </button>
             </form>
         </div>

@@ -136,7 +136,7 @@ function ConfiguracaoTelefone({ posicaoData }) {
                     className="btn btn-primary btn-full"
                     onClick={handleConfigurarTelefone}
                 >
-                    📞 Configurar telefone
+                    ◯ Configurar telefone
                 </button>
             </form>
         </div>

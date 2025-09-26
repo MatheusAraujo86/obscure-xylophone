@@ -10,6 +10,7 @@ import AlterarVlanPppoe from './components/AlterarVlanPppoe';
 import AlterarSenhaWeb from './components/AlterarSenhaWeb';
 import ConferenciaCaixa from './components/ConferenciaCaixa';
 import BridgeOntNokia from './components/BridgeOntNokia';
+import ThemeToggle from './components/ThemeToggle';
 
 function App() {
   const [posicaoData, setPosicaoData] = useState({
@@ -63,8 +64,11 @@ function App() {
   };
 
   return (
-    <div className="app">
-      <header className="app-header">
+    <div className="app-container">
+      {/* Theme Toggle */}
+      <ThemeToggle />
+      
+      <header className="header">
         <div className="toolbar">
           <button 
             className="menu-toggle"

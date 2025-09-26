@@ -104,7 +104,7 @@ function OutrasOpcoes({ posicaoData }) {
                     className="btn btn-primary btn-full"
                     onClick={handlePesquisarPON}
                 >
-                    🔍 PESQUISAR PON
+                    ◈ PESQUISAR PON
                 </button>
                 
                 <button
@@ -112,7 +112,7 @@ function OutrasOpcoes({ posicaoData }) {
                     className="btn btn-primary btn-full"
                     onClick={handlePesquisarAlarmes}
                 >
-                    ⚠️ PESQUISAR ALARMES
+                    ◐ PESQUISAR ALARMES
                 </button>
                 
                 <button
@@ -120,7 +120,7 @@ function OutrasOpcoes({ posicaoData }) {
                     className="btn btn-warning btn-full"
                     onClick={handleReiniciarONU}
                 >
-                    🔄 REINICIAR ONU
+                    ◎ REINICIAR ONU
                 </button>
                 
                 <button
@@ -128,7 +128,7 @@ function OutrasOpcoes({ posicaoData }) {
                     className="btn btn-primary btn-full"
                     onClick={handleONUSolicitandoProvisionamento}
                 >
-                    ➕ ONU SOLICITANDO PROVISIONAMENTO
+                    ◊ ONU SOLICITANDO PROVISIONAMENTO
                 </button>
                 
                 <button
@@ -136,7 +136,7 @@ function OutrasOpcoes({ posicaoData }) {
                     className="btn btn-primary btn-full"
                     onClick={handleVerificarFibra}
                 >
-                    👁️ VERIFICAR FIBRA
+                    ◇ VERIFICAR FIBRA
                 </button>
                 
                 <button
@@ -144,7 +144,7 @@ function OutrasOpcoes({ posicaoData }) {
                     className="btn btn-danger btn-full"
                     onClick={handleDesprovisionarONU}
                 >
-                    🗑️ DESPROVISIONAR ONU
+                    ◆ DESPROVISIONAR ONU
                 </button>
             </div>
         </div>

@@ -132,7 +132,7 @@ const ConferenciaCaixa = () => {
                     <div className="textarea-title-container">
                         <div className="textarea-title">Tabela Antes</div>
                         <button className="lock-btn" onClick={toggleLock}>
-                            {isLocked ? 'Destravar tabela 🔒' : 'Travar tabela 🔒'}
+                            {isLocked ? 'Destravar tabela ◪' : 'Travar tabela ◪'}
                         </button>
                     </div>
                     <textarea

@@ -362,35 +362,35 @@ ENT-HGUTR069-SPARAM::HGUTR069SPARAM-1-1-${inputSlot}-${inputGpon}-${inputIndex}-
                     <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '0.5rem' }}>
                         <button
                             type="button"
-                            className="btn btn-outline"
+                            className="btn btn-secondary"
                             onClick={verificarMac}
                         >
                             ◈ Verificar se pegou MAC
                         </button>
                         <button
                             type="button"
-                            className="btn btn-outline"
+                            className="btn btn-secondary"
                             onClick={verificarVlan}
                         >
                             ◊ Verificar VLAN
                         </button>
                         <button
                             type="button"
-                            className="btn btn-outline"
+                            className="btn btn-secondary"
                             onClick={verificarVelocidade}
                         >
                             ◐ Verificar velocidade
                         </button>
                         <button
                             type="button"
-                            className="btn btn-outline"
+                            className="btn btn-secondary"
                             onClick={verificarIp}
                         >
                             ◎ Verificar IP do PPPoE
                         </button>
                         <button
                             type="button"
-                            className="btn btn-outline"
+                            className="btn btn-secondary"
                             onClick={verificarIpp}
                         >
                             ◯ Verificar PPPoE do IP

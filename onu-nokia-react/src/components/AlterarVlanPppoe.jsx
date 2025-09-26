@@ -131,7 +131,7 @@ function AlterarVlanPppoe({ posicaoData }) {
                     className="btn btn-primary btn-full"
                     onClick={handleAlterarVlanPppoe}
                 >
-                    🔑 Alterar VLAN e PPPOE
+                    ◊ Alterar VLAN e PPPOE
                 </button>
             </form>
         </div>

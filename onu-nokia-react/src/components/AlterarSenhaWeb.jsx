@@ -95,7 +95,7 @@ function AlterarSenhaWeb({ posicaoData }) {
                     className="btn btn-primary btn-full"
                     onClick={handleAlterarSenhaWeb}
                 >
-                    🔒 Alterar senha web
+                    ◪ Alterar senha web
                 </button>
             </form>
         </div>

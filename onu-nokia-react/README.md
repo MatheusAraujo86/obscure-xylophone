@@ -1,10 +1,6 @@
 # 🔮 Gerenciador Nokia ONU | Tech Cyberpunk# 🔮 Gerenciador Nokia ONU | Tech Cyberpunk
 
-
-
 <div align="center"><div align="center">
-
-
 
 ![Nokia ONU](https://img.shields.io/badge/Nokia-Gerenciador_ONU-98c913?style=for-the-badge&logo=nokia&logoColor=white)![Nokia ONU](https://img.shields.io/badge/Nokia-Gerenciador_ONU-98c913?style=for-the-badge&logo=nokia&logoColor=white)
 
@@ -14,39 +10,21 @@
 
 ![GitHub Pages](https://img.shields.io/badge/GitHub-Pages-222222?style=for-the-badge&logo=github&logoColor=white)![GitHub Pages](https://img.shields.io/badge/GitHub-Pages-222222?style=for-the-badge&logo=github&logoColor=white)
 
-
-
-_Sistema futurista de gerenciamento com tema duplo para dispositivos Nokia ONU__Sistema futurista de gerenciamento com tema duplo para dispositivos Nokia ONU_
-
-
+_Sistema futurista de gerenciamento com tema duplo para dispositivos Nokia ONU\_\_Sistema futurista de gerenciamento com tema duplo para dispositivos Nokia ONU_
 
 [🚀 Demo ao Vivo](https://MatheusAraujo86.github.io/obscure-xylophone/) • [📖 Recursos](#-recursos) • [🛠️ Instalação](#-primeiros-passos) • [🎨 Temas](#-sistema-de-tema-duplo)[🚀 Demo ao Vivo](https://MatheusAraujo86.github.io/obscure-xylophone/) • [📖 Recursos](#-recursos) • [🛠️ Instalação](#-primeiros-passos) • [🎨 Temas](#-sistema-de-tema-duplo)
 
-
-
-------
-
-
+---
 
 </div></div>
 
-
-
 ## ✨ Visão Geral## ✨ Visão Geral
-
-
 
 **Gerenciador Nokia ONU** é uma aplicação web de última geração projetada para gerenciar dispositivos Nokia Optical Network Unit (ONU) com estética visual duplamente impressionante. Construído com tecnologia React moderna, fornece aos administradores de rede ferramentas poderosas para configurar, monitorar e solucionar problemas de equipamentos Nokia ONU através de uma interface intuitiva que se adapta entre o modo escuro cyberpunk e o modo claro moderno.**Gerenciador Nokia ONU** é uma aplicação web de última geração projetada para gerenciar dispositivos Nokia Optical Network Unit (ONU) com estética visual duplamente impressionante. Construído com tecnologia React moderna, fornece aos administradores de rede ferramentas poderosas para configurar, monitorar e solucionar problemas de equipamentos Nokia ONU através de uma interface intuitiva que se adapta entre o modo escuro cyberpunk e o modo claro moderno.
 
-
-
 ## 🎨 Sistema de Tema Duplo## 🎨 Sistema de Tema Duplo
 
-
-
 ### 🌙 **Modo Escuro - Estética Cyberpunk**### 🌙 **Modo Escuro - Estética Cyberpunk**
-
-
 
 - **Cores Neon**: Acentos em Ciano (#00FFFF) e Magenta (#FF00FF)- **Cores Neon**: Acentos em Ciano (#00FFFF) e Magenta (#FF00FF)
 
@@ -56,11 +34,7 @@ _Sistema futurista de gerenciamento com tema duplo para dispositivos Nokia ONU__
 
 - **Tipografia**: Fontes futuristas Orbitron e Roboto Mono- **Tipografia**: Fontes futuristas Orbitron e Roboto Mono
 
-
-
 ### ☀️ **Modo Claro - Verde Moderno**### ☀️ **Modo Claro - Verde Moderno**
-
-
 
 - **Cor Primária**: Verde Lima (#98c913)- **Cor Primária**: Verde Lima (#98c913)
 
@@ -70,11 +44,7 @@ _Sistema futurista de gerenciamento com tema duplo para dispositivos Nokia ONU__
 
 - **Visual Profissional**: Design limpo, moderno e energeticamente eficiente- **Visual Profissional**: Design limpo, moderno e energeticamente eficiente
 
-
-
 ### 🔄 **Alternador de Tema**### 🔄 **Alternador de Tema**
-
-
 
 - **Botão Flutuante**: Alternador de tema de fácil acesso- **Botão Flutuante**: Alternador de tema de fácil acesso
 
@@ -84,11 +54,7 @@ _Sistema futurista de gerenciamento com tema duplo para dispositivos Nokia ONU__
 
 - **Universal**: Afeta toda a aplicação incluindo o rodapé- **Universal**: Afeta toda a aplicação incluindo o rodapéanager | Cyberpunk Tech
 
-
-
 ## 🚀 Recursos<div align="center">
-
-
 
 ### 🔍 **Gerenciamento de Clientes**![Nokia ONU](https://img.shields.io/badge/Nokia-ONU_Manager-98c913?style=for-the-badge&logo=nokia&logoColor=white)
 
@@ -118,11 +84,7 @@ _A futuristic dual-theme management system for Nokia ONU devices_
 
 - **Bridge ONT Nokia**: Verificação MAC integrada e geração de comandos## ✨ Overview
 
-
-
-### 📊 **Ferramentas Avançadas****Nokia ONU Manager** is a cutting-edge web application designed for managing Nokia Optical Network Unit (ONU) devices with stunning dual-theme aesthetics. Built with modern React technology, it provides network administrators with powerful tools to configure, monitor, and troubleshoot Nokia ONU equipment through an intuitive interface that adapts between cyberpunk dark mode and modern light mode.
-
-
+### 📊 **Ferramentas Avançadas\*\***Nokia ONU Manager\*\* is a cutting-edge web application designed for managing Nokia Optical Network Unit (ONU) devices with stunning dual-theme aesthetics. Built with modern React technology, it provides network administrators with powerful tools to configure, monitor, and troubleshoot Nokia ONU equipment through an intuitive interface that adapts between cyberpunk dark mode and modern light mode.
 
 - **Sistema de Conferência de Caixa**: Compara tabelas antes/depois com estilo de botão unificado## 🎨 Dual Theme System
 
@@ -238,8 +200,6 @@ Ambos os temas apresentam:- **ONU Restart**: Remote device reboot functionality
 
 - **Padronização de Botões**: Efeitos hover uniformes, animações brilhantes e estilização em todos os componentes### 🎨 **Modern UI/UX**
 
-
-
 ## 🏗️ Arquitetura- **Dual Theme System**: Dark cyberpunk and light modern themes
 
 - **Geometric Icons**: Consistent ◯◪◈◐◊◇◎◆ symbol system
@@ -318,13 +278,15 @@ src/- **Enhanced Footer**: Developer credits with theme-adaptive colors
 
 - **Aesthetic**: Contemporary corporate with eco-friendly green accents
 
-   ```bash
+  ````bash
 
-   git clone https://github.com/MatheusAraujo86/obscure-xylophone.gitBoth themes feature:
+  git clone https://github.com/MatheusAraujo86/obscure-xylophone.gitBoth themes feature:
 
-   cd onu-nokia-react
+  cd onu-nokia-react
 
-   ```- **Persistent Storage**: Your theme choice saves automatically
+  ```- **Persistent Storage**: Your theme choice saves automatically
+
+  ````
 
 - **Floating Toggle**: Easy theme switching with animated transition
 
@@ -332,17 +294,17 @@ src/- **Enhanced Footer**: Developer credits with theme-adaptive colors
 
 - **Button Standardization**: Unified hover effects, shine animations, and styling across all components
 
-   ```bash
+  ```bash
 
-   npm install## 🏗️ Architecture
+  npm install## 🏗️ Architecture
 
-   ```
+  ```
 
 ### Component Structure
 
 3. **Inicie o servidor de desenvolvimento**
 
-```
+````
 
    ```bashsrc/
 
@@ -388,7 +350,7 @@ npm run preview│   └── wifiService.js          # Wireless configuration 
 
 npm run deploy```
 
-```
+````
 
 ## 🚀 Getting Started
 
@@ -414,13 +376,13 @@ npm run deploy```
 
 2. **Ver Posição**: Verifique informações de slot/GPON/índice do cliente em tempo real
 
-3. **Provisionar/Desprovisionar**: Gerencie o ciclo de vida do cliente com formulários aprimorados   ```bash
+3. **Provisionar/Desprovisionar**: Gerencie o ciclo de vida do cliente com formulários aprimorados ```bash
 
-4. **Configurar Serviços**: Configure Wi-Fi, telefone e configurações de rede   git clone https://github.com/MatheusAraujo86/obscure-xylophone.git
+4. **Configurar Serviços**: Configure Wi-Fi, telefone e configurações de rede git clone https://github.com/MatheusAraujo86/obscure-xylophone.git
 
    cd onu-nokia-react
 
-### 📊 **Ferramentas Avançadas**   ```
+### 📊 **Ferramentas Avançadas** ```
 
 - **Conferência de Caixa**: Compare configurações antes/depois com visualização de tabela
 
@@ -428,11 +390,13 @@ npm run deploy```
 
 - **Opções Adicionais**: Acesse ferramentas de consulta e utilitários de rede
 
-   ```bash
+  ```bash
 
-### 💡 **Dicas**   npm install
+  ```
 
-- Todos os formulários incluem validação em tempo real   ```
+### 💡 **Dicas** npm install
+
+- Todos os formulários incluem validação em tempo real ```
 
 - Use os ícones geométricos como auxílios de navegação visual
 
@@ -440,11 +404,13 @@ npm run deploy```
 
 - Todas as mudanças são confirmadas com notificações temáticas
 
-   ```bash
+  ```bash
 
-## 🌐 Deploy   npm run dev
+  ```
 
-   ```
+## 🌐 Deploy npm run dev
+
+```
 
 ### **🚀 GitHub Pages (Automatizado)**
 
@@ -452,11 +418,11 @@ npm run deploy```
 
 Este projeto inclui deploy automático para GitHub Pages:
 
-   ```
+```
 
-1. **Configuração do Repositório**:    http://localhost:5173
+1. **Configuração do Repositório**: http://localhost:5173
 
-   - Fonte das Pages: GitHub Actions   ```
+   - Fonte das Pages: GitHub Actions ```
 
    - URL Base: `/obscure-xylophone/` (configurado em `vite.config.js`)
 
@@ -464,7 +430,7 @@ Este projeto inclui deploy automático para GitHub Pages:
 
 2. **Deploy Automático**:
 
-   ```bash### Build for Production
+   ````bash### Build for Production
 
    git add .
 
@@ -474,7 +440,7 @@ Este projeto inclui deploy automático para GitHub Pages:
 
    ```npm run build
 
-
+   ````
 
 3. **Site ao Vivo**: https://MatheusAraujo86.github.io/obscure-xylophone/# Preview production build locally
 
@@ -484,7 +450,7 @@ npm run preview
 
 # Deploy to GitHub Pages (if configured)
 
-```bashnpm run deploy
+````bashnpm run deploy
 
 # Build para produção```
 
@@ -739,7 +705,7 @@ npm run lint
 
 # Build and test locally
 npm run build && npm run preview
-```
+````
 
 ## 🤝 Contributing
 

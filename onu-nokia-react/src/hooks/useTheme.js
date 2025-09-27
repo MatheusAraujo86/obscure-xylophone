@@ -1,13 +1,28 @@
 import { useState, useEffect } from "react";
 
 /**
- * Hook para gerenciar tema da aplicação (dark/light)
+ * Hook para gerenciar tema da aplicação (dark/light com variantes)
  */
 export const useTheme = () => {
+  // Temas disponíveis
+  const availableThemes = [
+    "dark",
+    "dark-cyan",
+    "dark-blue",
+    "dark-peach",
+    "dark-purple",
+    "dark-green",
+    "light",
+    "light-cyan",
+    "light-blue",
+    "light-peach",
+    "light-purple",
+  ];
+
   // Verifica se há um tema salvo no localStorage, senão usa 'dark' como padrão
-  const [theme, setTheme] = useState(() => {
+  const [theme, setThemeState] = useState(() => {
     const savedTheme = localStorage.getItem("nokia-onu-theme");
-    return savedTheme || "dark";
+    return availableThemes.includes(savedTheme) ? savedTheme : "dark";
   });
 
   // Atualiza o atributo data-theme no body e root, e salva no localStorage
@@ -17,23 +32,24 @@ export const useTheme = () => {
     localStorage.setItem("nokia-onu-theme", theme);
   }, [theme]);
 
-  // Função para alternar entre temas
+  // Função para alternar entre temas (dark <-> light)
   const toggleTheme = () => {
-    setTheme((prevTheme) => (prevTheme === "dark" ? "light" : "dark"));
+    setThemeState((prevTheme) => (prevTheme === "dark" ? "light" : "dark"));
   };
 
   // Função para definir um tema específico
-  const setSpecificTheme = (newTheme) => {
-    if (newTheme === "dark" || newTheme === "light") {
-      setTheme(newTheme);
+  const setTheme = (newTheme) => {
+    if (availableThemes.includes(newTheme)) {
+      setThemeState(newTheme);
     }
   };
 
   return {
     theme,
+    setTheme,
     toggleTheme,
-    setSpecificTheme,
+    availableThemes,
     isDark: theme === "dark",
-    isLight: theme === "light",
+    isLight: theme.startsWith("light"),
   };
 };

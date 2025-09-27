@@ -1,11 +1,11 @@
 .conferencia-caixa {
-  background: var(--bg-primary);
+  background: var(--card-bg);
   color: var(--text-primary);
   font-family: "Orbitron", "Roboto Mono", monospace;
   padding: 2rem;
   border-radius: 15px;
-  border: 2px solid var(--accent-cyan);
-  box-shadow: 0 0 30px rgba(0, 255, 255, 0.3);
+  border: 2px solid var(--accent-primary);
+  box-shadow: 0 0 30px var(--shadow-glow);
   margin: 1rem 0;
   animation: neonPulse 3s ease-in-out infinite alternate;
   width: 100%;
@@ -14,10 +14,10 @@
 
 @keyframes neonPulse {
   from {
-    box-shadow: 0 0 30px rgba(0, 255, 255, 0.3);
+    box-shadow: 0 0 30px var(--shadow-glow);
   }
   to {
-    box-shadow: 0 0 40px rgba(255, 0, 255, 0.4);
+    box-shadow: 0 0 40px var(--shadow-glow);
   }
 }
 
@@ -37,30 +37,34 @@
   height: 2px;
   background: linear-gradient(
     90deg,
-    var(--accent-cyan),
-    var(--accent-magenta),
-    var(--accent-cyan)
+    var(--accent-primary),
+    var(--accent-secondary),
+    var(--accent-primary)
   );
-  box-shadow: 0 0 10px rgba(0, 255, 255, 0.8);
+  box-shadow: 0 0 10px var(--shadow-glow);
 }
 
 .conferencia-caixa h1 {
-  background: linear-gradient(45deg, var(--accent-cyan), var(--accent-magenta));
+  background: linear-gradient(
+    45deg,
+    var(--accent-primary),
+    var(--accent-secondary)
+  );
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
   font-size: 2.5rem;
   font-weight: 700;
-  text-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+  text-shadow: 0 0 20px var(--shadow-glow);
   margin: 0;
   letter-spacing: 2px;
 }
 
 .conferencia-caixa h2 {
-  color: var(--accent-cyan);
+  color: var(--accent-primary);
   font-size: 1.8rem;
   font-weight: 600;
-  text-shadow: 0 0 15px rgba(0, 255, 255, 0.7);
+  text-shadow: 0 0 15px var(--shadow-glow);
   margin: 2rem 0 1rem 0;
   letter-spacing: 1px;
 }
@@ -80,16 +84,20 @@
   height: 8px;
   margin-bottom: 2rem;
   overflow: hidden;
-  border: 1px solid var(--accent-cyan);
+  border: 1px solid var(--accent-primary);
   position: relative;
 }
 
 .progress-bar {
   height: 100%;
-  background: linear-gradient(90deg, var(--accent-cyan), var(--accent-magenta));
+  background: linear-gradient(
+    90deg,
+    var(--accent-primary),
+    var(--accent-secondary)
+  );
   border-radius: 10px;
   animation: progressAnimation 1s ease-in-out;
-  box-shadow: 0 0 10px rgba(0, 255, 255, 0.8);
+  box-shadow: 0 0 10px var(--shadow-glow);
 }
 
 @keyframes progressAnimation {
@@ -112,6 +120,8 @@
   flex: 1;
   display: flex;
   flex-direction: column;
+  min-height: 280px;
+  max-height: 280px;
 }
 
 .textarea-title-container {
@@ -120,9 +130,11 @@
   align-items: center;
   padding: 1rem;
   border-radius: 10px 10px 0 0;
-  border: 1px solid var(--accent-cyan);
+  border: 1px solid var(--accent-primary);
   border-bottom: none;
-  box-shadow: 0 0 15px rgba(0, 255, 255, 0.2);
+  box-shadow: 0 0 15px var(--shadow-glow);
+  min-height: 60px;
+  height: 60px;
 }
 
 .textarea-title {
@@ -130,35 +142,30 @@
   color: var(--text-primary);
   font-size: 1.1rem;
   font-weight: 600;
-  text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+  text-shadow: 0 0 10px var(--shadow-glow);
   letter-spacing: 1px;
 }
 
 .lock-btn {
-  background: var(--bg-secondary);
-  border: 1px solid var(--accent-magenta);
-  color: var(--text-primary);
-  cursor: pointer;
   font-size: 0.9rem;
   padding: 0.5rem 1rem;
-  border-radius: 5px;
-  transition: all 0.3s ease;
-  box-shadow: 0 0 10px rgba(255, 0, 255, 0.3);
+  border-color: var(--accent-secondary);
 }
 
 .lock-btn:hover {
-  background: var(--accent-magenta);
-  color: var(--bg-primary);
-  box-shadow: 0 0 20px rgba(255, 0, 255, 0.6);
-  transform: scale(1.05);
+  border-color: var(--accent-secondary);
+  background: var(--accent-secondary);
+  color: var(--text-accent);
 }
 
 .conferencia-caixa textarea {
   width: 100%;
   height: 200px;
+  min-height: 200px;
+  max-height: 200px;
   background: var(--bg-secondary);
   color: var(--text-primary);
-  border: 1px solid var(--accent-cyan);
+  border: 1px solid var(--accent-primary);
   padding: 1rem;
   box-sizing: border-box;
   resize: none;
@@ -166,8 +173,9 @@
   font-family: "Roboto Mono", monospace;
   font-size: 0.95rem;
   line-height: 1.4;
-  box-shadow: inset 0 0 20px rgba(0, 255, 255, 0.1);
+  box-shadow: inset 0 0 20px var(--shadow-glow);
   transition: all 0.3s ease;
+  flex-grow: 1;
 }
 
 .conferencia-caixa textarea::placeholder {
@@ -177,9 +185,9 @@
 
 .conferencia-caixa textarea:focus {
   outline: none;
-  border-color: var(--accent-magenta);
-  box-shadow: 0 0 25px rgba(255, 0, 255, 0.4);
-  background: rgba(13, 0, 26, 0.9);
+  border-color: var(--accent-secondary);
+  box-shadow: 0 0 25px var(--shadow-glow);
+  background: var(--bg-primary);
 }
 
 .conferencia-caixa textarea:disabled {
@@ -188,7 +196,7 @@
   cursor: not-allowed;
 }
 
-/* Botões */
+/* Botões - Estilo base padronizado para todos */
 .button-container {
   display: flex;
   gap: 1rem;
@@ -196,25 +204,42 @@
   flex-wrap: wrap;
 }
 
-.conferencia-caixa button {
-  color: var(--text-primary);
-  border: 1px solid var(--accent-cyan);
+/* Estilo base unificado para todos os botões */
+.conferencia-caixa button,
+.lock-btn,
+.remove-btn,
+.compare-btn,
+.toggle-down-btn,
+.toggle-result-btn {
+  color: var(--text-button);
+  border: 1px solid var(--accent-primary);
   padding: 1rem 1.5rem;
   cursor: pointer;
-  flex: 1;
-  min-width: 200px;
   font-size: 1rem;
   font-weight: 600;
-  border-radius: 10px;
+  border-radius: 8px;
   font-family: "Orbitron", monospace;
   letter-spacing: 1px;
   transition: all 0.3s ease;
-  background: linear-gradient(135deg, var(--bg-secondary), var(--bg-card));
+  background: linear-gradient(135deg, var(--bg-secondary), var(--bg-tertiary));
   position: relative;
   overflow: hidden;
+  box-shadow: 0 4px 16px var(--shadow-primary), 0 0 20px var(--shadow-glow);
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
-.conferencia-caixa button::before {
+.conferencia-caixa button {
+  flex: 1;
+  min-width: 200px;
+}
+
+/* Efeito shine unificado para todos os botões */
+.conferencia-caixa button::before,
+.lock-btn::before,
+.remove-btn::before,
+.compare-btn::before,
+.toggle-down-btn::before,
+.toggle-result-btn::before {
   content: "";
   position: absolute;
   top: 0;
@@ -224,60 +249,68 @@
   background: linear-gradient(
     90deg,
     transparent,
-    rgba(255, 255, 255, 0.1),
+    rgba(255, 255, 255, 0.2),
     transparent
   );
-  transition: left 0.5s;
+  transition: left 0.5s ease;
 }
 
-.conferencia-caixa button:hover::before {
+/* Hover effects padronizados */
+.conferencia-caixa button:hover,
+.lock-btn:hover,
+.remove-btn:hover,
+.compare-btn:hover,
+.toggle-down-btn:hover,
+.toggle-result-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 24px var(--shadow-primary), 0 0 30px var(--shadow-glow);
+}
+
+.conferencia-caixa button:hover::before,
+.lock-btn:hover::before,
+.remove-btn:hover::before,
+.compare-btn:hover::before,
+.toggle-down-btn:hover::before,
+.toggle-result-btn:hover::before {
   left: 100%;
 }
 
+/* Variações de cores para diferentes tipos de botão */
 .compare-btn {
-  border-color: var(--success-color);
-  box-shadow: 0 0 15px rgba(76, 175, 80, 0.3);
+  border-color: var(--accent-primary);
 }
 
 .compare-btn:hover {
+  border-color: var(--accent-primary);
   background: linear-gradient(
     135deg,
-    var(--success-color),
-    rgba(76, 175, 80, 0.8)
+    var(--accent-primary),
+    var(--accent-secondary)
   );
-  box-shadow: 0 0 30px rgba(76, 175, 80, 0.6);
-  transform: translateY(-2px);
 }
 
 .toggle-down-btn {
-  border-color: var(--danger-color);
-  box-shadow: 0 0 15px rgba(255, 0, 64, 0.3);
+  border-color: var(--accent-secondary);
+  background: var(--button-danger);
 }
 
 .toggle-down-btn:hover {
-  background: linear-gradient(
-    135deg,
-    var(--danger-color),
-    rgba(255, 0, 64, 0.8)
-  );
-  box-shadow: 0 0 30px rgba(255, 0, 64, 0.6);
-  transform: translateY(-2px);
+  border-color: var(--accent-secondary);
+  background: var(--button-danger);
+  filter: brightness(1.1);
 }
 
 .toggle-result-btn {
-  border-color: var(--accent-cyan);
-  box-shadow: 0 0 15px rgba(0, 255, 255, 0.3);
+  border-color: var(--accent-primary);
 }
 
 .toggle-result-btn:hover {
+  border-color: var(--accent-primary);
   background: linear-gradient(
     135deg,
-    var(--accent-cyan),
-    rgba(0, 255, 255, 0.8)
+    var(--accent-primary),
+    var(--accent-secondary)
   );
-  color: var(--bg-primary);
-  box-shadow: 0 0 30px rgba(0, 255, 255, 0.6);
-  transform: translateY(-2px);
 }
 
 /* Tabelas */
@@ -288,22 +321,22 @@
   border-radius: 10px;
   overflow: hidden;
   background: var(--bg-card);
-  box-shadow: 0 0 20px rgba(0, 255, 255, 0.2);
+  box-shadow: 0 0 20px var(--shadow-glow);
   animation: tableGlow 2s ease-in-out infinite alternate;
 }
 
 @keyframes tableGlow {
   from {
-    box-shadow: 0 0 20px rgba(0, 255, 255, 0.2);
+    box-shadow: 0 0 20px var(--shadow-glow);
   }
   to {
-    box-shadow: 0 0 25px rgba(255, 0, 255, 0.3);
+    box-shadow: 0 0 25px var(--shadow-glow);
   }
 }
 
 .conferencia-caixa th,
 .conferencia-caixa td {
-  border: 1px solid var(--accent-cyan);
+  border: 1px solid var(--accent-primary);
   padding: 1rem;
   text-align: left;
   color: var(--text-primary);
@@ -313,40 +346,33 @@
 
 .conferencia-caixa th {
   background: linear-gradient(135deg, var(--bg-secondary), var(--bg-card));
-  color: var(--accent-cyan);
+  color: var(--accent-primary);
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 1px;
-  text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+  text-shadow: 0 0 10px var(--shadow-glow);
 }
 
 .conferencia-caixa tr:hover {
-  background: rgba(0, 255, 255, 0.1);
+  background: var(--shadow-glow);
 }
 
+/* Sobrescrita específica para remove-btn */
 .remove-btn {
+  font-size: 0.9rem;
+  padding: 0.5rem 1rem;
+  min-width: auto;
+  flex: none;
+  border-color: var(--danger-color);
   background: linear-gradient(
     135deg,
     var(--danger-color),
     rgba(255, 0, 64, 0.8)
   );
-  border: 1px solid var(--danger-color);
-  padding: 0.5rem 1rem;
-  cursor: pointer;
-  color: var(--text-primary);
-  font-size: 0.9rem;
-  font-weight: 600;
-  border-radius: 5px;
-  transition: all 0.3s ease;
-  box-shadow: 0 0 10px rgba(255, 0, 64, 0.3);
-  min-width: auto;
-  flex: none;
 }
 
 .remove-btn:hover {
   background: var(--danger-color);
-  box-shadow: 0 0 20px rgba(255, 0, 64, 0.6);
-  transform: scale(1.05);
 }
 
 .message {
@@ -398,7 +424,7 @@
   text-align: center;
   font-size: 1rem;
   color: var(--text-secondary);
-  border-top: 1px solid var(--accent-cyan);
+  border-top: 1px solid var(--accent-primary);
   padding-top: 1.5rem;
   position: relative;
 }
@@ -411,8 +437,12 @@
   transform: translateX(-50%);
   width: 100px;
   height: 2px;
-  background: linear-gradient(90deg, var(--accent-cyan), var(--accent-magenta));
-  box-shadow: 0 0 10px rgba(0, 255, 255, 0.8);
+  background: linear-gradient(
+    90deg,
+    var(--accent-primary),
+    var(--accent-secondary)
+  );
+  box-shadow: 0 0 10px var(--shadow-glow);
 }
 
 /* Responsividade */
@@ -458,7 +488,7 @@
   background: linear-gradient(
     90deg,
     transparent,
-    var(--accent-cyan),
+    var(--accent-primary),
     transparent
   );
   animation: scanLine 3s linear infinite;

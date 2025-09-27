@@ -202,7 +202,7 @@ function OutrasOpcoes({ posicaoData }) {
                             className="btn btn-secondary"
                             onClick={handleVerificarIpPppoe}
                         >
-                            ◎ Verificar IP PPPoE
+                            ◎ Verificar IP do PPPoE
                         </button>
                         <button
                             type="button"

@@ -101,8 +101,7 @@ function BridgeOntNokia({ posicaoData }) {
             return;
         }
         
-        const path = `${inputSlot}/${inputGpon}/${inputIndex}/${cardType}/${portaLan}`;
-        const comando = `info configure equipment ont interface 1/1/${path}`;
+        const comando = `show vlan bridge-port-fdb 1/1/${inputSlot}/${inputGpon}/${inputIndex}/${cardType}/${portaLan}`;
         const result = await copyToClipboard(comando);
         
         if (result.success) {

@@ -118,6 +118,15 @@ function App() {
           </div>
         </main>
       </div>
+      
+      {/* Footer */}
+      <footer className="footer">
+        <div className="footer-content">
+          <div className="footer-title">【 DESENVOLVIDO POR 】</div>
+          <div className="footer-authors">◈ Matheus ◊ Esteban ◈</div>
+          <div className="footer-subtitle">━━━━━ SISTEMA DE CONTROLE ONU ━━━━━</div>
+        </div>
+      </footer>
     </div>
   );
 }

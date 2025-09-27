@@ -56,6 +56,8 @@ body[data-theme="light"] {
 /* Layout principal - Tema Responsivo */
 .app-container {
   min-height: 100vh;
+  display: flex;
+  flex-direction: column;
   background: linear-gradient(
     135deg,
     var(--bg-primary) 0%,
@@ -569,7 +571,8 @@ body[data-theme="light"] {
 
 .app-layout {
   display: flex;
-  min-height: calc(100vh - 70px);
+  flex: 1;
+  min-height: 0;
 }
 
 /* Sidebar */
@@ -1069,5 +1072,96 @@ body[data-theme="light"] {
 
   .theme-toggle-text {
     font-size: 0.7rem;
+  }
+}
+
+/* Footer Styles */
+.footer {
+  background: var(--bg-secondary);
+  border-top: 2px solid var(--accent-primary);
+  padding: 2rem 1rem;
+  text-align: center;
+  margin-top: auto;
+  box-shadow: 0 -4px 20px rgba(0, 255, 255, 0.1);
+}
+
+.footer-content {
+  max-width: 600px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.footer-title {
+  font-family: "Roboto Mono", monospace;
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: var(--accent-primary);
+  letter-spacing: 2px;
+  text-shadow: 0 0 10px var(--shadow-glow);
+}
+
+.footer-authors {
+  font-family: "Roboto Mono", monospace;
+  font-weight: 600;
+  font-size: 1.1rem;
+  color: var(--text-primary);
+  letter-spacing: 3px;
+  text-shadow: 0 0 15px var(--shadow-glow);
+  background: linear-gradient(
+    45deg,
+    var(--accent-primary),
+    var(--accent-secondary)
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.footer-subtitle {
+  font-family: "Roboto Mono", monospace;
+  font-weight: 400;
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  letter-spacing: 1px;
+  opacity: 0.8;
+}
+
+/* Responsividade do Footer */
+@media (max-width: 768px) {
+  .footer {
+    padding: 1.5rem 0.5rem;
+  }
+
+  .footer-title {
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+  }
+
+  .footer-authors {
+    font-size: 1rem;
+    letter-spacing: 2px;
+  }
+
+  .footer-subtitle {
+    font-size: 0.7rem;
+    letter-spacing: 0.5px;
+  }
+}
+
+@media (max-width: 480px) {
+  .footer-title {
+    font-size: 0.7rem;
+  }
+
+  .footer-authors {
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+  }
+
+  .footer-subtitle {
+    font-size: 0.6rem;
+    line-height: 1.2;
   }
 }

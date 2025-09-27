@@ -11,6 +11,9 @@ body[data-theme="dark"] {
   --text-primary: #00ffff;
   --text-secondary: #ff00ff;
   --text-accent: #ffffff;
+  --text-button: #ffffff;
+  --text-button-warning: #856404;
+  --text-button-danger: #721c24;
   --accent-primary: #00ffff;
   --accent-secondary: #ff00ff;
   --border-primary: rgba(0, 255, 255, 0.3);
@@ -39,6 +42,9 @@ body[data-theme="light"] {
   --text-primary: #98c913;
   --text-secondary: #6f42c1;
   --text-accent: #212529;
+  --text-button: #ffffff;
+  --text-button-warning: #ffffff;
+  --text-button-danger: #ffffff;
   --accent-primary: #98c913;
   --accent-secondary: #98c913;
   --border-primary: rgba(152, 201, 19, 0.3);
@@ -356,9 +362,9 @@ body[data-theme="light"] {
 
 .btn-primary {
   background: var(--button-primary);
-  color: var(--text-primary);
+  color: var(--text-button);
   box-shadow: 0 4px 16px var(--shadow-primary), 0 0 20px var(--shadow-glow);
-  text-shadow: 0 0 10px var(--shadow-glow);
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
 .btn-primary:hover {
@@ -371,9 +377,9 @@ body[data-theme="light"] {
 
 .btn-secondary {
   background: var(--button-primary);
-  color: var(--text-primary);
+  color: var(--text-button);
   box-shadow: 0 4px 16px var(--shadow-primary), 0 0 20px var(--shadow-glow);
-  text-shadow: 0 0 10px var(--shadow-glow);
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
 .btn-secondary:hover {
@@ -386,9 +392,9 @@ body[data-theme="light"] {
 
 .btn-warning {
   background: var(--button-warning);
-  color: #856404;
+  color: var(--text-button-warning);
   box-shadow: 0 4px 16px var(--shadow-primary), 0 0 20px var(--shadow-glow);
-  text-shadow: 0 0 10px var(--shadow-glow);
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
   border-color: var(--border-primary);
 }
 
@@ -402,9 +408,9 @@ body[data-theme="light"] {
 
 .btn-danger {
   background: var(--button-danger);
-  color: #721c24;
+  color: var(--text-button-danger);
   box-shadow: 0 4px 16px var(--shadow-primary), 0 0 20px var(--shadow-glow);
-  text-shadow: 0 0 10px var(--shadow-glow);
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
   border-color: var(--border-primary);
 }
 

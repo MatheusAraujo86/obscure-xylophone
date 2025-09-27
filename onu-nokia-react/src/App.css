@@ -11,6 +11,8 @@ body[data-theme="dark"] {
   --text-primary: #00ffff;
   --text-secondary: #ff00ff;
   --text-accent: #ffffff;
+  --accent-primary: #00ffff;
+  --accent-secondary: #ff00ff;
   --border-primary: rgba(0, 255, 255, 0.3);
   --border-secondary: rgba(0, 255, 255, 0.1);
   --shadow-primary: rgba(0, 0, 0, 0.6);
@@ -34,13 +36,15 @@ body[data-theme="light"] {
   --bg-tertiary: #dee2e6;
   --bg-quaternary: #ced4da;
   --bg-accent: #ffffff;
-  --text-primary: #007bff;
+  --text-primary: #98c913;
   --text-secondary: #6f42c1;
   --text-accent: #212529;
-  --border-primary: rgba(0, 123, 255, 0.3);
-  --border-secondary: rgba(0, 123, 255, 0.1);
+  --accent-primary: #98c913;
+  --accent-secondary: #98c913;
+  --border-primary: rgba(152, 201, 19, 0.3);
+  --border-secondary: rgba(152, 201, 19, 0.1);
   --shadow-primary: rgba(0, 0, 0, 0.5);
-  --shadow-glow: rgba(0, 123, 255, 0.05);
+  --shadow-glow: rgba(152, 201, 19, 0.15);
   --card-bg: linear-gradient(145deg, #ffffff 0%, #f8f9fa 50%, #e9ecef 100%);
   --header-bg: linear-gradient(
     90deg,
@@ -48,7 +52,7 @@ body[data-theme="light"] {
     rgba(248, 249, 250, 0.98) 50%,
     rgba(255, 255, 255, 0.95) 100%
   );
-  --button-primary: linear-gradient(45deg, #0056b3, #007bff);
+  --button-primary: linear-gradient(45deg, #7ba30f, #98c913);
   --button-warning: linear-gradient(45deg, #e0a800, #ffc107);
   --button-danger: linear-gradient(45deg, #c82333, #dc3545);
 }

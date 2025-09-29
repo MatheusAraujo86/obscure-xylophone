@@ -1,6 +1,10 @@
 # 🔮 Gerenciador Nokia ONU | Tech Cyberpunk# 🔮 Gerenciador Nokia ONU | Tech Cyberpunk
 
+
+
 <div align="center"><div align="center">
+
+
 
 ![Nokia ONU](https://img.shields.io/badge/Nokia-Gerenciador_ONU-98c913?style=for-the-badge&logo=nokia&logoColor=white)![Nokia ONU](https://img.shields.io/badge/Nokia-Gerenciador_ONU-98c913?style=for-the-badge&logo=nokia&logoColor=white)
 
@@ -10,305 +14,605 @@
 
 ![GitHub Pages](https://img.shields.io/badge/GitHub-Pages-222222?style=for-the-badge&logo=github&logoColor=white)![GitHub Pages](https://img.shields.io/badge/GitHub-Pages-222222?style=for-the-badge&logo=github&logoColor=white)
 
-_Sistema futurista de gerenciamento com tema duplo para dispositivos Nokia ONU\_\_Sistema futurista de gerenciamento com tema duplo para dispositivos Nokia ONU_
+
+
+_Sistema futurista de gerenciamento com tema duplo para dispositivos Nokia ONU__Sistema futurista de gerenciamento com tema duplo para dispositivos Nokia ONU_
+
+
 
 [🚀 Demo ao Vivo](https://MatheusAraujo86.github.io/obscure-xylophone/) • [📖 Recursos](#-recursos) • [🛠️ Instalação](#-primeiros-passos) • [🎨 Temas](#-sistema-de-tema-duplo)[🚀 Demo ao Vivo](https://MatheusAraujo86.github.io/obscure-xylophone/) • [📖 Recursos](#-recursos) • [🛠️ Instalação](#-primeiros-passos) • [🎨 Temas](#-sistema-de-tema-duplo)
 
----
+
+
+------
+
+
 
 </div></div>
 
+
+
 ## ✨ Visão Geral## ✨ Visão Geral
+
+
 
 **Gerenciador Nokia ONU** é uma aplicação web de última geração projetada para gerenciar dispositivos Nokia Optical Network Unit (ONU) com estética visual duplamente impressionante. Construído com tecnologia React moderna, fornece aos administradores de rede ferramentas poderosas para configurar, monitorar e solucionar problemas de equipamentos Nokia ONU através de uma interface intuitiva que se adapta entre o modo escuro cyberpunk e o modo claro moderno.**Gerenciador Nokia ONU** é uma aplicação web de última geração projetada para gerenciar dispositivos Nokia Optical Network Unit (ONU) com estética visual duplamente impressionante. Construído com tecnologia React moderna, fornece aos administradores de rede ferramentas poderosas para configurar, monitorar e solucionar problemas de equipamentos Nokia ONU através de uma interface intuitiva que se adapta entre o modo escuro cyberpunk e o modo claro moderno.
 
-## 🎨 Sistema de Tema Duplo## 🎨 Sistema de Tema Duplo
 
-### 🌙 **Modo Escuro - Estética Cyberpunk**### 🌙 **Modo Escuro - Estética Cyberpunk**
 
-- **Cores Neon**: Acentos em Ciano (#00FFFF) e Magenta (#FF00FF)- **Cores Neon**: Acentos em Ciano (#00FFFF) e Magenta (#FF00FF)
+## 🎨 Sistema de Tema Duplo## 🎨 Sistema de Tema Duplo## 🎨 Sistema de Tema Duplo
 
-- **Fundos Escuros**: Pretos profundos e azuis escuros- **Fundos Escuros**: Pretos profundos e azuis escuros
+
+
+### 🌙 **Modo Escuro - Estética Cyberpunk**### 🌙 **Modo Escuro - Estética Cyberpunk**### 🌙 **Modo Escuro - Estética Cyberpunk**
+
+
+
+- **Cores Neon**: Acentos em Ciano (#00FFFF) e Magenta (#FF00FF)- **Cores Neon**: Acentos em Ciano (#00FFFF) e Magenta (#FF00FF)- **Cores Neon**: Acentos em Ciano (#00FFFF) e Magenta (#FF00FF)
+
+- **Fundos Escuros**: Pretos profundos e azuis escuros
+
+- **Efeitos Brilhantes**: Iluminação neon e efeitos de sombra- **Fundos Escuros**: Pretos profundos e azuis escuros- **Fundos Escuros**: Pretos profundos e azuis escuros
+
+- **Tipografia**: Fontes futuristas Orbitron e Roboto Mono
 
 - **Efeitos Brilhantes**: Iluminação neon e efeitos de sombra- **Efeitos Brilhantes**: Iluminação neon e efeitos de sombra
 
+### ☀️ **Modo Claro - Verde Moderno**
+
 - **Tipografia**: Fontes futuristas Orbitron e Roboto Mono- **Tipografia**: Fontes futuristas Orbitron e Roboto Mono
 
-### ☀️ **Modo Claro - Verde Moderno**### ☀️ **Modo Claro - Verde Moderno**
+- **Cor Primária**: Verde Lima (#98c913)
 
-- **Cor Primária**: Verde Lima (#98c913)- **Cor Primária**: Verde Lima (#98c913)
+- **Fundos Limpos**: Cinzas claros e brancos### ☀️ **Modo Claro - Verde Moderno**### ☀️ **Modo Claro - Verde Moderno**
 
-- **Fundos Limpos**: Cinzas claros e brancos- **Fundos Limpos**: Cinzas claros e brancos
+- **Efeitos Sutis**: Efeitos de brilho verde e sombras
 
-- **Efeitos Sutis**: Efeitos de brilho verde e sombras- **Efeitos Sutis**: Efeitos de brilho verde e sombras
+- **Visual Profissional**: Design limpo, moderno e energeticamente eficiente- **Cor Primária**: Verde Lima (#98c913)- **Cor Primária**: Verde Lima (#98c913)
 
-- **Visual Profissional**: Design limpo, moderno e energeticamente eficiente- **Visual Profissional**: Design limpo, moderno e energeticamente eficiente
+
+
+### 🔄 **Alternador de Tema**- **Fundos Limpos**: Cinzas claros e brancos- **Fundos Limpos**: Cinzas claros e brancos
+
+
+
+- **Botão Flutuante**: Alternador de tema de fácil acesso- **Efeitos Sutis**: Efeitos de brilho verde e sombras- **Efeitos Sutis**: Efeitos de brilho verde e sombras
+
+- **Troca Instantânea**: Transição de tema em tempo real
+
+- **Persistência**: Preferência de tema salva no localStorage- **Visual Profissional**: Design limpo, moderno e energeticamente eficiente- **Visual Profissional**: Design limpo, moderno e energeticamente eficiente
+
+- **Universal**: Afeta toda a aplicação incluindo o rodapé
 
 ### 🔄 **Alternador de Tema**### 🔄 **Alternador de Tema**
 
+## 🚀 Recursos
+
 - **Botão Flutuante**: Alternador de tema de fácil acesso- **Botão Flutuante**: Alternador de tema de fácil acesso
+
+### 🔍 **Gerenciamento de Clientes**
 
 - **Troca Instantânea**: Transição de tema em tempo real- **Troca Instantânea**: Transição de tema em tempo real
 
-- **Persistência**: Preferência de tema salva no localStorage- **Persistência**: Preferência de tema salva no localStorage
+- **Busca Avançada de Clientes**: Localiza clientes por vários parâmetros com ícones geométricos cyberpunk
 
-- **Universal**: Afeta toda a aplicação incluindo o rodapé- **Universal**: Afeta toda a aplicação incluindo o rodapéanager | Cyberpunk Tech
-
-## 🚀 Recursos<div align="center">
-
-### 🔍 **Gerenciamento de Clientes**![Nokia ONU](https://img.shields.io/badge/Nokia-ONU_Manager-98c913?style=for-the-badge&logo=nokia&logoColor=white)
-
-![React](https://img.shields.io/badge/React-18.3.1-61DAFB?style=for-the-badge&logo=react&logoColor=black)
-
-- **Busca Avançada de Clientes**: Localiza clientes por vários parâmetros com ícones geométricos cyberpunk![Vite](https://img.shields.io/badge/Vite-7.1.7-646CFF?style=for-the-badge&logo=vite&logoColor=white)
-
-- **Posicionamento de Clientes**: Rastreamento em tempo real de slot/GPON/índice em layout lado a lado![GitHub Pages](https://img.shields.io/badge/GitHub-Pages-222222?style=for-the-badge&logo=github&logoColor=white)
+- **Posicionamento de Clientes**: Rastreamento em tempo real de slot/GPON/índice em layout lado a lado- **Persistência**: Preferência de tema salva no localStorage- **Persistência**: Preferência de tema salva no localStorage
 
 - **Dados Abrangentes do Cliente**: Visualiza informações detalhadas do cliente com cores adaptáveis ao tema
 
-_A futuristic dual-theme management system for Nokia ONU devices_
+- **Universal**: Afeta toda a aplicação incluindo o rodapé- **Universal**: Afeta toda a aplicação incluindo o rodapéanager | Cyberpunk Tech
 
 ### ⚙️ **Configuração de Dispositivos**
 
-[🚀 Live Demo](https://MatheusAraujo86.github.io/obscure-xylophone/) • [📖 Features](#-features) • [🛠️ Installation](#-installation) • [� Themes](#-dual-theme-system)
+## 🚀 Recursos<div align="center">
 
 - **Provisionamento/Desprovisionamento de Clientes**: Gerenciamento completo do ciclo de vida com UI aprimorada
 
-- **Configuração de Wi-Fi**: Gerencia configurações e credenciais de rede sem fio---
+- **Configuração de Wi-Fi**: Gerencia configurações e credenciais de rede sem fio### 🔍 **Gerenciamento de Clientes**![Nokia ONU](https://img.shields.io/badge/Nokia-ONU_Manager-98c913?style=for-the-badge&logo=nokia&logoColor=white)
 
 - **Configuração de Telefone**: Configuração VoIP e linha fixa com formulários melhorados
 
-- **Gerenciamento VLAN/PPPoE**: Configuração de camada de rede</div>
+- **Gerenciamento VLAN/PPPoE**: Configuração de camada de rede![React](https://img.shields.io/badge/React-18.3.1-61DAFB?style=for-the-badge&logo=react&logoColor=black)
 
 - **Controle de Acesso Web**: Senha de administrador e gerenciamento de acesso
 
-- **Bridge ONT Nokia**: Verificação MAC integrada e geração de comandos## ✨ Overview
+- **Bridge ONT Nokia**: Verificação MAC integrada e geração de comandos- **Busca Avançada de Clientes**: Localiza clientes por vários parâmetros com ícones geométricos cyberpunk![Vite](https://img.shields.io/badge/Vite-7.1.7-646CFF?style=for-the-badge&logo=vite&logoColor=white)
 
-### 📊 **Ferramentas Avançadas\*\***Nokia ONU Manager\*\* is a cutting-edge web application designed for managing Nokia Optical Network Unit (ONU) devices with stunning dual-theme aesthetics. Built with modern React technology, it provides network administrators with powerful tools to configure, monitor, and troubleshoot Nokia ONU equipment through an intuitive interface that adapts between cyberpunk dark mode and modern light mode.
 
-- **Sistema de Conferência de Caixa**: Compara tabelas antes/depois com estilo de botão unificado## 🎨 Dual Theme System
+
+### 📊 **Ferramentas Avançadas**- **Posicionamento de Clientes**: Rastreamento em tempo real de slot/GPON/índice em layout lado a lado![GitHub Pages](https://img.shields.io/badge/GitHub-Pages-222222?style=for-the-badge&logo=github&logoColor=white)
+
+
+
+- **Sistema de Conferência de Caixa**: Compara tabelas antes/depois com estilo de botão unificado- **Dados Abrangentes do Cliente**: Visualiza informações detalhadas do cliente com cores adaptáveis ao tema
 
 - **Detecção de Diferenças**: Destaque automático de mudanças em ambos os temas
 
-- **Rastreamento de Clientes Offline**: Monitora dispositivos offline com UI consistente### 🌙 **Dark Mode - Cyberpunk Aesthetic**
+- **Rastreamento de Clientes Offline**: Monitora dispositivos offline com UI consistente_A futuristic dual-theme management system for Nokia ONU devices_
 
 - **Exportação/Importação de Dados**: Backup e restauração de configurações
 
-- **Geração de Comandos**: Copia comandos de rede para a área de transferência com notificações- **Neon Colors**: Cyan (#00FFFF) and Magenta (#FF00FF) accents
+- **Geração de Comandos**: Copia comandos de rede para a área de transferência com notificações### ⚙️ **Configuração de Dispositivos**
 
-- **Dark Backgrounds**: Deep blacks and dark blues
 
-### 🎯 **Operações Adicionais**- **Glow Effects**: Neon lighting and shadow effects
 
-- **Busca PON**: Exploração da topologia de rede- **Typography**: Futuristic Orbitron and Roboto Mono fonts
+### 🎯 **Operações Adicionais**[🚀 Live Demo](https://MatheusAraujo86.github.io/obscure-xylophone/) • [📖 Features](#-features) • [🛠️ Installation](#-installation) • [� Themes](#-dual-theme-system)
 
-- **Monitoramento de Alarmes**: Rastreamento de alertas do sistema
+- **Busca PON**: Exploração da topologia de rede
 
-- **Reinício da ONU**: Funcionalidade de reinicialização remota do dispositivo### ☀️ **Light Mode - Modern Green**
+- **Monitoramento de Alarmes**: Rastreamento de alertas do sistema- **Provisionamento/Desprovisionamento de Clientes**: Gerenciamento completo do ciclo de vida com UI aprimorada
 
-- **Solicitações de Provisionamento**: Manipula registros de novos dispositivos
+- **Reinício da ONU**: Funcionalidade de reinicialização remota do dispositivo
 
-- **Verificação de Fibra**: Teste de conectividade de rede- **Primary Color**: Lime Green (#98c913)
+- **Solicitações de Provisionamento**: Manipula registros de novos dispositivos- **Configuração de Wi-Fi**: Gerencia configurações e credenciais de rede sem fio---
 
-- **Clean Backgrounds**: Light grays and whites
+- **Verificação de Fibra**: Teste de conectividade de rede
 
-### 🎨 **UI/UX Moderno**- **Subtle Effects**: Green glow effects and shadows
+- **Configuração de Telefone**: Configuração VoIP e linha fixa com formulários melhorados
 
-- **Professional Look**: Clean, modern, energy-efficient design
+### 🎨 **UI/UX Moderno**
+
+- **Gerenciamento VLAN/PPPoE**: Configuração de camada de rede</div>
 
 - **Sistema de Tema Duplo**: Temas cyberpunk escuro e moderno claro
 
-- **Ícones Geométricos**: Sistema de símbolos consistente ◯◪◈◐◊◇◎◆### 🔄 **Theme Toggle**
+- **Ícones Geométricos**: Sistema de símbolos consistente ◯◪◈◐◊◇◎◆- **Controle de Acesso Web**: Senha de administrador e gerenciamento de acesso
 
 - **Layout Responsivo**: Desktop lado a lado, empilhamento vertical mobile
 
-- **Consistência de Botões**: Efeitos hover unificados, animações brilhantes e estilização- **Floating Button**: Easy access theme switcher
+- **Consistência de Botões**: Efeitos hover unificados, animações brilhantes e estilização- **Bridge ONT Nokia**: Verificação MAC integrada e geração de comandos## ✨ Overview
 
-- **Rodapé Aprimorado**: Créditos do desenvolvedor com cores adaptáveis ao tema- **Instant Switch**: Real-time theme transition
+- **Rodapé Aprimorado**: Créditos do desenvolvedor com cores adaptáveis ao tema
 
-- **Espaçamento Otimizado**: Componentes proporcionais e dimensionamento consistente- **Persistence**: Theme preference saved in localStorage
+- **Espaçamento Otimizado**: Componentes proporcionais e dimensionamento consistente### 📊 **Ferramentas Avançadas\*\***Nokia ONU Manager\*\* is a cutting-edge web application designed for managing Nokia Optical Network Unit (ONU) devices with stunning dual-theme aesthetics. Built with modern React technology, it provides network administrators with powerful tools to configure, monitor, and troubleshoot Nokia ONU equipment through an intuitive interface that adapts between cyberpunk dark mode and modern light mode.
 
-- **Universal**: Affects entire application including footer
 
-## 🛠️ Stack Tecnológico
 
-## 🚀 Features
+## 🛠️ Stack Tecnológico- **Sistema de Conferência de Caixa**: Compara tabelas antes/depois com estilo de botão unificado## 🎨 Dual Theme System
 
-- **Frontend**: React.js 18 com Vite 7.1.7 para desenvolvimento e build otimizados
 
-- **Estilização**: CSS3 avançado com propriedades customizadas para temas duplos### 🔍 **Client Management**
 
-- **Ícones**: Símbolos geométricos cyberpunk (◯◪◈◐◊◇◎◆) para branding consistente
+- **Frontend**: React.js 18 com Vite 7.1.7 para desenvolvimento e build otimizados- **Detecção de Diferenças**: Destaque automático de mudanças em ambos os temas
 
-- **Temas**: Troca dinâmica entre tema escuro (ciano/magenta) e claro (verde lima #98c913)- **Advanced Client Search**: Locate clients by various parameters with geometric cyberpunk icons
+- **Estilização**: CSS3 avançado com propriedades customizadas para temas duplos
 
-- **Layout**: CSS Grid com desktop lado a lado responsivo e empilhamento mobile- **Client Positioning**: Real-time slot/GPON/index tracking in side-by-side layout
+- **Ícones**: Símbolos geométricos cyberpunk (◯◪◈◐◊◇◎◆) para branding consistente- **Rastreamento de Clientes Offline**: Monitora dispositivos offline com UI consistente### 🌙 **Dark Mode - Cyberpunk Aesthetic**
 
-- **Gerenciamento de Estado**: Hooks do React com persistência localStorage para preferências de tema- **Comprehensive Client Data**: View detailed client information with theme-adaptive colors
+- **Temas**: Troca dinâmica entre tema escuro (ciano/magenta) e claro (verde lima #98c913)
 
-- **Notificações**: Integração personalizada do SweetAlert2 com estilização adaptável ao tema
+- **Layout**: CSS Grid com desktop lado a lado responsivo e empilhamento mobile- **Exportação/Importação de Dados**: Backup e restauração de configurações
 
-- **Deploy**: GitHub Pages com pipeline automatizado do Actions### ⚙️ **Device Configuration**
+- **Gerenciamento de Estado**: Hooks do React com persistência localStorage para preferências de tema
 
-- **Desenvolvimento**: Hot Module Replacement (HMR) para feedback instantâneo no desenvolvimento
+- **Notificações**: Integração personalizada do SweetAlert2 com estilização adaptável ao tema- **Geração de Comandos**: Copia comandos de rede para a área de transferência com notificações- **Neon Colors**: Cyan (#00FFFF) and Magenta (#FF00FF) accents
 
-- **Client Provisioning/Deprovisioning**: Complete lifecycle management with enhanced UI
+- **Deploy**: GitHub Pages com pipeline automatizado do Actions
 
-## 🎨 Sistema de Temas- **Wi-Fi Configuration**: Manage wireless settings and credentials
+- **Desenvolvimento**: Hot Module Replacement (HMR) para feedback instantâneo no desenvolvimento- **Dark Backgrounds**: Deep blacks and dark blues
 
-- **Phone Configuration**: VoIP and landline setup with improved forms
 
-Nosso sistema de tema duplo oferece duas experiências distintas:- **VLAN/PPPoE Management**: Network layer configuration
 
-- **Web Access Control**: Admin password and access management
+## 🏗️ Arquitetura### 🎯 **Operações Adicionais**- **Glow Effects**: Neon lighting and shadow effects
 
-### 🌙 **Modo Escuro - Cyberpunk**- **Bridge ONT Nokia**: Integrated MAC verification and command generation
 
-- **Cores Primárias**: Ciano elétrico (#00FFFF) e magenta vibrante (#FF00FF)
 
-- **Fundo**: Pretos espaciais profundos com gradientes sutis### 📊 **Advanced Tools**
-
-- **Tipografia**: Orbitron para cabeçalhos, Roboto Mono para elementos de código
-
-- **Efeitos**: Brilho neon, bordas elétricas e elementos holográficos- **Box Conference System**: Compare before/after tables with unified button styling
-
-- **Estética**: Cyberpunk futurista com linguagem visual high-tech- **Difference Detection**: Automatic highlighting of changes in both themes
-
-- **Down Clients Tracking**: Monitor offline devices with consistent UI
-
-### ☀️ **Modo Claro - Verde Moderno**- **Data Export/Import**: Backup and restore configurations
-
-- **Cores Primárias**: Verde lima fresco (#98c913) com variações naturais- **Command Generation**: Copy network commands to clipboard with notifications
-
-- **Fundo**: Brancos limpos e cinzas suaves para visual profissional
-
-- **Tipografia**: Mesmo sistema de fontes geométricas adaptado para fundos claros### � **Additional Operations**
-
-- **Efeitos**: Sombras sutis, bordas limpas e gradientes modernos
-
-- **Estética**: Corporativo contemporâneo com acentos verdes eco-friendly- **PON Search**: Network topology exploration
-
-- **Alarm Monitoring**: System alert tracking
-
-Ambos os temas apresentam:- **ONU Restart**: Remote device reboot functionality
-
-- **Armazenamento Persistente**: Sua escolha de tema salva automaticamente- **Provisioning Requests**: Handle new device registrations
-
-- **Alternador Flutuante**: Troca fácil de tema com transição animada- **Fiber Verification**: Network connectivity testing
-
-- **Consistência de Componentes**: Todos os elementos se adaptam perfeitamente
-
-- **Padronização de Botões**: Efeitos hover uniformes, animações brilhantes e estilização em todos os componentes### 🎨 **Modern UI/UX**
-
-## 🏗️ Arquitetura- **Dual Theme System**: Dark cyberpunk and light modern themes
-
-- **Geometric Icons**: Consistent ◯◪◈◐◊◇◎◆ symbol system
-
-### Estrutura de Componentes- **Responsive Layout**: Desktop side-by-side, mobile vertical stacking
-
-```- **Button Consistency**: Unified hover effects, shine animations, and styling
-
-src/- **Enhanced Footer**: Developer credits with theme-adaptive colors
-
-├── components/          # Componentes de recursos- **Optimized Spacing**: Proportional components and consistent sizing
-
-│   ├── PesquisaCliente.jsx      # Busca de clientes com formulários aprimorados- **Responsive Design**: Mobile and desktop optimized
-
-│   ├── PosicaoCliente.jsx       # Rastreamento de posição com atualizações em tempo real
-
-│   ├── ProvisionarCliente.jsx   # Gerenciamento de provisionamento com notificações## 🛠️ Tech Stack
-
-│   ├── ConfiguracaoWifi.jsx     # Configuração Wi-Fi com validação
-
-│   ├── ConfiguracaoTelefone.jsx # Configuração de telefone com consistência de formulário- **Frontend**: React.js 18 with Vite 7.1.7 for optimized development and build
-
-│   ├── AlterarVlanPppoe.jsx     # Gerenciamento de camada de rede- **Styling**: Advanced CSS3 with custom properties for dual theming
-
-│   ├── AlterarSenhaWeb.jsx      # Controle de acesso com segurança- **Icons**: Geometric cyberpunk symbols (◯◪◈◐◊◇◎◆) for consistent branding
-
-│   ├── BridgeOntNokia.jsx       # Configuração bridge com verificação MAC- **Themes**: Dynamic dark (cyan/magenta) and light (green lime #98c913) theme switching
-
-│   ├── ConferenciaCaixa.jsx     # Conferência de caixa com comparação de tabelas- **Layout**: CSS Grid with responsive side-by-side desktop and mobile stacking
-
-│   └── OutrasOpcoes.jsx         # Utilitários adicionais e consulta- **State Management**: React hooks with localStorage persistence for theme preferences
-
-├── hooks/               # Hooks customizados do React- **Notifications**: Custom SweetAlert2 integration with theme-adaptive styling
-
-│   ├── useSweetAlert.js         # Sistema de notificação com integração de tema- **Deployment**: GitHub Pages with automated Actions pipeline
-
-│   └── useTheme.js              # Gerenciamento e persistência de tema- **Development**: Hot Module Replacement (HMR) for instant development feedback
-
-├── services/            # Camadas de integração de API
-
-│   ├── onuService.js            # Operações do dispositivo ONU## 🎨 Theme System
-
-│   ├── phoneService.js          # Chamadas de serviço de telefonia
-
-│   └── wifiService.js           # APIs de configuração wirelessOur dual theme system provides two distinct experiences:
-
-└── utils/               # Funções utilitárias
-
-    └── validation.js            # Validação de formulário e verificação de dados### 🌙 **Dark Mode - Cyberpunk**
+### Estrutura de Componentes- **Busca PON**: Exploração da topologia de rede- **Typography**: Futuristic Orbitron and Roboto Mono fonts
 
 ```
 
-- **Primary Colors**: Electric cyan (#00FFFF) and vibrant magenta (#FF00FF)
+src/- **Monitoramento de Alarmes**: Rastreamento de alertas do sistema
 
-## 🚀 Primeiros Passos- **Background**: Deep space blacks with subtle gradients
+├── components/          # Componentes de recursos
 
-- **Typography**: Orbitron for headers, Roboto Mono for code elements
+│   ├── PesquisaCliente.jsx      # Busca de clientes com formulários aprimorados- **Reinício da ONU**: Funcionalidade de reinicialização remota do dispositivo### ☀️ **Light Mode - Modern Green**
 
-### Pré-requisitos- **Effects**: Neon glow, electric borders, and holographic elements
+│   ├── PosicaoCliente.jsx       # Rastreamento de posição com atualizações em tempo real
 
-- **Aesthetic**: Futuristic cyberpunk with high-tech visual language
+│   ├── ProvisionarCliente.jsx   # Gerenciamento de provisionamento com notificações- **Solicitações de Provisionamento**: Manipula registros de novos dispositivos
+
+│   ├── ConfiguracaoWifi.jsx     # Configuração Wi-Fi com validação
+
+│   ├── ConfiguracaoTelefone.jsx # Configuração de telefone com consistência de formulário- **Verificação de Fibra**: Teste de conectividade de rede- **Primary Color**: Lime Green (#98c913)
+
+│   ├── AlterarVlanPppoe.jsx     # Gerenciamento de camada de rede
+
+│   ├── AlterarSenhaWeb.jsx      # Controle de acesso com segurança- **Clean Backgrounds**: Light grays and whites
+
+│   ├── BridgeOntNokia.jsx       # Configuração bridge com verificação MAC
+
+│   ├── ConferenciaCaixa.jsx     # Conferência de caixa com comparação de tabelas### 🎨 **UI/UX Moderno**- **Subtle Effects**: Green glow effects and shadows
+
+│   └── OutrasOpcoes.jsx         # Utilitários adicionais e consulta
+
+├── hooks/               # Hooks customizados do React- **Professional Look**: Clean, modern, energy-efficient design
+
+│   ├── useSweetAlert.js         # Sistema de notificação com integração de tema
+
+│   └── useTheme.js              # Gerenciamento e persistência de tema- **Sistema de Tema Duplo**: Temas cyberpunk escuro e moderno claro
+
+├── services/            # Camadas de integração de API
+
+│   ├── onuService.js            # Operações do dispositivo ONU- **Ícones Geométricos**: Sistema de símbolos consistente ◯◪◈◐◊◇◎◆### 🔄 **Theme Toggle**
+
+│   ├── phoneService.js          # Chamadas de serviço de telefonia
+
+│   └── wifiService.js           # APIs de configuração wireless- **Layout Responsivo**: Desktop lado a lado, empilhamento vertical mobile
+
+└── utils/               # Funções utilitárias
+
+    └── validation.js            # Validação de formulário e verificação de dados- **Consistência de Botões**: Efeitos hover unificados, animações brilhantes e estilização- **Floating Button**: Easy access theme switcher
+
+```
+
+- **Rodapé Aprimorado**: Créditos do desenvolvedor com cores adaptáveis ao tema- **Instant Switch**: Real-time theme transition
+
+## 🚀 Primeiros Passos
+
+- **Espaçamento Otimizado**: Componentes proporcionais e dimensionamento consistente- **Persistence**: Theme preference saved in localStorage
+
+### Pré-requisitos
+
+- **Universal**: Affects entire application including footer
 
 - **Node.js** (v18 ou superior) - Necessário para recursos do React 18
 
-- **npm** ou **yarn** - Gerenciador de pacotes### ☀️ **Light Mode - Modern Green**
+- **npm** ou **yarn** - Gerenciador de pacotes## 🛠️ Stack Tecnológico
 
 - **Navegador moderno** - Chrome, Firefox, Safari ou Edge
 
-- **Primary Colors**: Fresh lime green (#98c913) with natural variations
+## 🚀 Features
 
-### Instalação- **Background**: Clean whites and soft grays for professional look
+### Instalação
 
-- **Typography**: Same geometric font system adapted for light backgrounds
+- **Frontend**: React.js 18 com Vite 7.1.7 para desenvolvimento e build otimizados
 
-1. **Clone o repositório**- **Effects**: Subtle shadows, clean borders, and modern gradients
+1. **Clone o repositório**
 
-- **Aesthetic**: Contemporary corporate with eco-friendly green accents
+- **Estilização**: CSS3 avançado com propriedades customizadas para temas duplos### 🔍 **Client Management**
 
-  ````bash
+   ```bash
+
+   git clone https://github.com/MatheusAraujo86/obscure-xylophone.git- **Ícones**: Símbolos geométricos cyberpunk (◯◪◈◐◊◇◎◆) para branding consistente
+
+   cd onu-nokia-react
+
+   ```- **Temas**: Troca dinâmica entre tema escuro (ciano/magenta) e claro (verde lima #98c913)- **Advanced Client Search**: Locate clients by various parameters with geometric cyberpunk icons
+
+
+
+2. **Instale as dependências**- **Layout**: CSS Grid com desktop lado a lado responsivo e empilhamento mobile- **Client Positioning**: Real-time slot/GPON/index tracking in side-by-side layout
+
+
+
+   ```bash- **Gerenciamento de Estado**: Hooks do React com persistência localStorage para preferências de tema- **Comprehensive Client Data**: View detailed client information with theme-adaptive colors
+
+   npm install
+
+   ```- **Notificações**: Integração personalizada do SweetAlert2 com estilização adaptável ao tema
+
+
+
+3. **Inicie o servidor de desenvolvimento**- **Deploy**: GitHub Pages com pipeline automatizado do Actions### ⚙️ **Device Configuration**
+
+
+
+   ```bash- **Desenvolvimento**: Hot Module Replacement (HMR) para feedback instantâneo no desenvolvimento
+
+   npm run dev
+
+   ```- **Client Provisioning/Deprovisioning**: Complete lifecycle management with enhanced UI
+
+
+
+4. **Abra seu navegador**## 🎨 Sistema de Temas- **Wi-Fi Configuration**: Manage wireless settings and credentials
+
+   ```
+
+   http://localhost:5173- **Phone Configuration**: VoIP and landline setup with improved forms
+
+   ```
+
+Nosso sistema de tema duplo oferece duas experiências distintas:- **VLAN/PPPoE Management**: Network layer configuration
+
+   A aplicação abrirá automaticamente com hot reloading habilitado.
+
+- **Web Access Control**: Admin password and access management
+
+### Build para Produção
+
+### 🌙 **Modo Escuro - Cyberpunk**- **Bridge ONT Nokia**: Integrated MAC verification and command generation
+
+```bash
+
+# Build da aplicação- **Cores Primárias**: Ciano elétrico (#00FFFF) e magenta vibrante (#FF00FF)
+
+npm run build
+
+- **Fundo**: Pretos espaciais profundos com gradientes sutis### 📊 **Advanced Tools**
+
+# Preview do build de produção localmente
+
+npm run preview- **Tipografia**: Orbitron para cabeçalhos, Roboto Mono para elementos de código
+
+
+
+# Deploy para GitHub Pages (se configurado)- **Efeitos**: Brilho neon, bordas elétricas e elementos holográficos- **Box Conference System**: Compare before/after tables with unified button styling
+
+npm run deploy
+
+```- **Estética**: Cyberpunk futurista com linguagem visual high-tech- **Difference Detection**: Automatic highlighting of changes in both themes
+
+
+
+## 🎯 Guia de Uso- **Down Clients Tracking**: Monitor offline devices with consistent UI
+
+
+
+### 🌓 **Troca de Tema**### ☀️ **Modo Claro - Verde Moderno**- **Data Export/Import**: Backup and restore configurations
+
+- Clique no botão alternador de tema flutuante (🌙/☀️) no canto superior direito
+
+- Modo escuro: Estética cyberpunk com cores ciano/magenta- **Cores Primárias**: Verde lima fresco (#98c913) com variações naturais- **Command Generation**: Copy network commands to clipboard with notifications
+
+- Modo claro: Visual profissional moderno com acentos verde lima
+
+- Preferência de tema é salva automaticamente- **Fundo**: Brancos limpos e cinzas suaves para visual profissional
+
+
+
+### 🔍 **Operações de Cliente**- **Tipografia**: Mesmo sistema de fontes geométricas adaptado para fundos claros### � **Additional Operations**
+
+1. **Buscar Clientes**: Use o formulário de busca com vários parâmetros
+
+2. **Ver Posição**: Verifique informações de slot/GPON/índice do cliente em tempo real- **Efeitos**: Sombras sutis, bordas limpas e gradientes modernos
+
+3. **Provisionar/Desprovisionar**: Gerencie o ciclo de vida do cliente com formulários aprimorados
+
+4. **Configurar Serviços**: Configure Wi-Fi, telefone e configurações de rede- **Estética**: Corporativo contemporâneo com acentos verdes eco-friendly- **PON Search**: Network topology exploration
+
+
+
+### 📊 **Ferramentas Avançadas**- **Alarm Monitoring**: System alert tracking
+
+- **Conferência de Caixa**: Compare configurações antes/depois com visualização de tabela
+
+- **Bridge ONT**: Configure dispositivos bridge Nokia com verificação MACAmbos os temas apresentam:- **ONU Restart**: Remote device reboot functionality
+
+- **Opções Adicionais**: Acesse ferramentas de consulta e utilitários de rede
+
+- **Armazenamento Persistente**: Sua escolha de tema salva automaticamente- **Provisioning Requests**: Handle new device registrations
+
+### 💡 **Dicas**
+
+- Todos os formulários incluem validação em tempo real- **Alternador Flutuante**: Troca fácil de tema com transição animada- **Fiber Verification**: Network connectivity testing
+
+- Use os ícones geométricos como auxílios de navegação visual
+
+- Copie comandos diretamente para a área de transferência com um clique- **Consistência de Componentes**: Todos os elementos se adaptam perfeitamente
+
+- Todas as mudanças são confirmadas com notificações temáticas
+
+- **Padronização de Botões**: Efeitos hover uniformes, animações brilhantes e estilização em todos os componentes### 🎨 **Modern UI/UX**
+
+## 🌐 Deploy
+
+## 🏗️ Arquitetura- **Dual Theme System**: Dark cyberpunk and light modern themes
+
+### **🚀 GitHub Pages (Automatizado)**
+
+- **Geometric Icons**: Consistent ◯◪◈◐◊◇◎◆ symbol system
+
+Este projeto inclui deploy automático para GitHub Pages:
+
+### Estrutura de Componentes- **Responsive Layout**: Desktop side-by-side, mobile vertical stacking
+
+1. **Configuração do Repositório**: 
+
+   - Fonte das Pages: GitHub Actions```- **Button Consistency**: Unified hover effects, shine animations, and styling
+
+   - URL Base: `/obscure-xylophone/` (configurado em `vite.config.js`)
+
+src/- **Enhanced Footer**: Developer credits with theme-adaptive colors
+
+2. **Deploy Automático**:
+
+   ```bash├── components/          # Componentes de recursos- **Optimized Spacing**: Proportional components and consistent sizing
+
+   git add .
+
+   git commit -m "Deploy para GitHub Pages" │   ├── PesquisaCliente.jsx      # Busca de clientes com formulários aprimorados- **Responsive Design**: Mobile and desktop optimized
+
+   git push origin master
+
+   ```│   ├── PosicaoCliente.jsx       # Rastreamento de posição com atualizações em tempo real
+
+
+
+3. **Site ao Vivo**: https://MatheusAraujo86.github.io/obscure-xylophone/│   ├── ProvisionarCliente.jsx   # Gerenciamento de provisionamento com notificações## 🛠️ Tech Stack
+
+
+
+### **🔧 Build e Deploy Manual**│   ├── ConfiguracaoWifi.jsx     # Configuração Wi-Fi com validação
+
+
+
+```bash│   ├── ConfiguracaoTelefone.jsx # Configuração de telefone com consistência de formulário- **Frontend**: React.js 18 with Vite 7.1.7 for optimized development and build
+
+# Build para produção
+
+npm run build│   ├── AlterarVlanPppoe.jsx     # Gerenciamento de camada de rede- **Styling**: Advanced CSS3 with custom properties for dual theming
+
+
+
+# Preview local│   ├── AlterarSenhaWeb.jsx      # Controle de acesso com segurança- **Icons**: Geometric cyberpunk symbols (◯◪◈◐◊◇◎◆) for consistent branding
+
+npm run preview  
+
+│   ├── BridgeOntNokia.jsx       # Configuração bridge com verificação MAC- **Themes**: Dynamic dark (cyan/magenta) and light (green lime #98c913) theme switching
+
+# Deploy manual (se necessário)
+
+npm run deploy│   ├── ConferenciaCaixa.jsx     # Conferência de caixa com comparação de tabelas- **Layout**: CSS Grid with responsive side-by-side desktop and mobile stacking
+
+```
+
+│   └── OutrasOpcoes.jsx         # Utilitários adicionais e consulta- **State Management**: React hooks with localStorage persistence for theme preferences
+
+## 📝 Diretrizes de Desenvolvimento
+
+├── hooks/               # Hooks customizados do React- **Notifications**: Custom SweetAlert2 integration with theme-adaptive styling
+
+### **Estilo de Código**
+
+- **Componentes**: Componentes funcionais com hooks│   ├── useSweetAlert.js         # Sistema de notificação com integração de tema- **Deployment**: GitHub Pages with automated Actions pipeline
+
+- **Estilização**: Propriedades customizadas CSS para temas
+
+- **Ícones**: Símbolos geométricos (◯◪◈◐◊◇◎◆) para consistência│   └── useTheme.js              # Gerenciamento e persistência de tema- **Development**: Hot Module Replacement (HMR) for instant development feedback
+
+- **Layout**: CSS Grid para design responsivo
+
+- **Estado**: Estado local com hooks, localStorage para persistência├── services/            # Camadas de integração de API
+
+
+
+### **Desenvolvimento de Temas**│   ├── onuService.js            # Operações do dispositivo ONU## 🎨 Theme System
+
+- Use propriedades customizadas CSS: `--accent-primary`, `--accent-secondary`, `--text-button`
+
+- Teste ambos os temas claro e escuro para qualquer novo componente│   ├── phoneService.js          # Chamadas de serviço de telefonia
+
+- Garanta que a estilização de botões siga o sistema padronizado
+
+- Verifique comportamento responsivo em desktop lado a lado e empilhamento mobile│   └── wifiService.js           # APIs de configuração wirelessOur dual theme system provides two distinct experiences:
+
+
+
+### **Adicionando Novos Componentes**└── utils/               # Funções utilitárias
+
+1. Crie componente em `src/components/`
+
+2. Importe e adicione ao layout do `App.jsx`    └── validation.js            # Validação de formulário e verificação de dados### 🌙 **Dark Mode - Cyberpunk**
+
+3. Aplique variáveis de tema do `App.css`
+
+4. Use ícones geométricos para consistência```
+
+5. Teste em ambos os modos de tema
+
+6. Garanta comportamento responsivo- **Primary Colors**: Electric cyan (#00FFFF) and vibrant magenta (#FF00FF)
+
+
+
+## 🤝 Contribuindo## 🚀 Primeiros Passos- **Background**: Deep space blacks with subtle gradients
+
+
+
+### **Fluxo de Trabalho de Desenvolvimento**- **Typography**: Orbitron for headers, Roboto Mono for code elements
+
+1. Faça fork do repositório
+
+2. Crie uma branch de funcionalidade: `git checkout -b nome-da-funcionalidade`### Pré-requisitos- **Effects**: Neon glow, electric borders, and holographic elements
+
+3. Faça mudanças seguindo as diretrizes de estilo de código
+
+4. Teste em ambos os temas claro e escuro- **Aesthetic**: Futuristic cyberpunk with high-tech visual language
+
+5. Garanta que o design responsivo funciona
+
+6. Commit das mudanças: `git commit -m "Adicionar descrição da funcionalidade"`- **Node.js** (v18 ou superior) - Necessário para recursos do React 18
+
+7. Push para branch: `git push origin nome-da-funcionalidade` 
+
+8. Crie um Pull Request- **npm** ou **yarn** - Gerenciador de pacotes### ☀️ **Light Mode - Modern Green**
+
+
+
+### **Relatórios de Bug**- **Navegador moderno** - Chrome, Firefox, Safari ou Edge
+
+- Use GitHub Issues para relatórios de bug
+
+- Inclua versão do navegador e modo de tema- **Primary Colors**: Fresh lime green (#98c913) with natural variations
+
+- Forneça passos para reproduzir o problema
+
+- Inclua screenshots se aplicável### Instalação- **Background**: Clean whites and soft grays for professional look
+
+
+
+## 📄 Licença- **Typography**: Same geometric font system adapted for light backgrounds
+
+
+
+Licença MIT - Sinta-se livre para usar este projeto para fins de aprendizado e desenvolvimento.1. **Clone o repositório**- **Effects**: Subtle shadows, clean borders, and modern gradients
+
+
+
+## 👥 Autores- **Aesthetic**: Contemporary corporate with eco-friendly green accents
+
+
+
+- **Matheus** - Desenvolvedor Principal & Designer UI/UX  ````bash
+
+- **Esteban** - Integração Backend & Arquitetura do Sistema
 
   git clone https://github.com/MatheusAraujo86/obscure-xylophone.gitBoth themes feature:
 
+## 🙏 Agradecimentos
+
   cd onu-nokia-react
 
-  ```- **Persistent Storage**: Your theme choice saves automatically
+- Comunidade React.js pela documentação excelente
 
-  ````
+- Equipe Vite pela experiência de desenvolvimento ultra-rápida  ```- **Persistent Storage**: Your theme choice saves automatically
 
-- **Floating Toggle**: Easy theme switching with animated transition
+- SweetAlert2 pelas notificações bonitas
 
-2. **Instale as dependências**- **Component Consistency**: All elements adapt seamlessly
+- GitHub Pages pela hospedagem gratuita  ````
 
-- **Button Standardization**: Unified hover effects, shine animations, and styling across all components
+- Inspiração estética cyberpunk das tendências de design futurista
 
-  ```bash
+- Princípios de web design moderno para o sistema de tema duplo- **Floating Toggle**: Easy theme switching with animated transition
+
+
+
+## 📞 Suporte2. **Instale as dependências**- **Component Consistency**: All elements adapt seamlessly
+
+
+
+Para perguntas, solicitações de recursos ou suporte:- **Button Standardization**: Unified hover effects, shine animations, and styling across all components
+
+- 🐛 **Issues**: [GitHub Issues](https://github.com/MatheusAraujo86/obscure-xylophone/issues)
+
+- 📧 **Email**: Entre em contato com os proprietários do repositório  ```bash
+
+- 💬 **Discussões**: GitHub Discussions (se habilitado)
 
   npm install## 🏗️ Architecture
 
+---
+
   ```
+
+<div align="center">
 
 ### Component Structure
 
+**🌟 Dê uma estrela neste repositório se ele te ajudou!**
+
 3. **Inicie o servidor de desenvolvimento**
 
-````
+![GitHub stars](https://img.shields.io/github/stars/MatheusAraujo86/obscure-xylophone?style=social)
 
-   ```bashsrc/
+![GitHub forks](https://img.shields.io/github/forks/MatheusAraujo86/obscure-xylophone?style=social)````
 
-   npm run dev├── components/          # Feature components
+
+
+*Construído com ❤️ usando React e tecnologias web modernas*   ```bashsrc/
+
+
+
+</div>   npm run dev├── components/          # Feature components
 
    ```│   ├── PesquisaCliente.jsx      # Client search with enhanced forms
 

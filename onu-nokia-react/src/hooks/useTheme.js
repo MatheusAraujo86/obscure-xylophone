@@ -21,7 +21,7 @@ export const useTheme = () => {
 
   // Verifica se há um tema salvo no localStorage, senão usa 'dark' como padrão
   const [theme, setThemeState] = useState(() => {
-    const savedTheme = localStorage.getItem("nokia-onu-theme");
+    const savedTheme = localStorage.getItem("nokia-ont-theme");
     return availableThemes.includes(savedTheme) ? savedTheme : "dark";
   });
 
@@ -29,7 +29,7 @@ export const useTheme = () => {
   useEffect(() => {
     document.body.setAttribute("data-theme", theme);
     document.documentElement.setAttribute("data-theme", theme);
-    localStorage.setItem("nokia-onu-theme", theme);
+    localStorage.setItem("nokia-ont-theme", theme);
   }, [theme]);
 
   // Função para alternar entre temas (dark <-> light)

@@ -1,10 +1,10 @@
 /**
- * Serviço para gerenciar operações relacionadas a equipamentos ONU Nokia
+ * Serviço para gerenciar operações relacionadas a equipamentos ONT Nokia
  */
 
 /**
- * Provisiona uma nova ONU
- * @param {Object} data - Dados da ONU
+ * Provisiona uma nova ONT
+ * @param {Object} data - Dados da ONT
  * @param {string} data.inputSlot - Slot GPON
  * @param {string} data.inputGpon - Porta PON
  * @param {string} data.inputIndex - Posição da ONT
@@ -14,7 +14,7 @@
  * @param {string} data.provPppoe - Usuário PPPOE
  * @param {string} data.provPass - Senha PPPOE
  * @param {string} data.vlan - VLAN selecionada
- * @returns {string} Comando para provisionar a ONU
+ * @returns {string} Comando para provisionar a ONT
  */
 export function provisionarONU(data) {
   const {
@@ -33,12 +33,12 @@ export function provisionarONU(data) {
 }
 
 /**
- * Desprovisiona uma ONU
- * @param {Object} data - Dados da ONU
+ * Desprovisiona uma ONT
+ * @param {Object} data - Dados da ONT
  * @param {string} data.inputSlot - Slot GPON
  * @param {string} data.inputGpon - Porta PON
  * @param {string} data.inputIndex - Posição da ONT
- * @returns {string} Comando para desprovisionar a ONU
+ * @returns {string} Comando para desprovisionar a ONT
  */
 export function desprovisionarONU(data) {
   const { inputSlot, inputGpon, inputIndex } = data;
@@ -46,12 +46,12 @@ export function desprovisionarONU(data) {
 }
 
 /**
- * Reinicia uma ONU
- * @param {Object} data - Dados da ONU
+ * Reinicia uma ONT
+ * @param {Object} data - Dados da ONT
  * @param {string} data.inputSlot - Slot GPON
  * @param {string} data.inputGpon - Porta PON
  * @param {string} data.inputIndex - Posição da ONT
- * @returns {string} Comando para reiniciar a ONU
+ * @returns {string} Comando para reiniciar a ONT
  */
 export function reiniciarONU(data) {
   const { inputSlot, inputGpon, inputIndex } = data;
@@ -78,8 +78,8 @@ export function pesquisarPorAlcl(alcl) {
 }
 
 /**
- * Verifica fibra da ONU
- * @param {Object} data - Dados da ONU
+ * Verifica fibra da ONT
+ * @param {Object} data - Dados da ONT
  * @param {string} data.inputSlot - Slot GPON
  * @param {string} data.inputGpon - Porta PON
  * @param {string} data.inputIndex - Posição da ONT
@@ -103,8 +103,8 @@ export function pesquisarPON(data) {
 }
 
 /**
- * Pesquisa alarmes da ONU
- * @param {Object} data - Dados da ONU
+ * Pesquisa alarmes da ONT
+ * @param {Object} data - Dados da ONT
  * @param {string} data.inputSlot - Slot GPON
  * @param {string} data.inputGpon - Porta PON
  * @param {string} data.inputIndex - Posição da ONT
@@ -116,8 +116,8 @@ export function pesquisarAlarmes(data) {
 }
 
 /**
- * Retorna comando para listar ONUs solicitando provisionamento
- * @returns {string} Comando para listar ONUs não provisionadas
+ * Retorna comando para listar ONTs solicitando provisionamento
+ * @returns {string} Comando para listar ONTs não provisionadas
  */
 export function onuSolicitandoProvisionamento() {
   return "show pon unprovision-onu";

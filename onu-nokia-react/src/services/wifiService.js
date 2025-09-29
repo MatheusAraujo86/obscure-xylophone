@@ -1,5 +1,5 @@
 /**
- * Serviço para gerenciar configurações de rede Wi-Fi da ONU
+ * Serviço para gerenciar configurações de rede Wi-Fi da ONT
  */
 
 /**
@@ -66,16 +66,16 @@ export function alterarVlanPppoe(data) {
 }
 
 /**
- * Altera senha de acesso web da ONU
+ * Altera senha de acesso web da ONT
  * @param {Object} data - Dados da configuração
  * @param {string} data.inputSlot - Slot GPON
  * @param {string} data.inputGpon - Porta PON
  * @param {string} data.inputIndex - Posição da ONT
- * @param {string} data.altSenhaOnu - Nova senha (ALCL)
- * @returns {string} Comando para alterar senha da ONU
+ * @param {string} data.altSenhaOnt - Nova senha (ALCL)
+ * @returns {string} Comando para alterar senha da ONT
  */
-export function alterarSenhaOnu(data) {
-  const { inputSlot, inputGpon, inputIndex, altSenhaOnu } = data;
+export function alterarSenhaOnt(data) {
+  const { inputSlot, inputGpon, inputIndex, altSenhaOnt } = data;
 
   return `DLT-HGUTR069-SPARAM::HGUTR069SPARAM-1-1-${inputSlot}-${inputGpon}-${inputIndex}-8;DLT-HGUTR069-SPARAM::HGUTR069SPARAM-1-1-${inputSlot}-${inputGpon}-${inputIndex}-9;ENT-HGUTR069-SPARAM::HGUTR069SPARAM-1-1-${inputSlot}-${inputGpon}-${inputIndex}-8::::PARAMNAME=InternetGatewayDevice.X_Authentication.WebAccount.Password,PARAMVALUE="${altSenhaOnu}";ENT-HGUTR069-SPARAM::HGUTR069SPARAM-1-1-${inputSlot}-${inputGpon}-${inputIndex}-9::::PARAMNAME=InternetGatewayDevice.X_Authentication.Account.Password,PARAMVALUE="${altSenhaOnu}";`;
 }

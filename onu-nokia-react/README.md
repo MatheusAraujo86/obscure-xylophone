@@ -1,10 +1,6 @@
 # 🔮 Gerenciador Nokia ONU | Tech Cyberpunk# 🔮 Gerenciador Nokia ONU | Tech Cyberpunk
 
-
-
 <div align="center"><div align="center">
-
-
 
 ![Nokia ONU](https://img.shields.io/badge/Nokia-Gerenciador_ONU-98c913?style=for-the-badge&logo=nokia&logoColor=white)![Nokia ONU](https://img.shields.io/badge/Nokia-Gerenciador_ONU-98c913?style=for-the-badge&logo=nokia&logoColor=white)
 
@@ -14,39 +10,21 @@
 
 ![GitHub Pages](https://img.shields.io/badge/GitHub-Pages-222222?style=for-the-badge&logo=github&logoColor=white)![GitHub Pages](https://img.shields.io/badge/GitHub-Pages-222222?style=for-the-badge&logo=github&logoColor=white)
 
-
-
-_Sistema futurista de gerenciamento com tema duplo para dispositivos Nokia ONU__Sistema futurista de gerenciamento com tema duplo para dispositivos Nokia ONU_
-
-
+_Sistema futurista de gerenciamento com tema duplo para dispositivos Nokia ONU\_\_Sistema futurista de gerenciamento com tema duplo para dispositivos Nokia ONU_
 
 [🚀 Demo ao Vivo](https://MatheusAraujo86.github.io/obscure-xylophone/) • [📖 Recursos](#-recursos) • [🛠️ Instalação](#-primeiros-passos) • [🎨 Temas](#-sistema-de-tema-duplo)[🚀 Demo ao Vivo](https://MatheusAraujo86.github.io/obscure-xylophone/) • [📖 Recursos](#-recursos) • [🛠️ Instalação](#-primeiros-passos) • [🎨 Temas](#-sistema-de-tema-duplo)
 
-
-
-------
-
-
+---
 
 </div></div>
 
-
-
 ## ✨ Visão Geral## ✨ Visão Geral
-
-
 
 **Gerenciador Nokia ONU** é uma aplicação web de última geração projetada para gerenciar dispositivos Nokia Optical Network Unit (ONU) com estética visual duplamente impressionante. Construído com tecnologia React moderna, fornece aos administradores de rede ferramentas poderosas para configurar, monitorar e solucionar problemas de equipamentos Nokia ONU através de uma interface intuitiva que se adapta entre o modo escuro cyberpunk e o modo claro moderno.**Gerenciador Nokia ONU** é uma aplicação web de última geração projetada para gerenciar dispositivos Nokia Optical Network Unit (ONU) com estética visual duplamente impressionante. Construído com tecnologia React moderna, fornece aos administradores de rede ferramentas poderosas para configurar, monitorar e solucionar problemas de equipamentos Nokia ONU através de uma interface intuitiva que se adapta entre o modo escuro cyberpunk e o modo claro moderno.
 
-
-
 ## 🎨 Sistema de Tema Duplo## 🎨 Sistema de Tema Duplo## 🎨 Sistema de Tema Duplo
 
-
-
 ### 🌙 **Modo Escuro - Estética Cyberpunk**### 🌙 **Modo Escuro - Estética Cyberpunk**### 🌙 **Modo Escuro - Estética Cyberpunk**
-
-
 
 - **Cores Neon**: Acentos em Ciano (#00FFFF) e Magenta (#FF00FF)- **Cores Neon**: Acentos em Ciano (#00FFFF) e Magenta (#FF00FF)- **Cores Neon**: Acentos em Ciano (#00FFFF) e Magenta (#FF00FF)
 
@@ -70,11 +48,7 @@ _Sistema futurista de gerenciamento com tema duplo para dispositivos Nokia ONU__
 
 - **Visual Profissional**: Design limpo, moderno e energeticamente eficiente- **Cor Primária**: Verde Lima (#98c913)- **Cor Primária**: Verde Lima (#98c913)
 
-
-
 ### 🔄 **Alternador de Tema**- **Fundos Limpos**: Cinzas claros e brancos- **Fundos Limpos**: Cinzas claros e brancos
-
-
 
 - **Botão Flutuante**: Alternador de tema de fácil acesso- **Efeitos Sutis**: Efeitos de brilho verde e sombras- **Efeitos Sutis**: Efeitos de brilho verde e sombras
 
@@ -118,23 +92,17 @@ _Sistema futurista de gerenciamento com tema duplo para dispositivos Nokia ONU__
 
 - **Bridge ONT Nokia**: Verificação MAC integrada e geração de comandos- **Busca Avançada de Clientes**: Localiza clientes por vários parâmetros com ícones geométricos cyberpunk![Vite](https://img.shields.io/badge/Vite-7.1.7-646CFF?style=for-the-badge&logo=vite&logoColor=white)
 
-
-
 ### 📊 **Ferramentas Avançadas**- **Posicionamento de Clientes**: Rastreamento em tempo real de slot/GPON/índice em layout lado a lado![GitHub Pages](https://img.shields.io/badge/GitHub-Pages-222222?style=for-the-badge&logo=github&logoColor=white)
-
-
 
 - **Sistema de Conferência de Caixa**: Compara tabelas antes/depois com estilo de botão unificado- **Dados Abrangentes do Cliente**: Visualiza informações detalhadas do cliente com cores adaptáveis ao tema
 
 - **Detecção de Diferenças**: Destaque automático de mudanças em ambos os temas
 
-- **Rastreamento de Clientes Offline**: Monitora dispositivos offline com UI consistente_A futuristic dual-theme management system for Nokia ONU devices_
+- **Rastreamento de Clientes Offline**: Monitora dispositivos offline com UI consistente*A futuristic dual-theme management system for Nokia ONU devices*
 
 - **Exportação/Importação de Dados**: Backup e restauração de configurações
 
 - **Geração de Comandos**: Copia comandos de rede para a área de transferência com notificações### ⚙️ **Configuração de Dispositivos**
-
-
 
 ### 🎯 **Operações Adicionais**[🚀 Live Demo](https://MatheusAraujo86.github.io/obscure-xylophone/) • [📖 Features](#-features) • [🛠️ Installation](#-installation) • [� Themes](#-dual-theme-system)
 
@@ -166,11 +134,7 @@ _Sistema futurista de gerenciamento com tema duplo para dispositivos Nokia ONU__
 
 - **Espaçamento Otimizado**: Componentes proporcionais e dimensionamento consistente### 📊 **Ferramentas Avançadas\*\***Nokia ONU Manager\*\* is a cutting-edge web application designed for managing Nokia Optical Network Unit (ONU) devices with stunning dual-theme aesthetics. Built with modern React technology, it provides network administrators with powerful tools to configure, monitor, and troubleshoot Nokia ONU equipment through an intuitive interface that adapts between cyberpunk dark mode and modern light mode.
 
-
-
 ## 🛠️ Stack Tecnológico- **Sistema de Conferência de Caixa**: Compara tabelas antes/depois com estilo de botão unificado## 🎨 Dual Theme System
-
-
 
 - **Frontend**: React.js 18 com Vite 7.1.7 para desenvolvimento e build otimizados- **Detecção de Diferenças**: Destaque automático de mudanças em ambos os temas
 
@@ -190,11 +154,7 @@ _Sistema futurista de gerenciamento com tema duplo para dispositivos Nokia ONU__
 
 - **Desenvolvimento**: Hot Module Replacement (HMR) para feedback instantâneo no desenvolvimento- **Dark Backgrounds**: Deep blacks and dark blues
 
-
-
 ## 🏗️ Arquitetura### 🎯 **Operações Adicionais**- **Glow Effects**: Neon lighting and shadow effects
-
-
 
 ### Estrutura de Componentes- **Busca PON**: Exploração da topologia de rede- **Typography**: Futuristic Orbitron and Roboto Mono fonts
 
@@ -270,39 +230,34 @@ src/- **Monitoramento de Alarmes**: Rastreamento de alertas do sistema
 
 - **Estilização**: CSS3 avançado com propriedades customizadas para temas duplos### 🔍 **Client Management**
 
-   ```bash
+  ````bash
 
-   git clone https://github.com/MatheusAraujo86/obscure-xylophone.git- **Ícones**: Símbolos geométricos cyberpunk (◯◪◈◐◊◇◎◆) para branding consistente
+  git clone https://github.com/MatheusAraujo86/obscure-xylophone.git- **Ícones**: Símbolos geométricos cyberpunk (◯◪◈◐◊◇◎◆) para branding consistente
 
-   cd onu-nokia-react
+  cd onu-nokia-react
 
-   ```- **Temas**: Troca dinâmica entre tema escuro (ciano/magenta) e claro (verde lima #98c913)- **Advanced Client Search**: Locate clients by various parameters with geometric cyberpunk icons
-
-
+  ```- **Temas**: Troca dinâmica entre tema escuro (ciano/magenta) e claro (verde lima #98c913)- **Advanced Client Search**: Locate clients by various parameters with geometric cyberpunk icons
+  ````
 
 2. **Instale as dependências**- **Layout**: CSS Grid com desktop lado a lado responsivo e empilhamento mobile- **Client Positioning**: Real-time slot/GPON/index tracking in side-by-side layout
 
-
-
-   ```bash- **Gerenciamento de Estado**: Hooks do React com persistência localStorage para preferências de tema- **Comprehensive Client Data**: View detailed client information with theme-adaptive colors
+   ````bash- **Gerenciamento de Estado**: Hooks do React com persistência localStorage para preferências de tema- **Comprehensive Client Data**: View detailed client information with theme-adaptive colors
 
    npm install
 
    ```- **Notificações**: Integração personalizada do SweetAlert2 com estilização adaptável ao tema
 
-
+   ````
 
 3. **Inicie o servidor de desenvolvimento**- **Deploy**: GitHub Pages com pipeline automatizado do Actions### ⚙️ **Device Configuration**
 
-
-
-   ```bash- **Desenvolvimento**: Hot Module Replacement (HMR) para feedback instantâneo no desenvolvimento
+   ````bash- **Desenvolvimento**: Hot Module Replacement (HMR) para feedback instantâneo no desenvolvimento
 
    npm run dev
 
    ```- **Client Provisioning/Deprovisioning**: Complete lifecycle management with enhanced UI
 
-
+   ````
 
 4. **Abra seu navegador**## 🎨 Sistema de Temas- **Wi-Fi Configuration**: Manage wireless settings and credentials
 
@@ -314,7 +269,7 @@ src/- **Monitoramento de Alarmes**: Rastreamento de alertas do sistema
 
 Nosso sistema de tema duplo oferece duas experiências distintas:- **VLAN/PPPoE Management**: Network layer configuration
 
-   A aplicação abrirá automaticamente com hot reloading habilitado.
+A aplicação abrirá automaticamente com hot reloading habilitado.
 
 - **Web Access Control**: Admin password and access management
 
@@ -322,7 +277,7 @@ Nosso sistema de tema duplo oferece duas experiências distintas:- **VLAN/PPPoE 
 
 ### 🌙 **Modo Escuro - Cyberpunk**- **Bridge ONT Nokia**: Integrated MAC verification and command generation
 
-```bash
+````bash
 
 # Build da aplicação- **Cores Primárias**: Ciano elétrico (#00FFFF) e magenta vibrante (#FF00FF)
 
@@ -406,7 +361,7 @@ Este projeto inclui deploy automático para GitHub Pages:
 
 ### Estrutura de Componentes- **Responsive Layout**: Desktop side-by-side, mobile vertical stacking
 
-1. **Configuração do Repositório**: 
+1. **Configuração do Repositório**:
 
    - Fonte das Pages: GitHub Actions```- **Button Consistency**: Unified hover effects, shine animations, and styling
 
@@ -446,7 +401,7 @@ npm run build│   ├── AlterarVlanPppoe.jsx     # Gerenciamento de camada 
 
 # Preview local│   ├── AlterarSenhaWeb.jsx      # Controle de acesso com segurança- **Icons**: Geometric cyberpunk symbols (◯◪◈◐◊◇◎◆) for consistent branding
 
-npm run preview  
+npm run preview
 
 │   ├── BridgeOntNokia.jsx       # Configuração bridge com verificação MAC- **Themes**: Dynamic dark (cyan/magenta) and light (green lime #98c913) theme switching
 
@@ -454,45 +409,41 @@ npm run preview
 
 npm run deploy│   ├── ConferenciaCaixa.jsx     # Conferência de caixa com comparação de tabelas- **Layout**: CSS Grid with responsive side-by-side desktop and mobile stacking
 
-```
+````
 
-│   └── OutrasOpcoes.jsx         # Utilitários adicionais e consulta- **State Management**: React hooks with localStorage persistence for theme preferences
+│ └── OutrasOpcoes.jsx # Utilitários adicionais e consulta- **State Management**: React hooks with localStorage persistence for theme preferences
 
 ## 📝 Diretrizes de Desenvolvimento
 
-├── hooks/               # Hooks customizados do React- **Notifications**: Custom SweetAlert2 integration with theme-adaptive styling
+├── hooks/ # Hooks customizados do React- **Notifications**: Custom SweetAlert2 integration with theme-adaptive styling
 
 ### **Estilo de Código**
 
-- **Componentes**: Componentes funcionais com hooks│   ├── useSweetAlert.js         # Sistema de notificação com integração de tema- **Deployment**: GitHub Pages with automated Actions pipeline
+- **Componentes**: Componentes funcionais com hooks│ ├── useSweetAlert.js # Sistema de notificação com integração de tema- **Deployment**: GitHub Pages with automated Actions pipeline
 
 - **Estilização**: Propriedades customizadas CSS para temas
 
-- **Ícones**: Símbolos geométricos (◯◪◈◐◊◇◎◆) para consistência│   └── useTheme.js              # Gerenciamento e persistência de tema- **Development**: Hot Module Replacement (HMR) for instant development feedback
+- **Ícones**: Símbolos geométricos (◯◪◈◐◊◇◎◆) para consistência│ └── useTheme.js # Gerenciamento e persistência de tema- **Development**: Hot Module Replacement (HMR) for instant development feedback
 
 - **Layout**: CSS Grid para design responsivo
 
-- **Estado**: Estado local com hooks, localStorage para persistência├── services/            # Camadas de integração de API
+- **Estado**: Estado local com hooks, localStorage para persistência├── services/ # Camadas de integração de API
 
-
-
-### **Desenvolvimento de Temas**│   ├── onuService.js            # Operações do dispositivo ONU## 🎨 Theme System
+### **Desenvolvimento de Temas**│ ├── onuService.js # Operações do dispositivo ONU## 🎨 Theme System
 
 - Use propriedades customizadas CSS: `--accent-primary`, `--accent-secondary`, `--text-button`
 
-- Teste ambos os temas claro e escuro para qualquer novo componente│   ├── phoneService.js          # Chamadas de serviço de telefonia
+- Teste ambos os temas claro e escuro para qualquer novo componente│ ├── phoneService.js # Chamadas de serviço de telefonia
 
 - Garanta que a estilização de botões siga o sistema padronizado
 
-- Verifique comportamento responsivo em desktop lado a lado e empilhamento mobile│   └── wifiService.js           # APIs de configuração wirelessOur dual theme system provides two distinct experiences:
+- Verifique comportamento responsivo em desktop lado a lado e empilhamento mobile│ └── wifiService.js # APIs de configuração wirelessOur dual theme system provides two distinct experiences:
 
-
-
-### **Adicionando Novos Componentes**└── utils/               # Funções utilitárias
+### **Adicionando Novos Componentes**└── utils/ # Funções utilitárias
 
 1. Crie componente em `src/components/`
 
-2. Importe e adicione ao layout do `App.jsx`    └── validation.js            # Validação de formulário e verificação de dados### 🌙 **Dark Mode - Cyberpunk**
+2. Importe e adicione ao layout do `App.jsx` └── validation.js # Validação de formulário e verificação de dados### 🌙 **Dark Mode - Cyberpunk**
 
 3. Aplique variáveis de tema do `App.css`
 
@@ -502,11 +453,7 @@ npm run deploy│   ├── ConferenciaCaixa.jsx     # Conferência de caixa c
 
 6. Garanta comportamento responsivo- **Primary Colors**: Electric cyan (#00FFFF) and vibrant magenta (#FF00FF)
 
-
-
 ## 🤝 Contribuindo## 🚀 Primeiros Passos- **Background**: Deep space blacks with subtle gradients
-
-
 
 ### **Fluxo de Trabalho de Desenvolvimento**- **Typography**: Orbitron for headers, Roboto Mono for code elements
 
@@ -522,11 +469,9 @@ npm run deploy│   ├── ConferenciaCaixa.jsx     # Conferência de caixa c
 
 6. Commit das mudanças: `git commit -m "Adicionar descrição da funcionalidade"`- **Node.js** (v18 ou superior) - Necessário para recursos do React 18
 
-7. Push para branch: `git push origin nome-da-funcionalidade` 
+7. Push para branch: `git push origin nome-da-funcionalidade`
 
 8. Crie um Pull Request- **npm** ou **yarn** - Gerenciador de pacotes### ☀️ **Light Mode - Modern Green**
-
-
 
 ### **Relatórios de Bug**- **Navegador moderno** - Chrome, Firefox, Safari ou Edge
 
@@ -538,21 +483,13 @@ npm run deploy│   ├── ConferenciaCaixa.jsx     # Conferência de caixa c
 
 - Inclua screenshots se aplicável### Instalação- **Background**: Clean whites and soft grays for professional look
 
-
-
 ## 📄 Licença- **Typography**: Same geometric font system adapted for light backgrounds
-
-
 
 Licença MIT - Sinta-se livre para usar este projeto para fins de aprendizado e desenvolvimento.1. **Clone o repositório**- **Effects**: Subtle shadows, clean borders, and modern gradients
 
-
-
 ## 👥 Autores- **Aesthetic**: Contemporary corporate with eco-friendly green accents
 
-
-
-- **Matheus** - Desenvolvedor Principal & Designer UI/UX  ````bash
+- **Matheus** - Desenvolvedor Principal & Designer UI/UX ````bash
 
 - **Esteban** - Integração Backend & Arquitetura do Sistema
 
@@ -560,31 +497,27 @@ Licença MIT - Sinta-se livre para usar este projeto para fins de aprendizado e 
 
 ## 🙏 Agradecimentos
 
-  cd onu-nokia-react
+cd onu-nokia-react
 
 - Comunidade React.js pela documentação excelente
 
-- Equipe Vite pela experiência de desenvolvimento ultra-rápida  ```- **Persistent Storage**: Your theme choice saves automatically
+- Equipe Vite pela experiência de desenvolvimento ultra-rápida ```- **Persistent Storage**: Your theme choice saves automatically
 
 - SweetAlert2 pelas notificações bonitas
 
-- GitHub Pages pela hospedagem gratuita  ````
+- GitHub Pages pela hospedagem gratuita ````
 
 - Inspiração estética cyberpunk das tendências de design futurista
 
 - Princípios de web design moderno para o sistema de tema duplo- **Floating Toggle**: Easy theme switching with animated transition
 
-
-
 ## 📞 Suporte2. **Instale as dependências**- **Component Consistency**: All elements adapt seamlessly
-
-
 
 Para perguntas, solicitações de recursos ou suporte:- **Button Standardization**: Unified hover effects, shine animations, and styling across all components
 
 - 🐛 **Issues**: [GitHub Issues](https://github.com/MatheusAraujo86/obscure-xylophone/issues)
 
-- 📧 **Email**: Entre em contato com os proprietários do repositório  ```bash
+- 📧 **Email**: Entre em contato com os proprietários do repositório ```bash
 
 - 💬 **Discussões**: GitHub Discussions (se habilitado)
 
@@ -592,7 +525,7 @@ Para perguntas, solicitações de recursos ou suporte:- **Button Standardization
 
 ---
 
-  ```
+`````
 
 <div align="center">
 
@@ -614,21 +547,21 @@ Para perguntas, solicitações de recursos ou suporte:- **Button Standardization
 
 </div>   npm run dev├── components/          # Feature components
 
-   ```│   ├── PesquisaCliente.jsx      # Client search with enhanced forms
+ ```│   ├── PesquisaCliente.jsx      # Client search with enhanced forms
 
 │   ├── PosicaoCliente.jsx       # Position tracking with real-time updates
 
 4. **Abra seu navegador**│   ├── ProvisionarCliente.jsx   # Provisioning management with notifications
 
-   ```│   ├── ConfiguracaoWifi.jsx     # Wi-Fi configuration with validation
+ ```│   ├── ConfiguracaoWifi.jsx     # Wi-Fi configuration with validation
 
-   http://localhost:5173│   ├── ConfiguracaoTelefone.jsx # Phone setup with form consistency
+ http://localhost:5173│   ├── ConfiguracaoTelefone.jsx # Phone setup with form consistency
 
-   ```│   ├── AlterarVlanPppoe.jsx     # Network layer management
+ ```│   ├── AlterarVlanPppoe.jsx     # Network layer management
 
 │   ├── AlterarSenhaWeb.jsx      # Access control with security
 
-   A aplicação abrirá automaticamente com hot reloading habilitado.│   ├── BridgeOntNokia.jsx       # Bridge configuration with MAC verification
+ A aplicação abrirá automaticamente com hot reloading habilitado.│   ├── BridgeOntNokia.jsx       # Bridge configuration with MAC verification
 
 │   ├── ConferenciaCaixa.jsx     # Box conference with table comparison
 
@@ -654,7 +587,7 @@ npm run preview│   └── wifiService.js          # Wireless configuration 
 
 npm run deploy```
 
-````
+`````
 
 ## 🚀 Getting Started
 

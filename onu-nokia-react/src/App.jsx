@@ -124,7 +124,7 @@ function App() {
         <div className="footer-content">
           <div className="footer-title">【 DESENVOLVIDO POR 】</div>
           <div className="footer-authors">◈ Matheus ◊ Esteban ◈</div>
-          <div className="footer-subtitle">━━━━━ SISTEMA DE CONTROLE ONU ━━━━━</div>
+          <div className="footer-subtitle">━━━━━ SISTEMA DE CONTROLE ONT ━━━━━</div>
         </div>
       </footer>
     </div>

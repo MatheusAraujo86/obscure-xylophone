@@ -1,5 +1,5 @@
 /**
- * Serviço para gerenciar configurações de telefone da ONU
+ * Serviço para gerenciar configurações de telefone da ONT
  */
 
 /**

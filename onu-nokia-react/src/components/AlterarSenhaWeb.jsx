@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { alterarSenhaOnu } from '../services/wifiService';
+import { alterarSenhaOnt } from '../services/wifiService';
 import {
     areAllNumeric,
     validateRequiredFields,
@@ -9,7 +9,7 @@ import {
 import { useSweetAlert } from '../hooks/useSweetAlert';
 
 /**
- * Componente para alterar senha de acesso web da ONU
+ * Componente para alterar senha de acesso web da ONT
  */
 function AlterarSenhaWeb({ posicaoData }) {
     const [senhaWeb, setSenhaWeb] = useState('');
@@ -50,10 +50,10 @@ function AlterarSenhaWeb({ posicaoData }) {
                 inputSlot,
                 inputGpon,
                 inputIndex,
-                altSenhaOnu: senhaWeb.toUpperCase()
+                altSenhaOnt: senhaWeb.toUpperCase()
             };
 
-            const comando = alterarSenhaOnu(commandData);
+            const comando = alterarSenhaOnt(commandData);
             const result = await copyToClipboard(comando);
             
             if (result.success) {

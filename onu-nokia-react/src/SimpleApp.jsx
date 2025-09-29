@@ -20,7 +20,7 @@ function SimpleApp() {
         <Toolbar>
           <RouterIcon sx={{ mr: 1 }} />
           <Typography variant="h6">
-            Gerenciador ONU Nokia - Teste
+            Gerenciador ONT Nokia - Teste
           </Typography>
         </Toolbar>
       </AppBar>

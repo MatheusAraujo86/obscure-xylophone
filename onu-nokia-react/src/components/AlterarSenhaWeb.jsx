@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { alterarSenhaOnt } from '../services/wifiService';
+import { alterarSenhaOnu } from '../services/wifiService';
 import {
     areAllNumeric,
     validateRequiredFields,
@@ -16,9 +16,27 @@ function AlterarSenhaWeb({ posicaoData }) {
     
     const { showSuccessAlert, showErrorAlert } = useSweetAlert();
 
+    const handleInputChange = (value) => {
+        // Converter para maiúscula e limitar a 12 caracteres
+        const processedValue = value.toUpperCase().slice(0, 12);
+        setSenhaWeb(processedValue);
+    };
+
     const handleAlterarSenhaWeb = async () => {
         try {
+            // Verificar se posicaoData existe
+            if (!posicaoData) {
+                showErrorAlert('Dados de posição não encontrados. Verifique se os campos Slot, PON e Posição estão preenchidos.');
+                return;
+            }
+
             const { inputSlot, inputGpon, inputIndex } = posicaoData;
+
+            // Verificar se os campos de posição existem
+            if (!inputSlot || !inputGpon || !inputIndex) {
+                showErrorAlert('Por favor, preencha os campos de posição (Slot, PON, Posição) no componente superior.');
+                return;
+            }
 
             // Validar campos numéricos
             if (!areAllNumeric([inputSlot, inputGpon, inputIndex])) {
@@ -31,7 +49,7 @@ function AlterarSenhaWeb({ posicaoData }) {
                 { value: inputSlot, name: 'Slot' },
                 { value: inputGpon, name: 'Porta PON' },
                 { value: inputIndex, name: 'Posição' },
-                { value: senhaWeb, name: 'Senha Web (ALCL)' }
+                { value: senhaWeb, name: 'S°NUMBER (sernum)' }
             ];
 
             const validation = validateRequiredFields(requiredFields);
@@ -40,9 +58,9 @@ function AlterarSenhaWeb({ posicaoData }) {
                 return;
             }
 
-            // Validar ALCL
+            // Validar ALCL - deve ter exatamente 12 caracteres
             if (!validateAlcl(senhaWeb)) {
-                showErrorAlert("Por favor, insira um código ALCL válido com 12 caracteres.");
+                showErrorAlert(`ALCL deve ter exatamente 12 caracteres. Atual: ${senhaWeb.length} caracteres.`);
                 return;
             }
 
@@ -50,10 +68,10 @@ function AlterarSenhaWeb({ posicaoData }) {
                 inputSlot,
                 inputGpon,
                 inputIndex,
-                altSenhaOnt: senhaWeb.toUpperCase()
+                altSenhaOnu: senhaWeb
             };
 
-            const comando = alterarSenhaOnt(commandData);
+            const comando = alterarSenhaOnu(commandData);
             const result = await copyToClipboard(comando);
             
             if (result.success) {
@@ -79,14 +97,14 @@ function AlterarSenhaWeb({ posicaoData }) {
             </div>
             <form className="form">
                 <div className="form-group">
-                    <label htmlFor="senhaWeb">Senha Web (ALCL)</label>
+                    <label htmlFor="senhaWeb">S°NUMBER (sernum)</label>
                     <input
                         id="senhaWeb"
-                        type="password"
+                        type="text"
                         className="form-input"
                         value={senhaWeb}
-                        onChange={(e) => setSenhaWeb(e.target.value)}
-                        placeholder="Adicione a senha web (ALCL)"
+                        onChange={(e) => handleInputChange(e.target.value)}
+                        placeholder="ALCL da ONT"
                         maxLength="12"
                     />
                 </div>

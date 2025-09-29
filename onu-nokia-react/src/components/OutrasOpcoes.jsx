@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import {
     pesquisarPON,
     pesquisarAlarmes,
@@ -14,6 +15,10 @@ import { useSweetAlert } from '../hooks/useSweetAlert';
  */
 function OutrasOpcoes({ posicaoData }) {
     const { showSuccessAlert, showErrorAlert, showConfirmAlert, showInfoAlert } = useSweetAlert();
+    
+    // Estados para controlar os modais
+    const [modalPppoeUser, setModalPppoeUser] = useState({ isOpen: false, inputValue: '' });
+    const [modalPppoeIp, setModalPppoeIp] = useState({ isOpen: false, inputValue: '' });
 
     const executeCommand = async (commandFunction, requiredFields = []) => {
         try {
@@ -96,11 +101,18 @@ function OutrasOpcoes({ posicaoData }) {
     };
 
     const handleVerificarIpPppoe = async () => {
-        const username = prompt("Digite o usuário PPPoE para verificar o IP:");
+        setModalPppoeUser({ isOpen: true, inputValue: '' });
+    };
+
+    const handleConfirmPppoeUser = async () => {
+        const username = modalPppoeUser.inputValue.trim();
         if (!username) {
             showErrorAlert("Usuário PPPoE não informado.");
             return;
         }
+        
+        setModalPppoeUser({ isOpen: false, inputValue: '' });
+        
         const comando = `show subscriber pppoe username ${username}`;
         const result = await copyToClipboard(comando);
         
@@ -112,11 +124,18 @@ function OutrasOpcoes({ posicaoData }) {
     };
 
     const handleVerificarPppoeDoIp = async () => {
-        const ip = prompt("Digite o IP para verificar qual PPPoE está vinculado:");
+        setModalPppoeIp({ isOpen: true, inputValue: '' });
+    };
+
+    const handleConfirmPppoeIp = async () => {
+        const ip = modalPppoeIp.inputValue.trim();
         if (!ip) {
             showErrorAlert("IP não informado.");
             return;
         }
+        
+        setModalPppoeIp({ isOpen: false, inputValue: '' });
+        
         const comando = `show subscriber pppoe ip-address ${ip}`;
         const result = await copyToClipboard(comando);
         
@@ -172,6 +191,95 @@ function OutrasOpcoes({ posicaoData }) {
     };
 
     return (
+        <>
+            {/* Modal para inserir usuário PPPoE */}
+            {modalPppoeUser.isOpen && (
+                <div className="modal-overlay" onClick={() => setModalPppoeUser({ isOpen: false, inputValue: '' })}>
+                    <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+                        <div className="modal-header">
+                            <h3>Verificar IP do PPPoE</h3>
+                            <button 
+                                className="modal-close"
+                                onClick={() => setModalPppoeUser({ isOpen: false, inputValue: '' })}
+                            >
+                                ×
+                            </button>
+                        </div>
+                        <div className="modal-body">
+                            <label htmlFor="pppoeUser">Digite o usuário PPPoE:</label>
+                            <input
+                                id="pppoeUser"
+                                type="text"
+                                className="form-input"
+                                value={modalPppoeUser.inputValue}
+                                onChange={(e) => setModalPppoeUser(prev => ({ ...prev, inputValue: e.target.value }))}
+                                placeholder="Usuário PPPoE"
+                                autoFocus
+                                onKeyPress={(e) => e.key === 'Enter' && handleConfirmPppoeUser()}
+                            />
+                        </div>
+                        <div className="modal-footer">
+                            <button 
+                                className="btn btn-secondary"
+                                onClick={() => setModalPppoeUser({ isOpen: false, inputValue: '' })}
+                            >
+                                Cancelar
+                            </button>
+                            <button 
+                                className="btn btn-primary"
+                                onClick={handleConfirmPppoeUser}
+                            >
+                                Confirmar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            )}
+
+            {/* Modal para inserir IP */}
+            {modalPppoeIp.isOpen && (
+                <div className="modal-overlay" onClick={() => setModalPppoeIp({ isOpen: false, inputValue: '' })}>
+                    <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+                        <div className="modal-header">
+                            <h3>Verificar PPPoE do IP</h3>
+                            <button 
+                                className="modal-close"
+                                onClick={() => setModalPppoeIp({ isOpen: false, inputValue: '' })}
+                            >
+                                ×
+                            </button>
+                        </div>
+                        <div className="modal-body">
+                            <label htmlFor="pppoeIp">Digite o IP:</label>
+                            <input
+                                id="pppoeIp"
+                                type="text"
+                                className="form-input"
+                                value={modalPppoeIp.inputValue}
+                                onChange={(e) => setModalPppoeIp(prev => ({ ...prev, inputValue: e.target.value }))}
+                                placeholder="Endereço IP"
+                                autoFocus
+                                onKeyPress={(e) => e.key === 'Enter' && handleConfirmPppoeIp()}
+                            />
+                        </div>
+                        <div className="modal-footer">
+                            <button 
+                                className="btn btn-secondary"
+                                onClick={() => setModalPppoeIp({ isOpen: false, inputValue: '' })}
+                            >
+                                Cancelar
+                            </button>
+                            <button 
+                                className="btn btn-primary"
+                                onClick={handleConfirmPppoeIp}
+                            >
+                                Confirmar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            )}
+
         <div className="card">
             <div className="card-header">
                 <span className="icon">◆</span>
@@ -277,6 +385,7 @@ function OutrasOpcoes({ posicaoData }) {
                 </div>
             </form>
         </div>
+        </>
     );
 }
 

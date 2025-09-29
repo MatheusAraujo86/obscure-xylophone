@@ -127,7 +127,7 @@ function ConfiguracaoWifi({ posicaoData }) {
                     <label htmlFor="senhaRede">Senha da Rede Wi-Fi</label>
                     <input
                         id="senhaRede"
-                        type="password"
+                        type="text"
                         className="form-input"
                         value={wifiData.senhaRede}
                         onChange={(e) => handleInputChange('senhaRede', e.target.value)}

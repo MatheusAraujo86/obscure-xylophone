@@ -176,7 +176,7 @@ function ProvisionarCliente({ posicaoData }) {
                     <label htmlFor="provPass">Senha PPPOE</label>
                     <input
                         id="provPass"
-                        type="password"
+                        type="text"
                         className="form-input"
                         value={provData.provPass}
                         onChange={(e) => handleInputChange('provPass', e.target.value)}

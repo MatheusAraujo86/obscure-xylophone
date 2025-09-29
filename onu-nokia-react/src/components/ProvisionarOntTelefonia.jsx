@@ -255,7 +255,7 @@ function ProvisionarOntTelefonia({ posicaoData }) {
                     <label htmlFor="senhaVoip">Senha VoIP</label>
                     <input
                         id="senhaVoip"
-                        type="password"
+                        type="text"
                         className="form-input"
                         value={telefoniaData.senhaVoip}
                         onChange={(e) => handleInputChange('senhaVoip', e.target.value)}

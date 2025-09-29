@@ -104,7 +104,7 @@ function AlterarVlanPppoe({ posicaoData }) {
                     <label htmlFor="altpass">Senha PPPOE</label>
                     <input
                         id="altpass"
-                        type="password"
+                        type="text"
                         className="form-input"
                         value={vlanPppoeData.altpass}
                         onChange={(e) => handleInputChange('altpass', e.target.value)}

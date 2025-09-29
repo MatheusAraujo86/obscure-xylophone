@@ -124,7 +124,7 @@ function ConfiguracaoTelefone({ posicaoData }) {
                     <label htmlFor="inputSenhaSIP">Senha SIP</label>
                     <input
                         id="inputSenhaSIP"
-                        type="password"
+                        type="text"
                         className="form-input"
                         value={phoneData.inputSenhaSIP}
                         onChange={(e) => handleInputChange('inputSenhaSIP', e.target.value)}

@@ -3,6 +3,40 @@
  */
 
 /**
+ * Provisiona uma nova ONT apenas com telefonia (sem PPPoE)
+ * @param {Object} data - Dados da ONT para telefonia
+ * @param {string} data.slot - Slot GPON
+ * @param {string} data.gpon - Porta PON
+ * @param {string} data.index - Posição da ONT
+ * @param {string} data.desc1 - Nome do cliente
+ * @param {string} data.desc2 - Localização/Referência
+ * @param {string} data.sernum - Serial Number
+ * @param {string} data.telefone - Número do telefone
+ * @param {string} data.senhaVoip - Senha VoIP
+ * @returns {Object} Objetos com comandos separados
+ */
+export function provisionarONTTelefonia(data) {
+  const {
+    slot,
+    gpon,
+    index,
+    desc1,
+    desc2,
+    sernum,
+    telefone,
+    senhaVoip,
+    vlanInternet,
+    vlanTelefonia,
+  } = data;
+
+  const comandos1 = `ENT-ONT::ONT-1-1-${slot}-${gpon}-${index}::::DESC1="${desc1}",DESC2="${desc2}",SERNUM="${sernum}",SWVERPLND=AUTO,OPTICSHIST=ENABLE,PLNDCFGFILE1=AUTO,DLCFGFILE1=AUTO,VOIPALLOWED=VEIP;ED-ONT::ONT-1-1-${slot}-${gpon}-${index}:::::IS;ENT-ONTCARD::ONTCARD-1-1-${slot}-${gpon}-${index}-14:::VEIP,1,0::IS;ENT-LOGPORT::ONTL2UNI-1-1-${slot}-${gpon}-${index}-14-1:::;ED-ONTVEIP::ONTVEIP-1-1-${slot}-${gpon}-${index}-14-1:::::IS;SET-QOS-USQUEUE::ONTL2UNIQ-1-1-${slot}-${gpon}-${index}-14-1-0::::USBWPROFNAME=HSI_1G_UP;SET-VLANPORT::ONTL2UNI-1-1-${slot}-${gpon}-${index}-14-1:::MAXNUCMACADR=4,CMITMAXNUMMACADDR=1;ENT-VLANEGPORT::ONTL2UNI-1-1-${slot}-${gpon}-${index}-14-1:::0,${vlanInternet}:PORTTRANSMODE=SINGLETAGGED;ENT-VLANEGPORT::ONTL2UNI-1-1-${slot}-${gpon}-${index}-14-1:::0,${vlanTelefonia}:PORTTRANSMODE=SINGLETAGGED;`;
+
+  const comandos2 = `SET-QOS-USQUEUE::ONTL2UNIQ-1-1-${slot}-${gpon}-${index}-14-1-5::::USBWPROFNAME=HSI_1G_UP;ENT-VLANEGPORT::ONTL2UNI-1-1-${slot}-${gpon}-${index}-14-1:::0,${vlanTelefonia}:PORTTRANSMODE=SINGLETAGGED;ENT-HGUTR069-SPARAM::HGUTR069SPARAM-1-1-${slot}-${gpon}-${index}-10::::PARAMNAME=InternetGatewayDevice.Services.VoiceService.1.VoiceProfile.1.SIP.OutboundProxy,PARAMVALUE=10.255.0.1;ENT-HGUTR069-SPARAM::HGUTR069SPARAM-1-1-${slot}-${gpon}-${index}-11::::PARAMNAME=InternetGatewayDevice.Services.VoiceService.1.VoiceProfile.1.SIP.ProxyServer,PARAMVALUE=10.255.0.1;ENT-HGUTR069-SPARAM::HGUTR069SPARAM-1-1-${slot}-${gpon}-${index}-12::::PARAMNAME=InternetGatewayDevice.Services.VoiceService.1.VoiceProfile.1.SIP.RegistrarServer,PARAMVALUE=10.255.0.1;ENT-HGUTR069-SPARAM::HGUTR069SPARAM-1-1-${slot}-${gpon}-${index}-13::::PARAMNAME=InternetGatewayDevice.Services.VoiceService.1.VoiceProfile.1.SIP.UserAgentDomain,PARAMVALUE="sip.solucaonetwork.com";ENT-HGUTR069-SPARAM::HGUTR069SPARAM-1-1-${slot}-${gpon}-${index}-14::::PARAMNAME=InternetGatewayDevice.Services.VoiceService.1.VoiceProfile.1.Line.1.Enable,PARAMVALUE=Enabled;ENT-HGUTR069-SPARAM::HGUTR069SPARAM-1-1-${slot}-${gpon}-${index}-15::::PARAMNAME=InternetGatewayDevice.Services.VoiceService.1.VoiceProfile.1.Line.1.DirectoryNumber,PARAMVALUE=${telefone};ENT-HGUTR069-SPARAM::HGUTR069SPARAM-1-1-${slot}-${gpon}-${index}-16::::PARAMNAME=InternetGatewayDevice.Services.VoiceService.1.VoiceProfile.1.Line.1.SIP.AuthUserName,PARAMVALUE=${telefone};ENT-HGUTR069-SPARAM::HGUTR069SPARAM-1-1-${slot}-${gpon}-${index}-17::::PARAMNAME=InternetGatewayDevice.Services.VoiceService.1.VoiceProfile.1.Line.1.SIP.AuthPassword,PARAMVALUE=${senhaVoip};`;
+
+  return { comandos1, comandos2 };
+}
+
+/**
  * Provisiona uma nova ONT
  * @param {Object} data - Dados da ONT
  * @param {string} data.inputSlot - Slot GPON

@@ -25,7 +25,26 @@ function ProvisionarCliente({ posicaoData }) {
     const { showSuccessAlert, showErrorAlert } = useSweetAlert();
 
     const handleInputChange = (field, value) => {
-        setProvData({ ...provData, [field]: value });
+        let processedValue = value;
+
+        // Regras específicas para cada campo (mesmo padrão do BridgeOntNokia)
+        switch (field) {
+            case 'provNome': // Descrição 1 (desc1)
+                processedValue = value.toUpperCase().replace(/\s+/g, "_").slice(0, 46);
+                break;
+            case 'provCaixa': // Descrição 2 (desc2)
+                if (value.includes("-")) {
+                    processedValue = value.toUpperCase().replace(/\s+/g, "-").slice(0, 22);
+                } else {
+                    processedValue = value.toLowerCase().replace(/\s+/g, "-").slice(0, 22);
+                }
+                break;
+            case 'provAlcl': // S°NUMBER (sernum)
+                processedValue = value.toUpperCase();
+                break;
+        }
+
+        setProvData({ ...provData, [field]: processedValue });
     };
 
     const handleProvisionar = async () => {
@@ -109,37 +128,37 @@ function ProvisionarCliente({ posicaoData }) {
             </div>
             <form className="form">
                 <div className="form-group">
-                    <label htmlFor="provNome">Nome do Cliente</label>
+                    <label htmlFor="provNome">Descrição 1 (desc1)</label>
                     <input
                         id="provNome"
                         type="text"
                         className="form-input"
                         value={provData.provNome}
                         onChange={(e) => handleInputChange('provNome', e.target.value)}
-                        placeholder="Nome do cliente"
+                        placeholder="Nome Completo do Cliente"
                     />
                 </div>
                 <div className="form-group">
-                    <label htmlFor="provAlcl">ALCL</label>
-                    <input
-                        id="provAlcl"
-                        type="text"
-                        className="form-input"
-                        value={provData.provAlcl}
-                        onChange={(e) => handleInputChange('provAlcl', e.target.value)}
-                        placeholder="Novo ALCL"
-                        maxLength="12"
-                    />
-                </div>
-                <div className="form-group">
-                    <label htmlFor="provCaixa">Caixa e Porta</label>
+                    <label htmlFor="provCaixa">Descrição 2 (desc2)</label>
                     <input
                         id="provCaixa"
                         type="text"
                         className="form-input"
                         value={provData.provCaixa}
                         onChange={(e) => handleInputChange('provCaixa', e.target.value)}
-                        placeholder="Caixa e Porta"
+                        placeholder="CTO ou PPPoE"
+                    />
+                </div>
+                <div className="form-group">
+                    <label htmlFor="provAlcl">S°NUMBER (sernum)</label>
+                    <input
+                        id="provAlcl"
+                        type="text"
+                        className="form-input"
+                        value={provData.provAlcl}
+                        onChange={(e) => handleInputChange('provAlcl', e.target.value)}
+                        placeholder="ALCL da ONT"
+                        maxLength="12"
                     />
                 </div>
                 <div className="form-group">

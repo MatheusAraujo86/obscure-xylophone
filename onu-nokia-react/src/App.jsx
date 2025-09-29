@@ -4,6 +4,7 @@ import PosicaoCliente from './components/PosicaoCliente';
 import PesquisaCliente from './components/PesquisaCliente';
 import OutrasOpcoes from './components/OutrasOpcoes';
 import ProvisionarCliente from './components/ProvisionarCliente';
+import ProvisionarOntTelefonia from './components/ProvisionarOntTelefonia';
 import ConfiguracaoWifi from './components/ConfiguracaoWifi';
 import ConfiguracaoTelefone from './components/ConfiguracaoTelefone';
 import AlterarVlanPppoe from './components/AlterarVlanPppoe';
@@ -29,6 +30,7 @@ function App() {
   const menuItems = [
     { id: 'pesquisar', label: 'Pesquisar Cliente', icon: '◯' },
     { id: 'provisionar', label: 'Provisionar Cliente', icon: '◯' },
+    { id: 'provisionarTelefonia', label: 'Provisionar ONT Telefonia', icon: '◑' },
     { id: 'bridge', label: 'Bridge ONT Nokia', icon: '◪' },
     { id: 'wifi', label: 'Configurar Wi-Fi', icon: '◈' },
     { id: 'telefone', label: 'Configurar Telefone', icon: '◐' },
@@ -44,6 +46,8 @@ function App() {
         return <PesquisaCliente />;
       case 'provisionar':
         return <ProvisionarCliente posicaoData={posicaoData} />;
+      case 'provisionarTelefonia':
+        return <ProvisionarOntTelefonia posicaoData={posicaoData} />;
       case 'bridge':
         return <BridgeOntNokia posicaoData={posicaoData} />;
       case 'wifi':

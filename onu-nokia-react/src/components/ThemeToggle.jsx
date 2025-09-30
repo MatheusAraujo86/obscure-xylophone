@@ -16,8 +16,8 @@ function ThemeToggle() {
         { id: 'dark-cyan', name: 'Ciano Escuro', icon: '◘' },
         { id: 'light-blue', name: 'Azul Claro', icon: '◇' },
         { id: 'dark-blue', name: 'Azul Escuro', icon: '◙' },
-        { id: 'light-flamengo', name: 'Vermelho Claro', icon: '◊' },
-        { id: 'dark-flamengo', name: 'Vermelho Escuro', icon: '◗' },
+        { id: 'light-peach', name: 'Vermelho Claro', icon: '◊' },
+        { id: 'dark-peach', name: 'Vermelho Escuro', icon: '◗' },
         { id: 'light-purple', name: 'Roxo Claro', icon: '◆' },
         { id: 'dark-purple', name: 'Roxo Escuro', icon: '◖' }
     ];

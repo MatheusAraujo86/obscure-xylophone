@@ -9,13 +9,13 @@ export const useTheme = () => {
     "dark",
     "dark-cyan",
     "dark-blue",
-    "dark-flamengo",
+    "dark-peach",
     "dark-purple",
     "dark-green",
     "light",
     "light-cyan",
     "light-blue",
-    "light-flamengo",
+    "light-peach",
     "light-purple",
   ];
 

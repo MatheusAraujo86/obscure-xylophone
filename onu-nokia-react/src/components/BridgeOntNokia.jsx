@@ -111,6 +111,25 @@ function BridgeOntNokia({ posicaoData }) {
         }
     };
 
+    const handleVerificarVlan = async () => {
+        const { inputSlot, inputGpon, inputIndex } = posicaoData;
+        const { cardType, portaLan } = bridgeData;
+        
+        if (!inputSlot || !inputGpon || !inputIndex) {
+            showErrorAlert("⚠️ Preencha todos os campos: Slot, PON e Posição.");
+            return;
+        }
+        
+        const comando = `info configure bridge port 1/1/${inputSlot}/${inputGpon}/${inputIndex}/${cardType}/${portaLan}`;
+        const result = await copyToClipboard(comando);
+        
+        if (result.success) {
+            showInfoAlert("Comando para verificar VLAN copiado!");
+        } else {
+            showErrorAlert("Erro ao copiar comando.");
+        }
+    };
+
     // Atualizar VLANs quando tipo de bridge muda ou componente monta
     useEffect(() => {
         if (bridgeData.tipoBridge && getVlanOptions().length > 0) {
@@ -301,6 +320,16 @@ ENT-HGUTR069-SPARAM::HGUTR069SPARAM-1-1-${inputSlot}-${inputGpon}-${inputIndex}-
                             </option>
                         ))}
                     </select>
+                </div>
+
+                <div className="form-group">
+                    <button
+                        type="button"
+                        className="btn btn-secondary btn-full"
+                        onClick={handleVerificarVlan}
+                    >
+                        ◊ Verificar VLAN
+                    </button>
                 </div>
 
                 <div className="form-group">

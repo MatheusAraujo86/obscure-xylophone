@@ -127,34 +127,34 @@ body[data-theme="dark-blue"] {
   --button-danger: linear-gradient(45deg, #2a0a0a, #4a1a1a);
 }
 
-/* Tema Dark Flamengo (#dc143c) */
-:root[data-theme="dark-flamengo"],
-body[data-theme="dark-flamengo"] {
-  --bg-primary: #0a0000;
-  --bg-secondary: #1a0000;
-  --bg-tertiary: #0d0000;
+/* Tema Dark Peach (#DC143C - Flamengo) */
+:root[data-theme="dark-peach"],
+body[data-theme="dark-peach"] {
+  --bg-primary: #1a0000;
+  --bg-secondary: #2e0000;
+  --bg-tertiary: #1e0000;
   --bg-quaternary: #220000;
   --bg-accent: #000000;
   --text-primary: #dc143c;
-  --text-secondary: #ff6666;
+  --text-secondary: #ff6b6b;
   --text-accent: #ffffff;
   --text-button: #ffffff;
   --text-button-warning: #856404;
   --text-button-danger: #721c24;
   --accent-primary: #dc143c;
-  --accent-secondary: #ff0000;
+  --accent-secondary: #dc143c;
   --border-primary: rgba(220, 20, 60, 0.3);
   --border-secondary: rgba(220, 20, 60, 0.1);
   --shadow-primary: rgba(0, 0, 0, 0.6);
-  --shadow-glow: rgba(220, 20, 60, 0.1);
-  --card-bg: linear-gradient(145deg, #0a0000 0%, #1a0000 50%, #0d0000 100%);
+  --shadow-glow: rgba(220, 20, 60, 0.2);
+  --card-bg: linear-gradient(145deg, #1a0000 0%, #2e0000 50%, #1e0000 100%);
   --header-bg: linear-gradient(
     90deg,
     rgba(220, 20, 60, 0.2) 0%,
-    rgba(26, 0, 0, 0.9) 50%,
+    rgba(46, 0, 0, 0.9) 50%,
     rgba(220, 20, 60, 0.2) 100%
   );
-  --button-primary: linear-gradient(45deg, #b71c1c, #dc143c);
+  --button-primary: linear-gradient(45deg, #dc143c, #b91c3c);
   --button-warning: linear-gradient(45deg, #2a1a00, #4a3300);
   --button-danger: linear-gradient(45deg, #2a0a0a, #4a1a1a);
 }
@@ -378,26 +378,26 @@ body[data-theme="dark-green"] {
 /* Títulos com cor de texto dos botões para todos os temas exceto o padrão */
 :root[data-theme="dark-cyan"] .card-header,
 :root[data-theme="dark-blue"] .card-header,
-:root[data-theme="dark-flamengo"] .card-header,
+:root[data-theme="dark-peach"] .card-header,
 :root[data-theme="dark-purple"] .card-header,
 :root[data-theme="dark-green"] .card-header,
 :root[data-theme="light"] .card-header,
 :root[data-theme="light-cyan"] .card-header,
 :root[data-theme="light-blue"] .card-header,
-:root[data-theme="light-flamengo"] .card-header,
+:root[data-theme="light-peach"] .card-header,
 :root[data-theme="light-purple"] .card-header {
   color: var(--text-button);
 }
 
 body[data-theme="dark-cyan"] .card-header,
 body[data-theme="dark-blue"] .card-header,
-body[data-theme="dark-flamengo"] .card-header,
+body[data-theme="dark-peach"] .card-header,
 body[data-theme="dark-purple"] .card-header,
 body[data-theme="dark-green"] .card-header,
 body[data-theme="light"] .card-header,
 body[data-theme="light-cyan"] .card-header,
 body[data-theme="light-blue"] .card-header,
-body[data-theme="light-flamengo"] .card-header,
+body[data-theme="light-peach"] .card-header,
 body[data-theme="light-purple"] .card-header {
   color: var(--text-button);
 }
@@ -1423,34 +1423,34 @@ body[data-theme="light-blue"] {
   --button-danger: linear-gradient(45deg, #dc3545, #c82333);
 }
 
-/* Tema Light Flamengo (#ff6666) */
-:root[data-theme="light-flamengo"],
-body[data-theme="light-flamengo"] {
-  --bg-primary: #f8f9fa;
-  --bg-secondary: #e9ecef;
-  --bg-tertiary: #dee2e6;
-  --bg-quaternary: #ced4da;
+/* Tema Light Peach (#DC143C - Flamengo Claro) */
+:root[data-theme="light-peach"],
+body[data-theme="light-peach"] {
+  --bg-primary: #fef2f2;
+  --bg-secondary: #fecaca;
+  --bg-tertiary: #fca5a5;
+  --bg-quaternary: #f87171;
   --bg-accent: #ffffff;
-  --text-primary: #dc143c;
+  --text-primary: #b91c3c;
   --text-secondary: #6f42c1;
-  --text-accent: #212529;
+  --text-accent: #1f2937;
   --text-button: #ffffff;
   --text-button-warning: #ffffff;
   --text-button-danger: #ffffff;
-  --accent-primary: #dc143c;
-  --accent-secondary: #ff0000;
-  --border-primary: rgba(220, 20, 60, 0.3);
-  --border-secondary: rgba(220, 20, 60, 0.1);
+  --accent-primary: #b91c3c;
+  --accent-secondary: #b91c3c;
+  --border-primary: rgba(185, 28, 60, 0.3);
+  --border-secondary: rgba(185, 28, 60, 0.1);
   --shadow-primary: rgba(0, 0, 0, 0.1);
-  --shadow-glow: rgba(220, 20, 60, 0.1);
-  --card-bg: linear-gradient(145deg, #ffffff 0%, #f8f9fa 50%, #e9ecef 100%);
+  --shadow-glow: rgba(185, 28, 60, 0.15);
+  --card-bg: linear-gradient(145deg, #ffffff 0%, #fef2f2 50%, #fecaca 100%);
   --header-bg: linear-gradient(
     90deg,
-    rgba(255, 102, 102, 0.3) 0%,
-    rgba(255, 102, 102, 0.15) 50%,
-    rgba(255, 102, 102, 0.3) 100%
+    rgba(185, 28, 60, 0.1) 0%,
+    rgba(254, 242, 242, 0.8) 50%,
+    rgba(185, 28, 60, 0.1) 100%
   );
-  --button-primary: linear-gradient(45deg, #dc143c, #b71c1c);
+  --button-primary: linear-gradient(45deg, #b91c3c, #dc143c);
   --button-warning: linear-gradient(45deg, #ffc107, #e0a800);
   --button-danger: linear-gradient(45deg, #dc3545, #c82333);
 }

@@ -19,6 +19,7 @@ function OutrasOpcoes({ posicaoData }) {
     // Estados para controlar os modais
     const [modalPppoeUser, setModalPppoeUser] = useState({ isOpen: false, inputValue: '' });
     const [modalPppoeIp, setModalPppoeIp] = useState({ isOpen: false, inputValue: '' });
+    const [modalVelocidade, setModalVelocidade] = useState({ isOpen: false, inputValue: '' });
 
     const executeCommand = async (commandFunction, requiredFields = []) => {
         try {
@@ -68,29 +69,20 @@ function OutrasOpcoes({ posicaoData }) {
         return `${inputSlot}/${inputGpon}/${inputIndex}/${cardType}/${portaLan}`;
     };
 
-    const handleVerificarVlan = async () => {
-        const path = getPath();
-        if (!path) {
-            showErrorAlert("⚠️ Preencha todos os campos: Slot, PON e Posição.");
-            return;
-        }
-        const comando = `info configure bridge port 1/1/${path}`;
-        const result = await copyToClipboard(comando);
-        
-        if (result.success) {
-            showInfoAlert("Comando para verificar VLAN copiado!");
-        } else {
-            showErrorAlert("Erro ao copiar comando.");
-        }
+    const handleVerificarVelocidade = async () => {
+        setModalVelocidade({ isOpen: true, inputValue: '' });
     };
 
-    const handleVerificarVelocidade = async () => {
-        const path = getPath();
-        if (!path) {
-            showErrorAlert("⚠️ Preencha todos os campos: Slot, PON e Posição.");
+    const handleConfirmVelocidade = async () => {
+        const ppoe = modalVelocidade.inputValue.trim();
+        if (!ppoe) {
+            showErrorAlert("Usuário PPPoE não informado.");
             return;
         }
-        const comando = `show interface port uni:1/1/${path} detail`;
+        
+        setModalVelocidade({ isOpen: false, inputValue: '' });
+        
+        const comando = `show network-acces aaa subscribers username ${ppoe}`;
         const result = await copyToClipboard(comando);
         
         if (result.success) {
@@ -113,7 +105,7 @@ function OutrasOpcoes({ posicaoData }) {
         
         setModalPppoeUser({ isOpen: false, inputValue: '' });
         
-        const comando = `show subscriber pppoe username ${username}`;
+        const comando = `show subscriber pppoe user-name ${username}`;
         const result = await copyToClipboard(comando);
         
         if (result.success) {
@@ -136,7 +128,7 @@ function OutrasOpcoes({ posicaoData }) {
         
         setModalPppoeIp({ isOpen: false, inputValue: '' });
         
-        const comando = `show subscriber pppoe ip-address ${ip}`;
+        const comando = `show subscriber address ${ip}`;
         const result = await copyToClipboard(comando);
         
         if (result.success) {
@@ -192,6 +184,50 @@ function OutrasOpcoes({ posicaoData }) {
 
     return (
         <>
+            {/* Modal para inserir PPPoE para verificar velocidade */}
+            {modalVelocidade.isOpen && (
+                <div className="modal-overlay" onClick={() => setModalVelocidade({ isOpen: false, inputValue: '' })}>
+                    <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+                        <div className="modal-header">
+                            <h3>Verificar Velocidade</h3>
+                            <button 
+                                className="modal-close"
+                                onClick={() => setModalVelocidade({ isOpen: false, inputValue: '' })}
+                            >
+                                ×
+                            </button>
+                        </div>
+                        <div className="modal-body">
+                            <label htmlFor="pppoeVelocidade">Digite o usuário PPPoE:</label>
+                            <input
+                                id="pppoeVelocidade"
+                                type="text"
+                                className="form-input"
+                                value={modalVelocidade.inputValue}
+                                onChange={(e) => setModalVelocidade(prev => ({ ...prev, inputValue: e.target.value }))}
+                                placeholder="Usuário PPPoE"
+                                autoFocus
+                                onKeyPress={(e) => e.key === 'Enter' && handleConfirmVelocidade()}
+                            />
+                        </div>
+                        <div className="modal-footer">
+                            <button 
+                                className="btn btn-secondary"
+                                onClick={() => setModalVelocidade({ isOpen: false, inputValue: '' })}
+                            >
+                                Cancelar
+                            </button>
+                            <button 
+                                className="btn btn-primary"
+                                onClick={handleConfirmVelocidade}
+                            >
+                                Confirmar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            )}
+
             {/* Modal para inserir usuário PPPoE */}
             {modalPppoeUser.isOpen && (
                 <div className="modal-overlay" onClick={() => setModalPppoeUser({ isOpen: false, inputValue: '' })}>
@@ -291,13 +327,6 @@ function OutrasOpcoes({ posicaoData }) {
                 <div className="form-group">
                     <label>Consultas Bridge ONT</label>
                     <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '0.5rem' }}>
-                        <button
-                            type="button"
-                            className="btn btn-secondary"
-                            onClick={handleVerificarVlan}
-                        >
-                            ◊ Verificar VLAN
-                        </button>
                         <button
                             type="button"
                             className="btn btn-secondary"

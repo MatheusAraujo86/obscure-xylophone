@@ -10,16 +10,16 @@ function ThemeToggle() {
 
     const themes = [
         { id: 'dark', name: 'Padrão', icon: '◪' },
-        { id: 'dark-cyan', name: 'Escuro Ciano', icon: '◘' },
-        { id: 'dark-blue', name: 'Escuro Azul', icon: '◙' },
-        { id: 'dark-peach', name: 'Escuro Pêssego', icon: '◗' },
-        { id: 'dark-purple', name: 'Escuro Roxo', icon: '◖' },
-        { id: 'dark-green', name: 'Escuro Verde', icon: '◕' },
-        { id: 'light', name: 'Claro Verde', icon: '◯' },
-        { id: 'light-cyan', name: 'Claro Ciano', icon: '◈' },
-        { id: 'light-blue', name: 'Claro Azul', icon: '◇' },
-        { id: 'light-peach', name: 'Claro Pêssego', icon: '◊' },
-        { id: 'light-purple', name: 'Claro Roxo', icon: '◆' }
+        { id: 'light', name: 'Verde Claro', icon: '◯' },
+        { id: 'dark-green', name: 'Verde Escuro', icon: '◕' },
+        { id: 'light-cyan', name: 'Ciano Claro', icon: '◈' },
+        { id: 'dark-cyan', name: 'Ciano Escuro', icon: '◘' },
+        { id: 'light-blue', name: 'Azul Claro', icon: '◇' },
+        { id: 'dark-blue', name: 'Azul Escuro', icon: '◙' },
+        { id: 'light-flamengo', name: 'Vermelho Claro', icon: '◊' },
+        { id: 'dark-flamengo', name: 'Vermelho Escuro', icon: '◗' },
+        { id: 'light-purple', name: 'Roxo Claro', icon: '◆' },
+        { id: 'dark-purple', name: 'Roxo Escuro', icon: '◖' }
     ];
 
     const currentTheme = themes.find(t => t.id === theme) || themes[0];

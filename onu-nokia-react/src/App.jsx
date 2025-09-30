@@ -11,6 +11,7 @@ import AlterarSenhaWeb from './components/AlterarSenhaWeb';
 import ConferenciaCaixa from './components/ConferenciaCaixa';
 import BridgeOntNokia from './components/BridgeOntNokia';
 import ThemeToggle from './components/ThemeToggle';
+import DarkVeilDemo from './components/DarkVeilDemo';
 
 function App() {
   const [posicaoData, setPosicaoData] = useState({
@@ -35,6 +36,7 @@ function App() {
     { id: 'vlan', label: 'Alterar VLAN PPPOE', icon: '◊' },
     { id: 'senha', label: 'Alterar Senha Web', icon: '◇' },
     { id: 'conferencia', label: 'Conferência de Caixa', icon: '◎' },
+    { id: 'darkveil', label: 'DarkVeil Demo', icon: '🌌' },
     { id: 'outras', label: 'Outras Opções', icon: '◆' }
   ];
 
@@ -56,6 +58,8 @@ function App() {
         return <AlterarSenhaWeb posicaoData={posicaoData} />;
       case 'conferencia':
         return <ConferenciaCaixa />;
+      case 'darkveil':
+        return <DarkVeilDemo />;
       case 'outras':
         return <OutrasOpcoes posicaoData={posicaoData} />;
       default:
@@ -104,16 +108,16 @@ function App() {
         {sidebarOpen && <div className="sidebar-overlay" onClick={() => setSidebarOpen(false)}></div>}
 
         {/* Main Content */}
-        <main className={`main-content ${activeComponent === 'conferencia' ? 'main-content-full' : ''}`}>
+        <main className={`main-content ${activeComponent === 'conferencia' || activeComponent === 'darkveil' ? 'main-content-full' : ''}`}>
           {/* Posição do Cliente - Condicional */}
-          {activeComponent !== 'conferencia' && (
+          {activeComponent !== 'conferencia' && activeComponent !== 'darkveil' && (
             <div className="fixed-section">
               <PosicaoCliente onPosicaoChange={handlePosicaoChange} />
             </div>
           )}
 
           {/* Componente ativo */}
-          <div className={`dynamic-section ${activeComponent === 'conferencia' ? 'dynamic-section-full' : ''}`}>
+          <div className={`dynamic-section ${activeComponent === 'conferencia' || activeComponent === 'darkveil' ? 'dynamic-section-full' : ''}`}>
             {renderActiveComponent()}
           </div>
         </main>

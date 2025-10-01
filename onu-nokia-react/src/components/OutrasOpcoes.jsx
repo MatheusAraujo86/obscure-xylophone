@@ -105,7 +105,7 @@ function OutrasOpcoes({ posicaoData }) {
         
         setModalPppoeUser({ isOpen: false, inputValue: '' });
         
-        const comando = `show subscriber pppoe user-name ${username}`;
+        const comando = `show subscriber user-name ${username}`;
         const result = await copyToClipboard(comando);
         
         if (result.success) {

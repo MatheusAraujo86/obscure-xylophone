@@ -159,9 +159,9 @@ function ProvisionarOntTelefonia({ posicaoData }) {
 
             // Gerar comandos
             const comandos = provisionarONTTelefonia({
-                slot: inputSlot,
-                gpon: inputGpon, 
-                index: inputIndex,
+                inputSlot,
+                inputGpon, 
+                inputIndex,
                 desc1,
                 desc2,
                 sernum,
@@ -171,15 +171,8 @@ function ProvisionarOntTelefonia({ posicaoData }) {
                 vlanTelefonia
             });
 
-            if (!comandos || !comandos.comandos1 || !comandos.comandos2) {
-                showErrorAlert('Erro ao gerar comandos de provisionamento');
-                return;
-            }
-
-            const comandosCompletos = comandos.comandos1 + comandos.comandos2;
-            
             // Copiar para clipboard
-            const result = await copyToClipboard(comandosCompletos);
+            const result = await copyToClipboard(comandos);
             if (result.success) {
                 showSuccessAlert('Comandos de provisionamento copiados para a área de transferência!');
             } else {

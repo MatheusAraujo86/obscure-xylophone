@@ -15,7 +15,16 @@ function PesquisaCliente() {
     const { showSuccessAlert, showErrorAlert } = useSweetAlert();
 
     const handleInputChange = (field, value) => {
-        setSearchData({ ...searchData, [field]: value });
+        let processedValue = value;
+
+        // Aplicar transformações específicas por campo
+        switch (field) {
+            case 'pesquisarAlcl': // ALCL - mesmo comportamento do SERNUM
+                processedValue = value.toUpperCase();
+                break;
+        }
+
+        setSearchData({ ...searchData, [field]: processedValue });
     };
 
     const handlePesquisar = async () => {

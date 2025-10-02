@@ -122,3 +122,35 @@ export function pesquisarAlarmes(data) {
 export function onuSolicitandoProvisionamento() {
   return "show pon unprovision-onu";
 }
+
+/**
+ * Provisiona uma ONT apenas com telefonia
+ * @param {Object} data - Dados da ONT para telefonia
+ * @param {string} data.inputSlot - Slot GPON
+ * @param {string} data.inputGpon - Porta PON
+ * @param {string} data.inputIndex - Posição da ONT
+ * @param {string} data.desc1 - Descrição 1
+ * @param {string} data.desc2 - Descrição 2
+ * @param {string} data.sernum - ALCL (Serial Number)
+ * @param {string} data.telefone - Número do telefone
+ * @param {string} data.senhaVoip - Senha VoIP
+ * @param {string} data.vlanInternet - VLAN de Internet
+ * @param {string} data.vlanTelefonia - VLAN de Telefonia
+ * @returns {string} Comando para provisionar a ONT com telefonia
+ */
+export function provisionarONTTelefonia(data) {
+  const {
+    inputSlot,
+    inputGpon,
+    inputIndex,
+    desc1,
+    desc2,
+    sernum,
+    telefone,
+    senhaVoip,
+    vlanInternet,
+    vlanTelefonia,
+  } = data;
+
+  return `ENT-ONT::ONT-1-1-${inputSlot}-${inputGpon}-${inputIndex}::::DESC1="${desc1}",DESC2="${desc2}",SERNUM="${sernum}",SWVERPLND=AUTO,OPTICSHIST=ENABLE,PLNDCFGFILE1=AUTO,DLCFGFILE1=AUTO,VOIPALLOWED=VEIP;ED-ONT::ONT-1-1-${inputSlot}-${inputGpon}-${inputIndex}:::::IS;ENT-ONTCARD::ONTCARD-1-1-${inputSlot}-${inputGpon}-${inputIndex}-14:::VEIP,1,0::IS;ENT-LOGPORT::ONTL2UNI-1-1-${inputSlot}-${inputGpon}-${inputIndex}-14-1:::;ED-ONTVEIP::ONTVEIP-1-1-${inputSlot}-${inputGpon}-${inputIndex}-14-1:::::IS;SET-QOS-USQUEUE::ONTL2UNIQ-1-1-${inputSlot}-${inputGpon}-${inputIndex}-14-1-0::::USBWPROFNAME=HSI_1G_UP;SET-VLANPORT::ONTL2UNI-1-1-${inputSlot}-${inputGpon}-${inputIndex}-14-1:::MAXNUCMACADR=4,CMITMAXNUMMACADDR=1;ENT-VLANEGPORT::ONTL2UNI-1-1-${inputSlot}-${inputGpon}-${inputIndex}-14-1:::0,${vlanInternet}:PORTTRANSMODE=SINGLETAGGED;ENT-VLANEGPORT::ONTL2UNI-1-1-${inputSlot}-${inputGpon}-${inputIndex}-14-1:::0,777:PORTTRANSMODE=SINGLETAGGED;ENT-HGUTR069-SPARAM::HGUTR069SPARAM-1-1-${inputSlot}-${inputGpon}-${inputIndex}-1::::PARAMNAME=InternetGatewayDevice.WANDevice.1.WANConnectionDevice.1.X_CT-COM_WANGponLinkConfig.VLANIDMark,PARAMVALUE=${vlanInternet};ENT-HGUTR069-SPARAM::HGUTR069SPARAM-1-1-${inputSlot}-${inputGpon}-${inputIndex}-8::::PARAMNAME=InternetGatewayDevice.X_Authentication.WebAccount.Password,PARAMVALUE="${sernum}";ENT-HGUTR069-SPARAM::HGUTR069SPARAM-1-1-${inputSlot}-${inputGpon}-${inputIndex}-9::::PARAMNAME=InternetGatewayDevice.X_Authentication.Account.Password,PARAMVALUE="${sernum}";ENT-ONTCARD::ONTCARD-1-1-${inputSlot}-${inputGpon}-${inputIndex}-15:::POTS,2,0::IS;ENT-LOGPORT::ONTPOTS-1-1-${inputSlot}-${inputGpon}-${inputIndex}-15-1:::;ENT-LOGPORT::ONTPOTS-1-1-${inputSlot}-${inputGpon}-${inputIndex}-15-2:::;ENT-VLANEGPORT::ONTL2UNI-1-1-${inputSlot}-${inputGpon}-${inputIndex}-14-1:::0,${vlanTelefonia}:PORTTRANSMODE=SINGLETAGGED;ENT-HGUTR069-SPARAM::HGUTR069SPARAM-1-1-${inputSlot}-${inputGpon}-${inputIndex}-4::::PARAMNAME=InternetGatewayDevice.Services.VoiceService.1.VoiceProfile.1.Line.1.DirectoryNumber,PARAMVALUE="${telefone}";ENT-HGUTR069-SPARAM::HGUTR069SPARAM-1-1-${inputSlot}-${inputGpon}-${inputIndex}-5::::PARAMNAME=InternetGatewayDevice.Services.VoiceService.1.VoiceProfile.1.Line.1.SIP.AuthUserName,PARAMVALUE="${telefone}";ENT-HGUTR069-SPARAM::HGUTR069SPARAM-1-1-${inputSlot}-${inputGpon}-${inputIndex}-6::::PARAMNAME=InternetGatewayDevice.Services.VoiceService.1.VoiceProfile.1.Line.1.SIP.AuthPassword,PARAMVALUE="${senhaVoip}";ENT-HGUTR069-SPARAM::HGUTR069SPARAM-1-1-${inputSlot}-${inputGpon}-${inputIndex}-7::::PARAMNAME=InternetGatewayDevice.Services.VoiceService.1.VoiceProfile.1.Line.2.DirectoryNumber,PARAMVALUE="${telefone}";`;
+}

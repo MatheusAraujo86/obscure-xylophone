@@ -81,8 +81,8 @@ function OutrasOpcoes({ posicaoData }) {
         }
         
         setModalVelocidade({ isOpen: false, inputValue: '' });
-        
-        const comando = `show network-acces aaa subscribers username ${ppoe}`;
+
+        const comando = `show network-access aaa subscribers username ${ppoe}`;
         const result = await copyToClipboard(comando);
         
         if (result.success) {

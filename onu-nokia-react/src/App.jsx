@@ -4,6 +4,7 @@ import PosicaoCliente from './components/PosicaoCliente';
 import PesquisaCliente from './components/PesquisaCliente';
 import OutrasOpcoes from './components/OutrasOpcoes';
 import ProvisionarCliente from './components/ProvisionarCliente';
+import ProvisionarOntTelefonia from './components/ProvisionarOntTelefonia';
 import ConfiguracaoWifi from './components/ConfiguracaoWifi';
 import ConfiguracaoTelefone from './components/ConfiguracaoTelefone';
 import AlterarVlanPppoe from './components/AlterarVlanPppoe';
@@ -11,6 +12,18 @@ import AlterarSenhaWeb from './components/AlterarSenhaWeb';
 import ConferenciaCaixa from './components/ConferenciaCaixa';
 import BridgeOntNokia from './components/BridgeOntNokia';
 import ThemeToggle from './components/ThemeToggle';
+import { 
+  FiSearch, 
+  FiUserPlus, 
+  FiPhone, 
+  FiSettings, 
+  FiWifi, 
+  FiPhoneCall, 
+  FiGlobe, 
+  FiKey, 
+  FiCheckSquare, 
+  FiMoreHorizontal 
+} from 'react-icons/fi';
 
 function App() {
   const [posicaoData, setPosicaoData] = useState({
@@ -27,15 +40,16 @@ function App() {
   };
 
   const menuItems = [
-    { id: 'pesquisar', label: 'Pesquisar Cliente', icon: '◯' },
-    { id: 'provisionar', label: 'Provisionar Cliente', icon: '◯' },
-    { id: 'bridge', label: 'Bridge ONT Nokia', icon: '◪' },
-    { id: 'wifi', label: 'Configurar Wi-Fi', icon: '◈' },
-    { id: 'telefone', label: 'Configurar Telefone', icon: '◐' },
-    { id: 'vlan', label: 'Alterar VLAN PPPOE', icon: '◊' },
-    { id: 'senha', label: 'Alterar Senha Web', icon: '◇' },
-    { id: 'conferencia', label: 'Conferência de Caixa', icon: '◎' },
-    { id: 'outras', label: 'Outras Opções', icon: '◆' }
+    { id: 'pesquisar', label: 'Pesquisar Cliente', icon: FiSearch },
+    { id: 'provisionar', label: 'Provisionar Cliente', icon: FiUserPlus },
+    { id: 'provisionarTelefonia', label: 'Provisionar ONT Telefonia', icon: FiPhone },
+    { id: 'bridge', label: 'Bridge ONT Nokia', icon: FiSettings },
+    { id: 'wifi', label: 'Configurar Wi-Fi', icon: FiWifi },
+    { id: 'telefone', label: 'Configurar Telefone', icon: FiPhoneCall },
+    { id: 'vlan', label: 'Alterar VLAN PPPOE', icon: FiGlobe },
+    { id: 'senha', label: 'Alterar Senha Web', icon: FiKey },
+    { id: 'conferencia', label: 'Conferência de Caixa', icon: FiCheckSquare },
+    { id: 'outras', label: 'Outras Opções', icon: FiMoreHorizontal }
   ];
 
   const renderActiveComponent = () => {
@@ -44,6 +58,8 @@ function App() {
         return <PesquisaCliente />;
       case 'provisionar':
         return <ProvisionarCliente posicaoData={posicaoData} />;
+      case 'provisionarTelefonia':
+        return <ProvisionarOntTelefonia posicaoData={posicaoData} />;
       case 'bridge':
         return <BridgeOntNokia posicaoData={posicaoData} />;
       case 'wifi':
@@ -84,19 +100,22 @@ function App() {
         {/* Sidebar */}
         <aside className={`sidebar ${sidebarOpen ? 'sidebar-open' : ''}`}>
           <nav className="sidebar-nav">
-            {menuItems.map(item => (
-              <button
-                key={item.id}
-                className={`sidebar-item ${activeComponent === item.id ? 'sidebar-item-active' : ''}`}
-                onClick={() => {
-                  setActiveComponent(item.id);
-                  setSidebarOpen(false);
-                }}
-              >
-                <span className="sidebar-icon">{item.icon}</span>
-                <span className="sidebar-label">{item.label}</span>
-              </button>
-            ))}
+            {menuItems.map(item => {
+              const IconComponent = item.icon;
+              return (
+                <button
+                  key={item.id}
+                  className={`sidebar-item ${activeComponent === item.id ? 'sidebar-item-active' : ''}`}
+                  onClick={() => {
+                    setActiveComponent(item.id);
+                    setSidebarOpen(false);
+                  }}
+                >
+                  <span className="sidebar-icon"><IconComponent /></span>
+                  <span className="sidebar-label">{item.label}</span>
+                </button>
+              );
+            })}
           </nav>
         </aside>
 

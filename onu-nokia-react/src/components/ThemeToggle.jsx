@@ -9,16 +9,10 @@ function ThemeToggle() {
     const [showOptions, setShowOptions] = useState(false);
 
     const themes = [
-        { id: 'dark', name: 'Padrão', icon: '◪' },
-        { id: 'light', name: 'Verde Claro', icon: '◯' },
+        { id: 'fui', name: 'FUI Escuro', icon: '◐' },
+        { id: 'fui-light', name: 'FUI Claro', icon: '◑' },
+        { id: 'dark', name: 'Padrão Escuro', icon: '◪' },
         { id: 'dark-green', name: 'Verde Escuro', icon: '◕' },
-        { id: 'light-cyan', name: 'Ciano Claro', icon: '◈' },
-        { id: 'dark-cyan', name: 'Ciano Escuro', icon: '◘' },
-        { id: 'light-blue', name: 'Azul Claro', icon: '◇' },
-        { id: 'dark-blue', name: 'Azul Escuro', icon: '◙' },
-        { id: 'light-peach', name: 'Vermelho Claro', icon: '◊' },
-        { id: 'dark-peach', name: 'Vermelho Escuro', icon: '◗' },
-        { id: 'light-purple', name: 'Roxo Claro', icon: '◆' },
         { id: 'dark-purple', name: 'Roxo Escuro', icon: '◖' }
     ];
 

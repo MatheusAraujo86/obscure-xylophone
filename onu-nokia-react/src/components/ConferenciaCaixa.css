@@ -1,24 +1,14 @@
 .conferencia-caixa {
-  background: var(--card-bg);
-  color: var(--text-primary);
-  font-family: "Orbitron", "Roboto Mono", monospace;
+  background: var(--vscode-editor-background);
+  color: var(--vscode-editor-foreground);
+  font-family: "Roboto", sans-serif;
   padding: 2rem;
-  border-radius: 15px;
-  border: 2px solid var(--accent-primary);
-  box-shadow: 0 0 30px var(--shadow-glow);
+  border-radius: 8px;
+  border: 1px solid var(--vscode-panel-border);
+  box-shadow: 0 2px 8px var(--vscode-widget-shadow);
   margin: 1rem 0;
-  animation: neonPulse 3s ease-in-out infinite alternate;
   width: 100%;
   max-width: none;
-}
-
-@keyframes neonPulse {
-  from {
-    box-shadow: 0 0 30px var(--shadow-glow);
-  }
-  to {
-    box-shadow: 0 0 40px var(--shadow-glow);
-  }
 }
 
 .conferencia-caixa header {
@@ -316,45 +306,42 @@
 /* Tabelas */
 .conferencia-caixa table {
   width: 100%;
-  border-collapse: collapse;
+  border-collapse: separate;
+  border-spacing: 0;
   margin: 1rem 0;
-  border-radius: 10px;
+  border-radius: 6px;
   overflow: hidden;
-  background: var(--bg-card);
-  box-shadow: 0 0 20px var(--shadow-glow);
-  animation: tableGlow 2s ease-in-out infinite alternate;
-}
-
-@keyframes tableGlow {
-  from {
-    box-shadow: 0 0 20px var(--shadow-glow);
-  }
-  to {
-    box-shadow: 0 0 25px var(--shadow-glow);
-  }
+  background: var(--vscode-editor-background);
+  box-shadow: 0 1px 3px var(--vscode-widget-shadow);
+  border: 1px solid var(--vscode-panel-border);
 }
 
 .conferencia-caixa th,
 .conferencia-caixa td {
-  border: 1px solid var(--accent-primary);
-  padding: 1rem;
+  border-right: 1px solid var(--vscode-panel-border);
+  border-bottom: 1px solid var(--vscode-panel-border);
+  padding: 0.75rem;
   text-align: left;
-  color: var(--text-primary);
+  color: var(--vscode-editor-foreground);
   word-wrap: break-word;
   position: relative;
 }
 
+.conferencia-caixa th:first-child,
+.conferencia-caixa td:first-child {
+  border-left: 1px solid var(--vscode-panel-border);
+}
+
 .conferencia-caixa th {
-  background: linear-gradient(135deg, var(--bg-secondary), var(--bg-card));
-  color: var(--accent-primary);
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  text-shadow: 0 0 10px var(--shadow-glow);
+  background: var(--vscode-list-hoverBackground);
+  color: var(--vscode-list-activeSelectionForeground);
+  font-weight: 600;
+  font-size: 0.9rem;
+  border-top: 1px solid var(--vscode-panel-border);
 }
 
 .conferencia-caixa tr:hover {
-  background: var(--shadow-glow);
+  background: var(--vscode-list-hoverBackground);
 }
 
 /* Sobrescrita específica para remove-btn */
@@ -389,33 +376,10 @@
 }
 
 .difference {
-  background: linear-gradient(
-    135deg,
-    rgba(255, 0, 64, 0.2),
-    rgba(255, 170, 0, 0.2)
-  );
+  background: var(--vscode-diffEditor-insertedTextBackground);
   font-weight: bold;
-  border-color: var(--warning-color);
-  animation: differenceHighlight 2s ease-in-out infinite alternate;
-}
-
-@keyframes differenceHighlight {
-  from {
-    background: linear-gradient(
-      135deg,
-      rgba(255, 0, 64, 0.2),
-      rgba(255, 170, 0, 0.2)
-    );
-    box-shadow: inset 0 0 10px rgba(255, 0, 64, 0.3);
-  }
-  to {
-    background: linear-gradient(
-      135deg,
-      rgba(255, 170, 0, 0.3),
-      rgba(255, 0, 64, 0.3)
-    );
-    box-shadow: inset 0 0 15px rgba(255, 170, 0, 0.4);
-  }
+  border-color: var(--vscode-editorWarning-foreground);
+  color: var(--vscode-editorWarning-foreground);
 }
 
 .conferencia-footer {
@@ -503,4 +467,310 @@
   100% {
     transform: translateX(100%);
   }
+}
+
+/* Estilos para status das portas */
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.3rem 0.8rem;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.status-vaga {
+  background: var(--vscode-testing-iconPassed);
+  color: var(--vscode-editor-background);
+  border: 1px solid var(--vscode-testing-iconPassed);
+}
+
+.status-conferida {
+  background: var(--vscode-testing-iconQueued);
+  color: var(--vscode-editor-background);
+  border: 1px solid var(--vscode-testing-iconQueued);
+}
+
+.status-pendente {
+  background: var(--vscode-list-inactiveSelectionBackground);
+  color: var(--vscode-list-inactiveSelectionForeground);
+  border: 1px solid var(--vscode-panel-border);
+}
+
+/* Estilos para linhas da tabela baseado no status */
+.stored-differences-table tr.status-vaga {
+  background: var(--vscode-diffEditor-insertedTextBackground);
+}
+
+.stored-differences-table tr.status-conferida {
+  background: var(--vscode-diffEditor-removedTextBackground);
+}
+
+.stored-differences-table tr.status-pendente {
+  background: var(--vscode-list-inactiveSelectionBackground);
+}
+
+/* Botão para marcar como conferida */
+.toggle-btn {
+  background: linear-gradient(45deg, #00ffff, #0080ff);
+  border: none;
+  color: #000;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 0.8rem;
+  margin-right: 0.5rem;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.toggle-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 255, 255, 0.4);
+}
+
+.toggle-btn.conferida {
+  background: linear-gradient(45deg, #ff6b6b, #ff8e8e);
+}
+
+.toggle-btn:disabled {
+  background: #666;
+  color: #999;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+/* Animação para novas entradas */
+@keyframes slideInFromRight {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.stored-differences-table tr {
+  animation: slideInFromRight 0.5s ease-out;
+}
+
+/* Estilos para o modo sequencial */
+.status-atual {
+  background: rgba(0, 255, 255, 0.1);
+  border: 2px solid var(--accent-primary);
+  border-radius: 10px;
+  padding: 1rem;
+  margin: 1rem 0;
+  text-align: center;
+}
+
+.status-atual h3 {
+  color: var(--accent-primary);
+  margin: 0 0 0.5rem 0;
+  font-size: 1.2rem;
+}
+
+.status-message {
+  font-weight: bold;
+  padding: 0.5rem;
+  border-radius: 5px;
+  margin: 0;
+}
+
+.status-message.bloqueado {
+  background: rgba(255, 0, 0, 0.2);
+  color: #ff6b6b;
+  border: 1px solid #ff6b6b;
+}
+
+.status-message.liberado {
+  background: rgba(0, 255, 0, 0.2);
+  color: #00ff00;
+  border: 1px solid #00ff00;
+}
+
+/* Destacar porta atual */
+.stored-differences-table tr.porta-atual {
+  background: var(--vscode-list-warningBackground) !important;
+  border-left: 4px solid var(--vscode-editorWarning-foreground);
+}
+
+.badge-atual {
+  background: var(--vscode-editorWarning-foreground);
+  color: var(--vscode-editor-background);
+  padding: 0.2rem 0.5rem;
+  border-radius: 12px;
+  font-size: 0.7rem;
+  font-weight: bold;
+  margin-left: 0.5rem;
+}
+
+/* Botão modo sequencial */
+.toggle-sequential-btn {
+  background: linear-gradient(45deg, #ff6b6b, #ffa500);
+  border: none;
+  color: #fff;
+  padding: 0.8rem 1.5rem;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  min-width: 180px;
+}
+
+.toggle-sequential-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(255, 107, 107, 0.4);
+}
+
+/* Botão comparar desabilitado */
+.compare-btn:disabled {
+  background: #666 !important;
+  color: #999 !important;
+  cursor: not-allowed !important;
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+/* Botões desabilitados na tabela */
+.toggle-btn:disabled,
+.remove-btn:disabled,
+.vaga-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  background: #666;
+  color: #999;
+}
+
+.toggle-btn:disabled:hover,
+.remove-btn:disabled:hover,
+.vaga-btn:disabled:hover {
+  transform: none;
+  box-shadow: none;
+}
+
+/* Botão para marcar como vaga */
+.vaga-btn {
+  background: linear-gradient(45deg, #00ff00, #00cc00);
+  border: none;
+  color: #000;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 0.8rem;
+  margin-right: 0.5rem;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.vaga-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 255, 0, 0.4);
+}
+
+.vaga-btn.vaga {
+  background: linear-gradient(45deg, #ff6b6b, #ff8e8e);
+}
+
+/* Botão voltar uma porta */
+.voltar-porta-btn {
+  background: linear-gradient(45deg, #ffa500, #ffb347);
+  border: none;
+  color: #000;
+  padding: 0.8rem 1.5rem;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  min-width: 180px;
+}
+
+.voltar-porta-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(255, 165, 0, 0.4);
+}
+
+.voltar-porta-btn:disabled {
+  background: #666 !important;
+  color: #999 !important;
+  cursor: not-allowed !important;
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+/* Informações do histórico */
+.historico-info {
+  background: var(--vscode-list-inactiveSelectionBackground);
+  border: 1px solid var(--vscode-panel-border);
+  border-radius: 6px;
+  padding: 0.8rem;
+  margin-top: 0.5rem;
+}
+
+.historico-info p {
+  margin: 0.2rem 0;
+  font-size: 0.9rem;
+  color: var(--vscode-descriptionForeground);
+}
+
+/* Estilos para portas vagas (detectadas por comparação) */
+.stored-differences-table tr.porta-livre {
+  background: var(--vscode-diffEditor-insertedTextBackground);
+  border-left: 4px solid var(--vscode-testing-iconPassed);
+}
+
+.badge-livre {
+  background: var(--vscode-testing-iconPassed);
+  color: var(--vscode-editor-background);
+  padding: 0.2rem 0.5rem;
+  border-radius: 12px;
+  font-size: 0.7rem;
+  font-weight: bold;
+  margin-left: 0.5rem;
+}
+
+.porta-livre-text {
+  color: var(--vscode-testing-iconPassed) !important;
+  font-weight: bold;
+  font-size: 1.1em;
+  text-align: center;
+}
+
+/* Estilos para portas vagas (tabelas vazias) */
+.stored-differences-table tr.porta-vaga {
+  background: var(--vscode-diffEditor-removedTextBackground);
+  border-left: 4px solid var(--vscode-testing-iconFailed);
+}
+
+.badge-vaga {
+  background: var(--vscode-testing-iconFailed);
+  color: var(--vscode-editor-background);
+  padding: 0.2rem 0.5rem;
+  border-radius: 12px;
+  font-size: 0.7rem;
+  font-weight: bold;
+  margin-left: 0.5rem;
+}
+
+.porta-vaga-text {
+  color: var(--vscode-testing-iconFailed) !important;
+  font-weight: bold;
+  font-size: 1.1em;
+  text-align: center;
 }

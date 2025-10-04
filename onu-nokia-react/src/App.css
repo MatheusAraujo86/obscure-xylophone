@@ -34,33 +34,33 @@ body[data-theme="dark"] {
 
 :root[data-theme="light"],
 body[data-theme="light"] {
-  --bg-primary: #f8f9fa;
-  --bg-secondary: #e9ecef;
-  --bg-tertiary: #dee2e6;
-  --bg-quaternary: #ced4da;
+  --bg-primary: #ffffff;
+  --bg-secondary: #f5f5f7;
+  --bg-tertiary: #e8e8ed;
+  --bg-quaternary: #d2d2d7;
   --bg-accent: #ffffff;
-  --text-primary: #98c913;
-  --text-secondary: #6f42c1;
-  --text-accent: #212529;
+  --text-primary: #1d1d1f;
+  --text-secondary: #424245;
+  --text-accent: #000000;
   --text-button: #ffffff;
   --text-button-warning: #ffffff;
   --text-button-danger: #ffffff;
-  --accent-primary: #98c913;
-  --accent-secondary: #98c913;
-  --border-primary: rgba(152, 201, 19, 0.3);
-  --border-secondary: rgba(152, 201, 19, 0.1);
-  --shadow-primary: rgba(0, 0, 0, 0.5);
-  --shadow-glow: rgba(152, 201, 19, 0.15);
-  --card-bg: linear-gradient(145deg, #ffffff 0%, #f8f9fa 50%, #e9ecef 100%);
+  --accent-primary: #007aff;
+  --accent-secondary: #0051d5;
+  --border-primary: rgba(0, 122, 255, 0.2);
+  --border-secondary: rgba(0, 122, 255, 0.1);
+  --shadow-primary: rgba(0, 0, 0, 0.1);
+  --shadow-glow: rgba(0, 122, 255, 0.1);
+  --card-bg: linear-gradient(145deg, #ffffff 0%, #f5f5f7 50%, #e8e8ed 100%);
   --header-bg: linear-gradient(
     90deg,
-    rgba(255, 255, 255, 0.95) 0%,
-    rgba(248, 249, 250, 0.98) 50%,
-    rgba(255, 255, 255, 0.95) 100%
+    rgba(255, 255, 255, 0.98) 0%,
+    rgba(245, 245, 247, 1) 50%,
+    rgba(255, 255, 255, 0.98) 100%
   );
-  --button-primary: linear-gradient(45deg, #7ba30f, #98c913);
-  --button-warning: linear-gradient(45deg, #e0a800, #ffc107);
-  --button-danger: linear-gradient(45deg, #c82333, #dc3545);
+  --button-primary: linear-gradient(45deg, #007aff, #0051d5);
+  --button-warning: linear-gradient(45deg, #ff9500, #ff6700);
+  --button-danger: linear-gradient(45deg, #ff3b30, #d70015);
 }
 
 /* Tema Dark Cyan (#3ecccc) */
@@ -221,6 +221,120 @@ body[data-theme="dark-green"] {
   --button-primary: linear-gradient(45deg, #7ba30f, #98c913);
   --button-warning: linear-gradient(45deg, #2a1a00, #4a3300);
   --button-danger: linear-gradient(45deg, #2a0a0a, #4a1a1a);
+}
+
+/* Tema FUI - Fantasy User Interface */
+:root[data-theme="fui"],
+body[data-theme="fui"] {
+  --bg-primary: #000a0f;
+  --bg-secondary: #001a2e;
+  --bg-tertiary: #0a1a2e;
+  --bg-quaternary: #001122;
+  --bg-accent: #000000;
+  --text-primary: #00f0ff;
+  --text-secondary: #66d9ef;
+  --text-accent: #ffffff;
+  --text-button: #000000;
+  --text-button-warning: #ffaa00;
+  --text-button-danger: #ff4444;
+  --accent-primary: #00f0ff;
+  --accent-secondary: #66d9ef;
+  --border-primary: rgba(0, 240, 255, 0.5);
+  --border-secondary: rgba(0, 240, 255, 0.2);
+  --shadow-primary: rgba(0, 240, 255, 0.3);
+  --shadow-secondary: rgba(0, 240, 255, 0.1);
+  --hover-primary: rgba(0, 240, 255, 0.1);
+  --focus-ring: 0 0 0 2px rgba(0, 240, 255, 0.8),
+    0 0 10px rgba(0, 240, 255, 0.4);
+  --success: #00ff88;
+  --warning: #ffaa00;
+  --danger: #ff4444;
+  --info: #00aaff;
+  --surface-primary: linear-gradient(
+    135deg,
+    rgba(0, 15, 25, 0.95) 0%,
+    rgba(0, 26, 46, 0.85) 100%
+  );
+  --surface-secondary: linear-gradient(
+    90deg,
+    rgba(0, 10, 20, 0.8) 0%,
+    rgba(0, 20, 40, 0.6) 100%
+  );
+  --surface-tertiary: linear-gradient(
+    45deg,
+    rgba(0, 5, 15, 0.9) 0%,
+    rgba(10, 26, 46, 0.7) 100%
+  );
+  --surface-quaternary: linear-gradient(
+    180deg,
+    rgba(0, 8, 18, 0.95) 0%,
+    rgba(0, 15, 30, 0.8) 100%
+  );
+  --button-primary: linear-gradient(
+    45deg,
+    #003344 0%,
+    #00667a 50%,
+    #00f0ff 100%
+  );
+  --button-warning: linear-gradient(45deg, #4d2600, #ff8800);
+  --button-danger: linear-gradient(45deg, #440000, #ff2222);
+}
+
+/* Tema FUI Light - Fantasy User Interface Claro */
+:root[data-theme="fui-light"],
+body[data-theme="fui-light"] {
+  --bg-primary: #f0f8ff;
+  --bg-secondary: #e6f3ff;
+  --bg-tertiary: #ddeeff;
+  --bg-quaternary: #d4e9ff;
+  --bg-accent: #ffffff;
+  --text-primary: #0066cc;
+  --text-secondary: #0080dd;
+  --text-accent: #003366;
+  --text-button: #ffffff;
+  --text-button-warning: #ffffff;
+  --text-button-danger: #ffffff;
+  --accent-primary: #0066cc;
+  --accent-secondary: #0080dd;
+  --border-primary: rgba(0, 102, 204, 0.4);
+  --border-secondary: rgba(0, 102, 204, 0.2);
+  --shadow-primary: rgba(0, 102, 204, 0.3);
+  --shadow-secondary: rgba(0, 102, 204, 0.1);
+  --hover-primary: rgba(0, 102, 204, 0.1);
+  --focus-ring: 0 0 0 2px rgba(0, 102, 204, 0.6),
+    0 0 10px rgba(0, 102, 204, 0.3);
+  --success: #0088aa;
+  --warning: #cc7700;
+  --danger: #cc3333;
+  --info: #0066cc;
+  --surface-primary: linear-gradient(
+    135deg,
+    rgba(240, 248, 255, 0.95) 0%,
+    rgba(230, 243, 255, 0.85) 100%
+  );
+  --surface-secondary: linear-gradient(
+    90deg,
+    rgba(245, 250, 255, 0.9) 0%,
+    rgba(235, 245, 255, 0.8) 100%
+  );
+  --surface-tertiary: linear-gradient(
+    45deg,
+    rgba(250, 253, 255, 0.95) 0%,
+    rgba(225, 240, 255, 0.8) 100%
+  );
+  --surface-quaternary: linear-gradient(
+    180deg,
+    rgba(248, 252, 255, 0.98) 0%,
+    rgba(230, 243, 255, 0.9) 100%
+  );
+  --button-primary: linear-gradient(
+    45deg,
+    #4499cc 0%,
+    #66aadd 50%,
+    #0066cc 100%
+  );
+  --button-warning: linear-gradient(45deg, #cc7700, #ff9900);
+  --button-danger: linear-gradient(45deg, #cc3333, #ff4444);
 }
 
 /* Layout principal - Tema Responsivo */
@@ -1211,65 +1325,194 @@ body[data-theme="light-purple"] .card-header {
 }
 
 /* Theme Toggle Button */
+.theme-selector {
+  position: fixed !important;
+  bottom: 20px !important;
+  left: 20px !important;
+  z-index: 9998 !important;
+}
+
 .theme-toggle {
-  position: fixed;
-  bottom: 20px;
-  left: 20px;
-  background: var(--button-primary);
-  color: var(--text-primary);
-  border: 2px solid var(--border-primary);
-  border-radius: 50px;
-  padding: 8px 14px;
-  font-family: "Roboto Mono", monospace;
-  font-size: 0.8rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s ease;
+  background: linear-gradient(135deg, var(--bg-secondary), var(--bg-tertiary));
+  border: 1px solid var(--border-primary);
+  border-radius: 20px;
+  padding: 0.3rem 0.5rem;
   display: flex;
   align-items: center;
-  gap: 6px;
-  z-index: 1000;
-  box-shadow: 0 4px 16px var(--shadow-primary), 0 0 20px var(--shadow-glow);
-  text-shadow: 0 0 10px var(--shadow-glow);
-  text-transform: uppercase;
-  letter-spacing: 0.8px;
+  gap: 4px;
+  box-shadow: 0 1px 4px var(--shadow-primary);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  font-family: "Orbitron", monospace;
+  color: var(--text-button);
+  opacity: 0.7;
+  font-size: 0.7rem;
+}
+
+.theme-toggle::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
+  transition: left 0.5s ease;
 }
 
 .theme-toggle:hover {
-  transform: translateY(-2px) scale(1.05);
-  box-shadow: 0 6px 24px var(--shadow-primary), 0 0 30px var(--shadow-glow);
-  border-color: var(--text-primary);
-  color: var(--text-accent);
+  opacity: 1;
+  border-color: var(--accent-primary);
+  box-shadow: 0 2px 8px var(--shadow-primary), 0 0 8px var(--shadow-glow);
+}
+
+.theme-toggle:hover::before {
+  left: 100%;
 }
 
 .theme-toggle-icon {
-  font-size: 1rem;
+  font-size: 0.8rem;
   transition: transform 0.3s ease;
 }
 
-.theme-toggle:hover .theme-toggle-icon {
-  transform: rotate(180deg);
+.theme-toggle-text {
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-size: 0.6rem;
 }
 
-.theme-toggle-text {
+.theme-options {
+  position: fixed !important;
+  bottom: 70px !important;
+  left: 20px !important;
+  min-width: 200px;
+  background: linear-gradient(135deg, var(--bg-secondary), var(--bg-tertiary));
+  border: 2px solid var(--accent-primary);
+  border-radius: 12px;
+  box-shadow: 0 8px 32px var(--shadow-primary), 0 0 40px var(--shadow-glow),
+    0 0 0 1px rgba(0, 0, 0, 0.8);
+  max-height: 350px;
+  overflow-y: auto;
+  animation: slideUp 0.3s ease;
+  z-index: 99999 !important;
+  backdrop-filter: blur(4px);
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.theme-option {
+  width: 100%;
+  background: transparent;
+  border: none;
+  padding: 0.5rem 0.8rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  color: var(--text-button);
+  font-family: "Orbitron", monospace;
+  border-bottom: 1px solid var(--border-primary);
+  text-align: left;
+  font-size: 0.75rem;
+  min-height: 32px;
+  border-radius: 8px;
+  margin: 2px 4px;
+}
+
+.theme-option:last-child {
+  border-bottom: none;
+  margin-bottom: 4px;
+}
+
+.theme-option:first-child {
+  margin-top: 4px;
+}
+
+.theme-option:hover {
+  background: linear-gradient(135deg, var(--bg-tertiary), var(--bg-quaternary));
+  padding-left: 1rem;
+  color: var(--text-accent);
+}
+
+.theme-option.active {
+  background: linear-gradient(
+    135deg,
+    var(--accent-primary),
+    var(--accent-secondary)
+  );
+  color: var(--text-accent);
+  font-weight: bold;
+}
+
+.theme-option-icon {
+  font-size: 0.8rem;
+  min-width: 16px;
+}
+
+.theme-option-name {
+  font-weight: 500;
+  letter-spacing: 0.3px;
   font-size: 0.7rem;
 }
 
 /* Ajustes para mobile */
 @media (max-width: 768px) {
-  .theme-toggle {
-    bottom: 15px;
-    left: 15px;
-    padding: 6px 12px;
-    font-size: 0.7rem;
+  .theme-selector {
+    bottom: 8px;
+    left: 8px;
   }
 
-  .theme-toggle-icon {
-    font-size: 0.9rem;
+  .theme-toggle {
+    padding: 0.25rem 0.4rem;
+    gap: 3px;
   }
 
   .theme-toggle-text {
-    font-size: 0.6rem;
+    font-size: 0.55rem;
+  }
+
+  .theme-toggle-icon {
+    font-size: 0.65rem;
+  }
+
+  .theme-option {
+    padding: 0.4rem 0.6rem;
+    gap: 6px;
+    min-height: 28px;
+  }
+
+  .theme-option-name {
+    font-size: 0.65rem;
+  }
+
+  .theme-option-icon {
+    font-size: 0.65rem;
+    min-width: 14px;
+  }
+
+  .theme-options {
+    min-width: 180px;
+    bottom: 60px !important;
+    left: 8px !important;
+    max-height: 280px;
   }
 }
 
@@ -1354,6 +1597,785 @@ body[data-theme="light-purple"] .card-header {
   .footer-subtitle {
     font-size: 0.6rem;
     line-height: 1.2;
+  }
+}
+
+/* Estilos específicos para tema FUI */
+[data-theme="fui"] .card {
+  border: 2px solid var(--accent-primary);
+  box-shadow: 0 0 20px rgba(0, 240, 255, 0.3), 0 0 40px rgba(0, 240, 255, 0.1),
+    inset 0 0 20px rgba(0, 240, 255, 0.05);
+  position: relative;
+  overflow: hidden;
+}
+
+[data-theme="fui"] .card::before {
+  content: "";
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(
+    45deg,
+    transparent,
+    rgba(0, 240, 255, 0.1),
+    transparent,
+    rgba(0, 240, 255, 0.1)
+  );
+  z-index: -1;
+  animation: fuiBorderGlow 3s linear infinite;
+}
+
+[data-theme="fui"] .card::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(0, 240, 255, 0.1),
+    transparent
+  );
+  animation: fuiScanLine 4s linear infinite;
+  z-index: 1;
+  pointer-events: none;
+}
+
+[data-theme="fui"] .btn {
+  position: relative;
+  border: 1px solid var(--accent-primary);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-family: "Orbitron", monospace;
+  font-weight: 600;
+  color: #ffffff !important;
+  background: linear-gradient(
+    135deg,
+    rgba(0, 30, 50, 0.9),
+    rgba(0, 50, 80, 0.8)
+  );
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
+  transition: all 0.3s ease;
+  z-index: 2;
+}
+
+[data-theme="fui"] .btn:hover {
+  box-shadow: 0 0 20px rgba(0, 240, 255, 0.5),
+    inset 0 0 20px rgba(0, 240, 255, 0.1);
+  transform: translateY(-2px);
+  color: #ffffff !important;
+  background: linear-gradient(
+    135deg,
+    rgba(0, 50, 80, 0.9),
+    rgba(0, 80, 120, 0.8)
+  );
+}
+
+[data-theme="fui"] .btn-primary {
+  background: linear-gradient(135deg, #003355, #0066aa) !important;
+  border-color: var(--accent-primary);
+  color: #ffffff !important;
+}
+
+[data-theme="fui"] .btn-primary:hover {
+  background: linear-gradient(135deg, #004477, #0088cc) !important;
+  color: #ffffff !important;
+}
+
+[data-theme="fui"] .btn-warning {
+  background: linear-gradient(135deg, #664400, #aa7700) !important;
+  border-color: #ffaa00;
+  color: #ffffff !important;
+}
+
+[data-theme="fui"] .btn-warning:hover {
+  background: linear-gradient(135deg, #885500, #cc9900) !important;
+  color: #ffffff !important;
+}
+
+[data-theme="fui"] .btn-danger {
+  background: linear-gradient(135deg, #660000, #aa2222) !important;
+  border-color: #ff4444;
+  color: #ffffff !important;
+}
+
+[data-theme="fui"] .btn-danger:hover {
+  background: linear-gradient(135deg, #880000, #cc3333) !important;
+  color: #ffffff !important;
+}
+
+[data-theme="fui"] .btn-success {
+  background: linear-gradient(135deg, #004422, #007744) !important;
+  border-color: #00ff88;
+  color: #ffffff !important;
+}
+
+[data-theme="fui"] .btn-success:hover {
+  background: linear-gradient(135deg, #006633, #009955) !important;
+  color: #ffffff !important;
+}
+
+[data-theme="fui"] .btn::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.1),
+    transparent
+  );
+  transition: left 0.5s;
+  z-index: -1;
+}
+
+[data-theme="fui"] .btn:hover::before {
+  left: 100%;
+}
+
+[data-theme="fui"] input,
+[data-theme="fui"] select,
+[data-theme="fui"] textarea {
+  border: 1px solid var(--accent-primary);
+  background: rgba(0, 20, 35, 0.9);
+  color: #ffffff;
+  font-family: "Roboto Mono", monospace;
+  font-weight: 500;
+  text-shadow: none;
+}
+
+[data-theme="fui"] input::placeholder,
+[data-theme="fui"] textarea::placeholder {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+[data-theme="fui"] input:focus,
+[data-theme="fui"] select:focus,
+[data-theme="fui"] textarea:focus {
+  box-shadow: 0 0 0 2px rgba(0, 240, 255, 0.8), 0 0 20px rgba(0, 240, 255, 0.3);
+  border-color: var(--accent-primary);
+  background: rgba(0, 25, 40, 0.95);
+  color: #ffffff;
+}
+
+[data-theme="fui"] .form-label {
+  color: var(--text-primary);
+  text-transform: uppercase;
+  font-size: 0.8em;
+  letter-spacing: 1px;
+  font-weight: 600;
+}
+
+[data-theme="fui"] h1,
+[data-theme="fui"] h2,
+[data-theme="fui"] h3,
+[data-theme="fui"] h4,
+[data-theme="fui"] h5,
+[data-theme="fui"] h6 {
+  text-shadow: 0 0 5px rgba(0, 240, 255, 0.3);
+  font-family: "Orbitron", sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: #ffffff;
+  font-weight: 600;
+}
+
+[data-theme="fui"] .table {
+  border: 1px solid var(--accent-primary);
+  background: rgba(0, 15, 30, 0.95);
+  color: #ffffff;
+}
+
+[data-theme="fui"] .table th {
+  border-bottom: 2px solid var(--accent-primary);
+  color: #ffffff;
+  text-transform: uppercase;
+  font-size: 0.9em;
+  letter-spacing: 1px;
+  background: rgba(0, 40, 60, 0.9);
+  font-weight: 600;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
+}
+
+[data-theme="fui"] .table td {
+  border-bottom: 1px solid rgba(0, 240, 255, 0.2);
+  color: #ffffff;
+  background: rgba(0, 10, 20, 0.7);
+}
+
+[data-theme="fui"] .table tbody tr:hover {
+  background: rgba(0, 240, 255, 0.1);
+  box-shadow: inset 0 0 10px rgba(0, 240, 255, 0.2);
+}
+
+[data-theme="fui"] .table tbody tr:hover td {
+  color: #ffffff;
+  background: rgba(0, 30, 50, 0.8);
+}
+
+/* Animações para tema FUI */
+@keyframes fuiBorderGlow {
+  0%,
+  100% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes fuiScanLine {
+  0% {
+    left: -100%;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+@keyframes fuiPulse {
+  0%,
+  100% {
+    box-shadow: 0 0 5px rgba(0, 240, 255, 0.5);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(0, 240, 255, 0.8);
+  }
+}
+
+[data-theme="fui"] .app-container {
+  position: relative;
+}
+
+[data-theme="fui"] .app-container::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(
+      circle at 20% 50%,
+      rgba(0, 240, 255, 0.03) 0%,
+      transparent 50%
+    ),
+    radial-gradient(
+      circle at 80% 50%,
+      rgba(0, 240, 255, 0.03) 0%,
+      transparent 50%
+    ),
+    radial-gradient(
+      circle at 40% 20%,
+      rgba(0, 240, 255, 0.02) 0%,
+      transparent 50%
+    );
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* Estilos específicos FUI - Theme Toggle */
+[data-theme="fui"] .theme-toggle {
+  background: linear-gradient(
+    135deg,
+    rgba(0, 20, 35, 0.9),
+    rgba(0, 40, 60, 0.8)
+  );
+  border: 1px solid var(--accent-primary);
+  color: #ffffff !important;
+  font-weight: 600;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
+  box-shadow: 0 4px 12px rgba(0, 240, 255, 0.3), 0 0 20px rgba(0, 240, 255, 0.1);
+}
+
+[data-theme="fui"] .theme-toggle:hover {
+  background: linear-gradient(
+    135deg,
+    rgba(0, 30, 50, 0.95),
+    rgba(0, 50, 80, 0.9)
+  );
+  border-color: var(--accent-primary);
+  box-shadow: 0 6px 20px rgba(0, 240, 255, 0.4), 0 0 30px rgba(0, 240, 255, 0.2);
+  color: #ffffff !important;
+}
+
+/* Estilos específicos FUI - ConferenciaCaixa Buttons */
+[data-theme="fui"] .conferencia-caixa button,
+[data-theme="fui"] .lock-btn,
+[data-theme="fui"] .compare-btn,
+[data-theme="fui"] .toggle-down-btn,
+[data-theme="fui"] .voltar-porta-btn,
+[data-theme="fui"] .toggle-btn,
+[data-theme="fui"] .vaga-btn {
+  background: linear-gradient(
+    135deg,
+    rgba(0, 30, 50, 0.9),
+    rgba(0, 50, 80, 0.8)
+  ) !important;
+  border: 1px solid var(--accent-primary) !important;
+  color: #ffffff !important;
+  font-family: "Orbitron", monospace !important;
+  font-weight: 600 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 1px !important;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8) !important;
+  box-shadow: 0 0 10px rgba(0, 240, 255, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
+}
+
+[data-theme="fui"] .conferencia-caixa button:hover,
+[data-theme="fui"] .lock-btn:hover,
+[data-theme="fui"] .compare-btn:hover,
+[data-theme="fui"] .toggle-down-btn:hover,
+[data-theme="fui"] .voltar-porta-btn:hover,
+[data-theme="fui"] .toggle-btn:hover,
+[data-theme="fui"] .vaga-btn:hover {
+  background: linear-gradient(
+    135deg,
+    rgba(0, 50, 80, 0.9),
+    rgba(0, 80, 120, 0.8)
+  ) !important;
+  color: #ffffff !important;
+  box-shadow: 0 0 20px rgba(0, 240, 255, 0.5), 0 0 40px rgba(0, 240, 255, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2) !important;
+  transform: translateY(-2px) !important;
+  border-color: var(--accent-primary) !important;
+}
+
+/* Botões específicos com cores diferenciadas */
+[data-theme="fui"] .compare-btn {
+  background: linear-gradient(135deg, #003355, #0066aa) !important;
+}
+
+[data-theme="fui"] .compare-btn:hover {
+  background: linear-gradient(135deg, #004477, #0088cc) !important;
+}
+
+[data-theme="fui"] .voltar-porta-btn {
+  background: linear-gradient(135deg, #664400, #aa7700) !important;
+  border-color: #ffaa00 !important;
+}
+
+[data-theme="fui"] .voltar-porta-btn:hover {
+  background: linear-gradient(135deg, #885500, #cc9900) !important;
+}
+
+[data-theme="fui"] .vaga-btn {
+  background: linear-gradient(135deg, #660000, #aa2222) !important;
+  border-color: #ff4444 !important;
+}
+
+[data-theme="fui"] .vaga-btn:hover {
+  background: linear-gradient(135deg, #880000, #cc3333) !important;
+}
+
+[data-theme="fui"] .toggle-btn {
+  background: linear-gradient(135deg, #004422, #007744) !important;
+  border-color: #00ff88 !important;
+}
+
+[data-theme="fui"] .toggle-btn:hover {
+  background: linear-gradient(135deg, #006633, #009955) !important;
+}
+
+/* Lock button específico */
+[data-theme="fui"] .lock-btn {
+  background: linear-gradient(135deg, #2a2a2a, #404040) !important;
+  border-color: var(--accent-primary) !important;
+}
+
+[data-theme="fui"] .lock-btn:hover {
+  background: linear-gradient(135deg, #404040, #505050) !important;
+}
+
+/* Estilos específicos para tema FUI Light */
+[data-theme="fui-light"] .card {
+  border: 2px solid var(--accent-primary);
+  box-shadow: 0 0 20px rgba(0, 102, 204, 0.2), 0 0 40px rgba(0, 102, 204, 0.1),
+    inset 0 0 20px rgba(0, 102, 204, 0.03);
+  position: relative;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.95);
+}
+
+[data-theme="fui-light"] .card::before {
+  content: "";
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(
+    45deg,
+    transparent,
+    rgba(0, 102, 204, 0.1),
+    transparent,
+    rgba(0, 102, 204, 0.1)
+  );
+  z-index: -1;
+  animation: fuiBorderGlowLight 3s linear infinite;
+}
+
+[data-theme="fui-light"] .card::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(0, 102, 204, 0.08),
+    transparent
+  );
+  animation: fuiScanLineLight 4s linear infinite;
+  z-index: 1;
+  pointer-events: none;
+}
+
+[data-theme="fui-light"] .btn {
+  position: relative;
+  border: 1px solid var(--accent-primary);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-family: "Orbitron", monospace;
+  font-weight: 600;
+  color: #ffffff !important;
+  background: linear-gradient(
+    135deg,
+    rgba(0, 80, 160, 0.9),
+    rgba(0, 102, 204, 0.8)
+  );
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
+  transition: all 0.3s ease;
+  z-index: 2;
+}
+
+[data-theme="fui-light"] .btn:hover {
+  box-shadow: 0 0 20px rgba(0, 102, 204, 0.4),
+    inset 0 0 20px rgba(0, 102, 204, 0.1);
+  transform: translateY(-2px);
+  color: #ffffff !important;
+  background: linear-gradient(
+    135deg,
+    rgba(0, 102, 204, 0.9),
+    rgba(0, 128, 221, 0.8)
+  );
+}
+
+[data-theme="fui-light"] .btn-primary {
+  background: linear-gradient(135deg, #4499cc, #0066cc) !important;
+  border-color: var(--accent-primary);
+  color: #ffffff !important;
+}
+
+[data-theme="fui-light"] .btn-primary:hover {
+  background: linear-gradient(135deg, #66aadd, #0080dd) !important;
+  color: #ffffff !important;
+}
+
+[data-theme="fui-light"] .btn-warning {
+  background: linear-gradient(135deg, #cc7700, #ff9900) !important;
+  border-color: #cc7700;
+  color: #ffffff !important;
+}
+
+[data-theme="fui-light"] .btn-warning:hover {
+  background: linear-gradient(135deg, #dd8800, #ffaa00) !important;
+  color: #ffffff !important;
+}
+
+[data-theme="fui-light"] .btn-danger {
+  background: linear-gradient(135deg, #cc3333, #ff4444) !important;
+  border-color: #cc3333;
+  color: #ffffff !important;
+}
+
+[data-theme="fui-light"] .btn-danger:hover {
+  background: linear-gradient(135deg, #dd4444, #ff5555) !important;
+  color: #ffffff !important;
+}
+
+[data-theme="fui-light"] .btn-success {
+  background: linear-gradient(135deg, #0088aa, #00aacc) !important;
+  border-color: #0088aa;
+  color: #ffffff !important;
+}
+
+[data-theme="fui-light"] .btn-success:hover {
+  background: linear-gradient(135deg, #0099bb, #00bbdd) !important;
+  color: #ffffff !important;
+}
+
+[data-theme="fui-light"] .btn::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
+  transition: left 0.5s;
+  z-index: -1;
+}
+
+[data-theme="fui-light"] .btn:hover::before {
+  left: 100%;
+}
+
+[data-theme="fui-light"] input,
+[data-theme="fui-light"] select,
+[data-theme="fui-light"] textarea {
+  border: 1px solid var(--accent-primary);
+  background: rgba(255, 255, 255, 0.9);
+  color: #003366;
+  font-family: "Roboto Mono", monospace;
+  font-weight: 500;
+  text-shadow: none;
+}
+
+[data-theme="fui-light"] input::placeholder,
+[data-theme="fui-light"] textarea::placeholder {
+  color: rgba(0, 51, 102, 0.6);
+}
+
+[data-theme="fui-light"] input:focus,
+[data-theme="fui-light"] select:focus,
+[data-theme="fui-light"] textarea:focus {
+  box-shadow: 0 0 0 2px rgba(0, 102, 204, 0.6), 0 0 20px rgba(0, 102, 204, 0.2);
+  border-color: var(--accent-primary);
+  background: rgba(255, 255, 255, 0.95);
+  color: #003366;
+}
+
+[data-theme="fui-light"] .form-label {
+  color: var(--text-primary);
+  text-transform: uppercase;
+  font-size: 0.8em;
+  letter-spacing: 1px;
+  font-weight: 600;
+}
+
+[data-theme="fui-light"] h1,
+[data-theme="fui-light"] h2,
+[data-theme="fui-light"] h3,
+[data-theme="fui-light"] h4,
+[data-theme="fui-light"] h5,
+[data-theme="fui-light"] h6 {
+  text-shadow: 0 0 5px rgba(0, 102, 204, 0.3);
+  font-family: "Orbitron", sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: #003366;
+  font-weight: 600;
+}
+
+[data-theme="fui-light"] .table {
+  border: 1px solid var(--accent-primary);
+  background: rgba(255, 255, 255, 0.95);
+  color: #003366;
+}
+
+[data-theme="fui-light"] .table th {
+  border-bottom: 2px solid var(--accent-primary);
+  color: #ffffff;
+  text-transform: uppercase;
+  font-size: 0.9em;
+  letter-spacing: 1px;
+  background: rgba(0, 102, 204, 0.9);
+  font-weight: 600;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
+}
+
+[data-theme="fui-light"] .table td {
+  border-bottom: 1px solid rgba(0, 102, 204, 0.2);
+  color: #003366;
+  background: rgba(255, 255, 255, 0.8);
+}
+
+[data-theme="fui-light"] .table tbody tr:hover {
+  background: rgba(0, 102, 204, 0.1);
+  box-shadow: inset 0 0 10px rgba(0, 102, 204, 0.1);
+}
+
+[data-theme="fui-light"] .table tbody tr:hover td {
+  color: #003366;
+  background: rgba(240, 248, 255, 0.9);
+}
+
+/* Estilos específicos FUI Light - Theme Toggle */
+[data-theme="fui-light"] .theme-toggle {
+  background: linear-gradient(
+    135deg,
+    rgba(240, 248, 255, 0.9),
+    rgba(220, 235, 255, 0.8)
+  );
+  border: 1px solid var(--accent-primary);
+  color: #003366 !important;
+  font-weight: 600;
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
+  box-shadow: 0 4px 12px rgba(0, 102, 204, 0.2), 0 0 20px rgba(0, 102, 204, 0.1);
+}
+
+[data-theme="fui-light"] .theme-toggle:hover {
+  background: linear-gradient(
+    135deg,
+    rgba(230, 243, 255, 0.95),
+    rgba(210, 230, 255, 0.9)
+  );
+  border-color: var(--accent-primary);
+  box-shadow: 0 6px 20px rgba(0, 102, 204, 0.3),
+    0 0 30px rgba(0, 102, 204, 0.15);
+  color: #003366 !important;
+}
+
+/* Estilos específicos FUI Light - ConferenciaCaixa Buttons */
+[data-theme="fui-light"] .conferencia-caixa button,
+[data-theme="fui-light"] .lock-btn,
+[data-theme="fui-light"] .compare-btn,
+[data-theme="fui-light"] .toggle-down-btn,
+[data-theme="fui-light"] .voltar-porta-btn,
+[data-theme="fui-light"] .toggle-btn,
+[data-theme="fui-light"] .vaga-btn {
+  background: linear-gradient(
+    135deg,
+    rgba(0, 80, 160, 0.9),
+    rgba(0, 102, 204, 0.8)
+  ) !important;
+  border: 1px solid var(--accent-primary) !important;
+  color: #ffffff !important;
+  font-family: "Orbitron", monospace !important;
+  font-weight: 600 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 1px !important;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6) !important;
+  box-shadow: 0 0 10px rgba(0, 102, 204, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
+}
+
+[data-theme="fui-light"] .conferencia-caixa button:hover,
+[data-theme="fui-light"] .lock-btn:hover,
+[data-theme="fui-light"] .compare-btn:hover,
+[data-theme="fui-light"] .toggle-down-btn:hover,
+[data-theme="fui-light"] .voltar-porta-btn:hover,
+[data-theme="fui-light"] .toggle-btn:hover,
+[data-theme="fui-light"] .vaga-btn:hover {
+  background: linear-gradient(
+    135deg,
+    rgba(0, 102, 204, 0.9),
+    rgba(0, 128, 221, 0.8)
+  ) !important;
+  color: #ffffff !important;
+  box-shadow: 0 0 20px rgba(0, 102, 204, 0.4), 0 0 40px rgba(0, 102, 204, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2) !important;
+  transform: translateY(-2px) !important;
+  border-color: var(--accent-primary) !important;
+}
+
+/* Botões específicos com cores diferenciadas - FUI Light */
+[data-theme="fui-light"] .compare-btn {
+  background: linear-gradient(135deg, #4499cc, #0066cc) !important;
+}
+
+[data-theme="fui-light"] .compare-btn:hover {
+  background: linear-gradient(135deg, #66aadd, #0080dd) !important;
+}
+
+[data-theme="fui-light"] .voltar-porta-btn {
+  background: linear-gradient(135deg, #cc7700, #ff9900) !important;
+  border-color: #cc7700 !important;
+}
+
+[data-theme="fui-light"] .voltar-porta-btn:hover {
+  background: linear-gradient(135deg, #dd8800, #ffaa00) !important;
+}
+
+[data-theme="fui-light"] .vaga-btn {
+  background: linear-gradient(135deg, #cc3333, #ff4444) !important;
+  border-color: #cc3333 !important;
+}
+
+[data-theme="fui-light"] .vaga-btn:hover {
+  background: linear-gradient(135deg, #dd4444, #ff5555) !important;
+}
+
+[data-theme="fui-light"] .toggle-btn {
+  background: linear-gradient(135deg, #0088aa, #00aacc) !important;
+  border-color: #0088aa !important;
+}
+
+[data-theme="fui-light"] .toggle-btn:hover {
+  background: linear-gradient(135deg, #0099bb, #00bbdd) !important;
+}
+
+[data-theme="fui-light"] .lock-btn {
+  background: linear-gradient(135deg, #666666, #888888) !important;
+  border-color: var(--accent-primary) !important;
+}
+
+[data-theme="fui-light"] .lock-btn:hover {
+  background: linear-gradient(135deg, #777777, #999999) !important;
+}
+
+[data-theme="fui-light"] .app-container {
+  position: relative;
+}
+
+[data-theme="fui-light"] .app-container::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(
+      circle at 20% 50%,
+      rgba(0, 102, 204, 0.02) 0%,
+      transparent 50%
+    ),
+    radial-gradient(
+      circle at 80% 50%,
+      rgba(0, 102, 204, 0.02) 0%,
+      transparent 50%
+    ),
+    radial-gradient(
+      circle at 40% 20%,
+      rgba(0, 102, 204, 0.015) 0%,
+      transparent 50%
+    );
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* Animações para tema FUI Light */
+@keyframes fuiBorderGlowLight {
+  0%,
+  100% {
+    opacity: 0.2;
+  }
+  50% {
+    opacity: 0.6;
+  }
+}
+
+@keyframes fuiScanLineLight {
+  0% {
+    left: -100%;
+  }
+  100% {
+    left: 100%;
   }
 }
 

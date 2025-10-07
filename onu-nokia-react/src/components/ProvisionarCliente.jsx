@@ -66,8 +66,6 @@ function ProvisionarCliente({ posicaoData }) {
                 { value: provNome, name: 'Nome do cliente' },
                 { value: provCaixa, name: 'Caixa e Porta' },
                 { value: provAlcl, name: 'ALCL' },
-                { value: provPppoe, name: 'Usuário PPPOE' },
-                { value: provPass, name: 'Senha PPPOE' },
                 { value: vlan, name: 'VLAN' }
             ];
 
@@ -80,6 +78,12 @@ function ProvisionarCliente({ posicaoData }) {
             // Validar ALCL
             if (!validateAlcl(provAlcl)) {
                 showErrorAlert("Por favor, insira um código ALCL válido com 12 caracteres.");
+                return;
+            }
+
+            // Validar PPPoE: Se um campo for preenchido, o outro também deve ser
+            if ((provPppoe && !provPass) || (!provPppoe && provPass)) {
+                showErrorAlert("Se informar dados de PPPoE, preencha tanto o Usuário quanto a Senha.");
                 return;
             }
 
@@ -162,7 +166,7 @@ function ProvisionarCliente({ posicaoData }) {
                     />
                 </div>
                 <div className="form-group">
-                    <label htmlFor="provPppoe">Usuário PPPOE</label>
+                    <label htmlFor="provPppoe">Usuário PPPOE (Opcional)</label>
                     <input
                         id="provPppoe"
                         type="text"
@@ -173,7 +177,7 @@ function ProvisionarCliente({ posicaoData }) {
                     />
                 </div>
                 <div className="form-group">
-                    <label htmlFor="provPass">Senha PPPOE</label>
+                    <label htmlFor="provPass">Senha PPPOE (Opcional)</label>
                     <input
                         id="provPass"
                         type="text"

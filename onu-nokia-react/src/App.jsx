@@ -1,86 +1,97 @@
-import { useState } from 'react';
+import { useMemo } from 'react';
 import './App.css';
+import { useAppContext } from './context/AppContext';
+import { menuItems } from './config/menuItems';
+import { useToast } from './hooks/useToast';
+import { useKeyboardShortcuts } from './hooks/useKeyboardShortcuts';
+import ThemeToggle from './components/ThemeToggle';
+import ToastContainer from './components/ToastContainer';
 import PosicaoCliente from './components/PosicaoCliente';
 import PesquisaCliente from './components/PesquisaCliente';
 import OutrasOpcoes from './components/OutrasOpcoes';
 import ProvisionarCliente from './components/ProvisionarCliente';
-import ProvisionarOntTelefonia from './components/ProvisionarOntTelefonia';
 import ConfiguracaoWifi from './components/ConfiguracaoWifi';
 import ConfiguracaoTelefone from './components/ConfiguracaoTelefone';
 import AlterarVlanPppoe from './components/AlterarVlanPppoe';
 import AlterarSenhaWeb from './components/AlterarSenhaWeb';
 import ConferenciaCaixa from './components/ConferenciaCaixa';
 import BridgeOntNokia from './components/BridgeOntNokia';
-import ThemeToggle from './components/ThemeToggle';
-import { 
-  FiSearch, 
-  FiUserPlus, 
-  FiPhone, 
-  FiSettings, 
-  FiWifi, 
-  FiPhoneCall, 
-  FiGlobe, 
-  FiKey, 
-  FiCheckSquare, 
-  FiMoreHorizontal 
-} from 'react-icons/fi';
 
 function App() {
-  const [posicaoData, setPosicaoData] = useState({
-    inputSlot: '',
-    inputGpon: '',
-    inputIndex: ''
-  });
+  console.log('App iniciando...');
+  
+  const { 
+    posicaoData, 
+    handlePosicaoChange, 
+    activeComponent, 
+    setActiveComponent, 
+    sidebarOpen, 
+    toggleSidebar, 
+    closeSidebar 
+  } = useAppContext();
 
-  const [activeComponent, setActiveComponent] = useState('pesquisar');
-  const [sidebarOpen, setSidebarOpen] = useState(false);
+  console.log('Context carregado, activeComponent:', activeComponent);
 
-  const handlePosicaoChange = (newPosicao) => {
-    setPosicaoData(newPosicao);
-  };
+  const { toasts, removeToast, success, error, info } = useToast();
 
-  const menuItems = [
-    { id: 'pesquisar', label: 'Pesquisar Cliente', icon: FiSearch },
-    { id: 'provisionar', label: 'Provisionar Cliente', icon: FiUserPlus },
-    { id: 'provisionarTelefonia', label: 'Provisionar ONT Telefonia', icon: FiPhone },
-    { id: 'bridge', label: 'Bridge ONT Nokia', icon: FiSettings },
-    { id: 'wifi', label: 'Configurar Wi-Fi', icon: FiWifi },
-    { id: 'telefone', label: 'Configurar Telefone', icon: FiPhoneCall },
-    { id: 'vlan', label: 'Alterar VLAN PPPOE', icon: FiGlobe },
-    { id: 'senha', label: 'Alterar Senha Web', icon: FiKey },
-    { id: 'conferencia', label: 'Conferência de Caixa', icon: FiCheckSquare },
-    { id: 'outras', label: 'Outras Opções', icon: FiMoreHorizontal }
-  ];
+  // Atalhos de teclado com useMemo para evitar recriação
+  const shortcuts = useMemo(() => ({
+    'ctrl+1': () => setActiveComponent('pesquisar'),
+    'ctrl+2': () => setActiveComponent('provisionar'),
+    'ctrl+3': () => setActiveComponent('bridge'),
+    'ctrl+4': () => setActiveComponent('wifi'),
+    'ctrl+5': () => setActiveComponent('telefone'),
+    'ctrl+6': () => setActiveComponent('vlan'),
+    'ctrl+7': () => setActiveComponent('senha'),
+    'ctrl+8': () => setActiveComponent('conferencia'),
+    'ctrl+9': () => setActiveComponent('outras'),
+    'ctrl+b': toggleSidebar,
+    'escape': closeSidebar,
+  }), [setActiveComponent, toggleSidebar, closeSidebar]);
 
+  useKeyboardShortcuts(shortcuts);
+
+  // Função para renderizar componente ativo
   const renderActiveComponent = () => {
-    switch (activeComponent) {
-      case 'pesquisar':
-        return <PesquisaCliente />;
-      case 'provisionar':
-        return <ProvisionarCliente posicaoData={posicaoData} />;
-      case 'provisionarTelefonia':
-        return <ProvisionarOntTelefonia posicaoData={posicaoData} />;
-      case 'bridge':
-        return <BridgeOntNokia posicaoData={posicaoData} />;
-      case 'wifi':
-        return <ConfiguracaoWifi posicaoData={posicaoData} />;
-      case 'telefone':
-        return <ConfiguracaoTelefone posicaoData={posicaoData} />;
-      case 'vlan':
-        return <AlterarVlanPppoe posicaoData={posicaoData} />;
-      case 'senha':
-        return <AlterarSenhaWeb posicaoData={posicaoData} />;
-      case 'conferencia':
-        return <ConferenciaCaixa />;
-      case 'outras':
-        return <OutrasOpcoes posicaoData={posicaoData} />;
-      default:
-        return <PesquisaCliente />;
+    console.log('Renderizando componente:', activeComponent);
+    const componentProps = { posicaoData };
+    
+    try {
+      switch (activeComponent) {
+        case 'pesquisar':
+          return <PesquisaCliente />;
+        case 'provisionar':
+          return <ProvisionarCliente {...componentProps} />;
+        case 'bridge':
+          return <BridgeOntNokia {...componentProps} />;
+        case 'wifi':
+          return <ConfiguracaoWifi {...componentProps} />;
+        case 'telefone':
+          return <ConfiguracaoTelefone {...componentProps} />;
+        case 'vlan':
+          return <AlterarVlanPppoe {...componentProps} />;
+        case 'senha':
+          return <AlterarSenhaWeb {...componentProps} />;
+        case 'conferencia':
+          return <ConferenciaCaixa />;
+        case 'outras':
+          return <OutrasOpcoes {...componentProps} />;
+        default:
+          return <PesquisaCliente />;
+      }
+    } catch (error) {
+      console.error('Erro ao renderizar componente:', error);
+      return <div>Erro ao carregar componente: {error.message}</div>;
     }
   };
 
+  console.log('Antes do return do App');
+
   return (
     <div className="app-container">
+      {/* Toast Notifications */}
+      <ToastContainer toasts={toasts} onRemove={removeToast} />
+      
       {/* Theme Toggle */}
       <ThemeToggle />
       
@@ -88,7 +99,8 @@ function App() {
         <div className="toolbar">
           <button 
             className="menu-toggle"
-            onClick={() => setSidebarOpen(!sidebarOpen)}
+            onClick={toggleSidebar}
+            aria-label="Toggle sidebar"
           >
             ☰
           </button>
@@ -106,10 +118,8 @@ function App() {
                 <button
                   key={item.id}
                   className={`sidebar-item ${activeComponent === item.id ? 'sidebar-item-active' : ''}`}
-                  onClick={() => {
-                    setActiveComponent(item.id);
-                    setSidebarOpen(false);
-                  }}
+                  onClick={() => setActiveComponent(item.id)}
+                  aria-label={item.label}
                 >
                   <span className="sidebar-icon"><IconComponent /></span>
                   <span className="sidebar-label">{item.label}</span>
@@ -120,7 +130,7 @@ function App() {
         </aside>
 
         {/* Overlay para mobile */}
-        {sidebarOpen && <div className="sidebar-overlay" onClick={() => setSidebarOpen(false)}></div>}
+        {sidebarOpen && <div className="sidebar-overlay" onClick={closeSidebar}></div>}
 
         {/* Main Content */}
         <main className={`main-content ${activeComponent === 'conferencia' ? 'main-content-full' : ''}`}>

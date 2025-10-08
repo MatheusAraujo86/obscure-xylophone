@@ -11,7 +11,14 @@ export const useTheme = () => {
   }, [theme]);
 
   const toggleTheme = () => {
-    const themes = ["fui", "fui-light", "dark", "dark-green", "dark-purple"];
+    const themes = [
+      "fui",
+      "light-green",
+      "dark",
+      "dark-green",
+      "dark-purple",
+      "dark-red",
+    ];
     const currentIndex = themes.indexOf(theme);
     const nextIndex = (currentIndex + 1) % themes.length;
     setTheme(themes[nextIndex]);

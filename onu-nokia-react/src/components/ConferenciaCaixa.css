@@ -200,7 +200,9 @@
 .remove-btn,
 .compare-btn,
 .toggle-down-btn,
-.toggle-result-btn {
+.toggle-result-btn,
+.toggle-btn,
+.vaga-btn {
   color: var(--text-button);
   border: 1px solid var(--accent-primary);
   padding: 1rem 1.5rem;
@@ -229,7 +231,9 @@
 .remove-btn::before,
 .compare-btn::before,
 .toggle-down-btn::before,
-.toggle-result-btn::before {
+.toggle-result-btn::before,
+.toggle-btn::before,
+.vaga-btn::before {
   content: "";
   position: absolute;
   top: 0;
@@ -251,7 +255,9 @@
 .remove-btn:hover,
 .compare-btn:hover,
 .toggle-down-btn:hover,
-.toggle-result-btn:hover {
+.toggle-result-btn:hover,
+.toggle-btn:hover,
+.vaga-btn:hover {
   transform: translateY(-2px);
   box-shadow: 0 6px 24px var(--shadow-primary), 0 0 30px var(--shadow-glow);
 }
@@ -261,7 +267,9 @@
 .remove-btn:hover::before,
 .compare-btn:hover::before,
 .toggle-down-btn:hover::before,
-.toggle-result-btn:hover::before {
+.toggle-result-btn:hover::before,
+.toggle-btn:hover::before,
+.vaga-btn:hover::before {
   left: 100%;
 }
 
@@ -270,13 +278,17 @@
   border-color: var(--accent-primary);
 }
 
-.compare-btn:hover {
-  border-color: var(--accent-primary);
+.compare-btn:hover,
+.toggle-btn:hover,
+.vaga-btn:hover,
+.remove-btn:hover {
+  border-color: var(--accent-primary) !important;
   background: linear-gradient(
     135deg,
     var(--accent-primary),
     var(--accent-secondary)
-  );
+  ) !important;
+  color: var(--text-button) !important;
 }
 
 .toggle-down-btn {
@@ -303,63 +315,196 @@
   );
 }
 
-/* Tabelas */
+/* Tabelas - Design Melhorado */
 .conferencia-caixa table {
   width: 100%;
   border-collapse: separate;
   border-spacing: 0;
-  margin: 1rem 0;
-  border-radius: 6px;
+  margin: 1.5rem auto;
+  border-radius: 10px;
   overflow: hidden;
   background: var(--vscode-editor-background);
-  box-shadow: 0 1px 3px var(--vscode-widget-shadow);
-  border: 1px solid var(--vscode-panel-border);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08),
+    0 0 0 1px var(--vscode-panel-border);
 }
 
 .conferencia-caixa th,
 .conferencia-caixa td {
   border-right: 1px solid var(--vscode-panel-border);
   border-bottom: 1px solid var(--vscode-panel-border);
-  padding: 0.75rem;
+  padding: 0.75rem 1rem;
   text-align: left;
-  color: var(--vscode-editor-foreground);
+  color: var(--text-primary);
   word-wrap: break-word;
   position: relative;
+  vertical-align: middle;
+}
+
+/* Tabela de Conferência Armazenada - Design Específico */
+.stored-differences-table {
+  max-width: 1400px;
+  margin: 1.5rem auto;
+  font-size: 0.9rem;
+}
+
+/* Coluna Porta - Compacta e Centralizada */
+.stored-differences-table th:first-child,
+.stored-differences-table td:first-child {
+  width: 100px;
+  text-align: center;
+  font-weight: 600;
+  background: var(--vscode-list-hoverBackground);
+  border-right: 2px solid var(--accent-primary);
+}
+
+/* Coluna Cliente Removido - Expansível */
+.stored-differences-table th:nth-child(2),
+.stored-differences-table td:nth-child(2) {
+  width: auto;
+  min-width: 400px;
+  max-width: 800px;
+  padding: 0.75rem 1.25rem;
+}
+
+/* Coluna de Ações - Compacta */
+.stored-differences-table th:last-child,
+.stored-differences-table td:last-child {
+  width: 180px;
+  padding: 0.5rem;
+  overflow: visible;
+  text-align: center;
 }
 
 .conferencia-caixa th:first-child,
 .conferencia-caixa td:first-child {
-  border-left: 1px solid var(--vscode-panel-border);
+  border-left: none;
 }
 
 .conferencia-caixa th {
-  background: var(--vscode-list-hoverBackground);
-  color: var(--vscode-list-activeSelectionForeground);
-  font-weight: 600;
-  font-size: 0.9rem;
-  border-top: 1px solid var(--vscode-panel-border);
-}
-
-.conferencia-caixa tr:hover {
-  background: var(--vscode-list-hoverBackground);
-}
-
-/* Sobrescrita específica para remove-btn */
-.remove-btn {
-  font-size: 0.9rem;
-  padding: 0.5rem 1rem;
-  min-width: auto;
-  flex: none;
-  border-color: var(--danger-color);
   background: linear-gradient(
     135deg,
-    var(--danger-color),
-    rgba(255, 0, 64, 0.8)
+    var(--vscode-list-hoverBackground) 0%,
+    var(--vscode-editor-background) 100%
   );
+  color: var(--accent-primary);
+  font-weight: 700;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border-top: none;
+  border-bottom: 2px solid var(--accent-primary);
+  padding: 1rem;
+  position: sticky;
+  top: 0;
+  z-index: 10;
 }
 
-.remove-btn:hover {
-  background: var(--danger-color);
+.conferencia-caixa tr {
+  transition: all 0.2s ease;
+}
+
+.conferencia-caixa tbody tr:hover {
+  background: var(--vscode-list-hoverBackground);
+  transform: scale(1.01);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* Última linha sem borda inferior */
+.conferencia-caixa tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* Estilos para React Table Library - CompactTable */
+.conferencia-caixa [data-table-library_table] {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: 0.9rem;
+}
+
+.conferencia-caixa [data-table-library_row] {
+  transition: all 0.2s ease;
+}
+
+.conferencia-caixa [data-table-library_row]:hover {
+  background: var(--vscode-list-hoverBackground) !important;
+  transform: scale(1.01);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.conferencia-caixa [data-table-library_header] {
+  background: linear-gradient(
+    135deg,
+    var(--vscode-list-hoverBackground) 0%,
+    var(--vscode-editor-background) 100%
+  );
+  color: var(--accent-primary) !important;
+  font-weight: 700;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border-bottom: 2px solid var(--accent-primary);
+  padding: 1rem !important;
+}
+
+.conferencia-caixa [data-table-library_cell] {
+  border-right: 1px solid var(--vscode-panel-border);
+  border-bottom: 1px solid var(--vscode-panel-border);
+  padding: 0.75rem 1rem;
+  vertical-align: middle;
+  color: var(--text-primary);
+}
+
+/* Estilos para linhas baseadas em status dentro da CompactTable */
+.conferencia-caixa [data-table-library_row][data-status="vaga"] {
+  background: rgba(16, 185, 129, 0.05);
+  border-left: 3px solid #10b981;
+}
+
+.conferencia-caixa [data-table-library_row][data-status="conferida"] {
+  background: rgba(59, 130, 246, 0.05);
+  border-left: 3px solid #3b82f6;
+}
+
+.conferencia-caixa [data-table-library_row][data-status="pendente"] {
+  background: rgba(245, 158, 11, 0.05);
+  border-left: 3px solid #f59e0b;
+}
+
+.conferencia-caixa [data-table-library_row][data-pendente="true"] {
+  background: rgba(245, 158, 11, 0.1);
+  border-left: 4px solid #f59e0b;
+  box-shadow: 0 0 10px rgba(245, 158, 11, 0.2);
+  animation: pulseRow 2s ease-in-out infinite;
+}
+
+/* Sobrescritas de tamanho para botões pequenos (mantém efeitos, muda apenas tamanho) */
+.remove-btn,
+.toggle-btn,
+.vaga-btn {
+  padding: 0.35rem 0.9rem !important;
+  border-radius: 6px !important;
+  font-size: 0.75rem !important;
+  letter-spacing: 0.5px !important;
+  min-width: auto !important;
+  flex: none !important;
+  margin: 0 !important;
+}
+
+/* Cores específicas para cada botão pequeno (sem !important para permitir hover) */
+.remove-btn {
+  border-color: var(--danger-color);
+  color: var(--danger-color);
+}
+
+.toggle-btn {
+  border-color: #00ffff;
+  color: #00ffff;
+}
+
+.vaga-btn {
+  border-color: #00ff00;
+  color: #00ff00;
 }
 
 .message {
@@ -436,8 +581,59 @@
 
   .conferencia-caixa th,
   .conferencia-caixa td {
-    padding: 0.8rem;
-    font-size: 0.9rem;
+    padding: 0.6rem;
+    font-size: 0.85rem;
+  }
+
+  /* Tabela responsiva */
+  .stored-differences-table {
+    font-size: 0.8rem;
+  }
+
+  .stored-differences-table th:nth-child(2),
+  .stored-differences-table td:nth-child(2) {
+    min-width: 250px;
+    padding: 0.6rem 0.8rem;
+  }
+
+  .stored-differences-table th:last-child,
+  .stored-differences-table td:last-child {
+    width: 140px;
+  }
+}
+
+@media (max-width: 480px) {
+  .conferencia-caixa h1 {
+    font-size: 1.5rem;
+  }
+
+  .conferencia-caixa th,
+  .conferencia-caixa td {
+    padding: 0.4rem;
+    font-size: 0.75rem;
+  }
+
+  /* Empilhar botões em telas muito pequenas */
+  .stored-differences-table td > div {
+    flex-direction: column;
+    gap: 0.3rem;
+  }
+
+  .toggle-btn,
+  .vaga-btn,
+  .remove-btn {
+    width: 100%;
+    text-align: center;
+  }
+
+  .stored-differences-table th:first-child,
+  .stored-differences-table td:first-child {
+    width: 60px;
+  }
+
+  .stored-differences-table th:nth-child(2),
+  .stored-differences-table td:nth-child(2) {
+    min-width: 180px;
   }
 }
 
@@ -469,81 +665,167 @@
   }
 }
 
-/* Estilos para status das portas */
+/* Estilos para status das portas - Badges sem interação (apenas visual) */
 .status-badge {
   display: inline-flex;
   align-items: center;
-  gap: 0.5rem;
-  padding: 0.3rem 0.8rem;
-  border-radius: 20px;
-  font-size: 0.85rem;
-  font-weight: bold;
+  gap: 0.4rem;
+  padding: 0.35rem 0.9rem;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.5px;
+  font-family: "Orbitron", monospace;
+  border: 1px solid currentColor;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 2px 8px var(--shadow-primary), 0 0 10px var(--shadow-glow);
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  cursor: default;
+  background: linear-gradient(135deg, var(--bg-secondary), var(--bg-tertiary));
 }
 
-.status-vaga {
-  background: var(--vscode-testing-iconPassed);
-  color: var(--vscode-editor-background);
-  border: 1px solid var(--vscode-testing-iconPassed);
+/* Efeito shine estático nos badges (sem animação) */
+.status-badge::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.1),
+    transparent
+  );
+  pointer-events: none;
+}
+
+.status-vaga,
+.badge-vaga {
+  background: linear-gradient(135deg, var(--bg-secondary), var(--bg-tertiary));
+  border: 1px solid var(--accent-secondary);
+  color: var(--accent-secondary);
 }
 
 .status-conferida {
-  background: var(--vscode-testing-iconQueued);
-  color: var(--vscode-editor-background);
-  border: 1px solid var(--vscode-testing-iconQueued);
+  background: linear-gradient(135deg, var(--bg-secondary), var(--bg-tertiary));
+  border: 1px solid var(--accent-secondary);
+  color: var(--accent-secondary);
 }
 
 .status-pendente {
-  background: var(--vscode-list-inactiveSelectionBackground);
-  color: var(--vscode-list-inactiveSelectionForeground);
-  border: 1px solid var(--vscode-panel-border);
+  background: linear-gradient(135deg, var(--bg-secondary), var(--bg-tertiary));
+  border: 1px solid var(--accent-secondary);
+  color: var(--accent-secondary);
 }
 
-/* Estilos para linhas da tabela baseado no status */
+.badge-livre {
+  background: linear-gradient(135deg, var(--bg-secondary), var(--bg-tertiary));
+  border: 1px solid var(--accent-secondary);
+  color: var(--accent-secondary);
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  padding: 0.35rem 0.9rem;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  font-family: "Orbitron", monospace;
+  display: inline-block;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 2px 8px var(--shadow-primary), 0 0 10px var(--shadow-glow);
+  cursor: default;
+}
+
+.badge-livre::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.1),
+    transparent
+  );
+  pointer-events: none;
+}
+
+/* Estilos para linhas da tabela baseado no status - Adaptado ao tema */
 .stored-differences-table tr.status-vaga {
-  background: var(--vscode-diffEditor-insertedTextBackground);
+  background: rgba(0, 255, 0, 0.03);
+  border-left: 3px solid #00ff00;
 }
 
 .stored-differences-table tr.status-conferida {
-  background: var(--vscode-diffEditor-removedTextBackground);
+  background: rgba(0, 255, 255, 0.03);
+  border-left: 3px solid #00ffff;
 }
 
 .stored-differences-table tr.status-pendente {
-  background: var(--vscode-list-inactiveSelectionBackground);
+  background: var(--vscode-diffEditor-insertedTextBackground);
+  border-left: 3px solid var(--accent-primary);
 }
 
-/* Botão para marcar como conferida */
+.stored-differences-table tr.porta-atual {
+  background: var(--vscode-diffEditor-insertedTextBackground);
+  border-left: 4px solid var(--accent-primary);
+  box-shadow: 0 0 10px var(--shadow-glow);
+  animation: pulseRow 2s ease-in-out infinite;
+}
+
+@keyframes pulseRow {
+  0%,
+  100% {
+    box-shadow: 0 0 10px var(--shadow-glow);
+  }
+  50% {
+    box-shadow: 0 0 20px var(--shadow-glow);
+  }
+}
+
+.stored-differences-table tr.porta-livre {
+  background: rgba(var(--accent-secondary-rgb, 139, 92, 246), 0.03);
+  border-left: 3px solid var(--accent-secondary);
+}
+
+.stored-differences-table tr.porta-vaga {
+  background: rgba(0, 255, 0, 0.03);
+  border-left: 3px solid #00ff00;
+}
+
+/* Botão para marcar como conferida - Cores específicas */
 .toggle-btn {
-  background: linear-gradient(45deg, #00ffff, #0080ff);
-  border: none;
-  color: #000;
-  padding: 0.5rem 1rem;
-  border-radius: 8px;
-  cursor: pointer;
-  font-weight: bold;
-  font-size: 0.8rem;
-  margin-right: 0.5rem;
-  transition: all 0.3s ease;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
+  border: 1px solid #00ffff !important;
+  background: linear-gradient(
+    135deg,
+    var(--bg-secondary),
+    var(--bg-tertiary)
+  ) !important;
+  color: #00ffff !important;
 }
 
-.toggle-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 5px 15px rgba(0, 255, 255, 0.4);
-}
-
-.toggle-btn.conferida {
-  background: linear-gradient(45deg, #ff6b6b, #ff8e8e);
-}
-
+/* Estado disabled para toggle-btn */
 .toggle-btn:disabled {
   background: #666;
   color: #999;
   cursor: not-allowed;
   transform: none;
   box-shadow: none;
+  opacity: 0.5;
+}
+
+/* Container de botões dentro da tabela */
+.stored-differences-table td > div {
+  display: flex;
+  gap: 0.2rem;
+  align-items: center;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
 }
 
 /* Animação para novas entradas */
@@ -562,39 +844,101 @@
   animation: slideInFromRight 0.5s ease-out;
 }
 
-/* Estilos para o modo sequencial */
+/* Estilos para o modo sequencial - Design Melhorado */
 .status-atual {
-  background: rgba(0, 255, 255, 0.1);
+  background: linear-gradient(
+    135deg,
+    rgba(0, 255, 255, 0.05) 0%,
+    rgba(0, 255, 255, 0.02) 100%
+  );
   border: 2px solid var(--accent-primary);
-  border-radius: 10px;
-  padding: 1rem;
-  margin: 1rem 0;
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin: 2rem auto;
+  max-width: 800px;
   text-align: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 0 20px rgba(0, 255, 255, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+.status-atual::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(0, 255, 255, 0.1),
+    transparent
+  );
+  animation: shimmer 3s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    left: -100%;
+  }
+  100% {
+    left: 100%;
+  }
 }
 
 .status-atual h3 {
   color: var(--accent-primary);
-  margin: 0 0 0.5rem 0;
-  font-size: 1.2rem;
+  margin: 0 0 1rem 0;
+  font-size: 1.4rem;
+  font-weight: 700;
+  text-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
+  position: relative;
+  z-index: 1;
 }
 
 .status-message {
-  font-weight: bold;
-  padding: 0.5rem;
-  border-radius: 5px;
+  font-weight: 600;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
   margin: 0;
+  font-size: 0.95rem;
+  position: relative;
+  z-index: 1;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .status-message.bloqueado {
-  background: rgba(255, 0, 0, 0.2);
+  background: linear-gradient(
+    135deg,
+    rgba(255, 59, 48, 0.2) 0%,
+    rgba(255, 59, 48, 0.1) 100%
+  );
   color: #ff6b6b;
   border: 1px solid #ff6b6b;
 }
 
 .status-message.liberado {
-  background: rgba(0, 255, 0, 0.2);
-  color: #00ff00;
-  border: 1px solid #00ff00;
+  background: linear-gradient(
+    135deg,
+    rgba(16, 185, 129, 0.2) 0%,
+    rgba(16, 185, 129, 0.1) 100%
+  );
+  color: #10b981;
+  border: 1px solid #10b981;
+}
+
+/* Message geral */
+.message {
+  color: var(--accent-primary);
+  font-weight: 600;
+  margin: 1rem 0;
+  padding: 1rem;
+  background: rgba(0, 255, 255, 0.05);
+  border-left: 4px solid var(--accent-primary);
+  border-radius: 6px;
+  text-align: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 /* Destacar porta atual */
@@ -649,40 +993,27 @@
 .vaga-btn:disabled {
   opacity: 0.5;
   cursor: not-allowed;
-  background: #666;
-  color: #999;
+  background: #666 !important;
+  color: #999 !important;
+  border-color: #666 !important;
+  box-shadow: none !important;
 }
 
 .toggle-btn:disabled:hover,
 .remove-btn:disabled:hover,
 .vaga-btn:disabled:hover {
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+/* Estado disabled para vaga-btn */
+.vaga-btn:disabled {
+  background: #666;
+  color: #999;
+  cursor: not-allowed;
   transform: none;
   box-shadow: none;
-}
-
-/* Botão para marcar como vaga */
-.vaga-btn {
-  background: linear-gradient(45deg, #00ff00, #00cc00);
-  border: none;
-  color: #000;
-  padding: 0.5rem 1rem;
-  border-radius: 8px;
-  cursor: pointer;
-  font-weight: bold;
-  font-size: 0.8rem;
-  margin-right: 0.5rem;
-  transition: all 0.3s ease;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-}
-
-.vaga-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 5px 15px rgba(0, 255, 0, 0.4);
-}
-
-.vaga-btn.vaga {
-  background: linear-gradient(45deg, #ff6b6b, #ff8e8e);
+  opacity: 0.5;
 }
 
 /* Botão voltar uma porta */
@@ -736,20 +1067,22 @@
 }
 
 .badge-livre {
-  background: var(--vscode-testing-iconPassed);
-  color: var(--vscode-editor-background);
+  background: var(--accent-secondary);
+  color: var(--bg-primary);
   padding: 0.2rem 0.5rem;
   border-radius: 12px;
   font-size: 0.7rem;
   font-weight: bold;
   margin-left: 0.5rem;
+  box-shadow: 0 0 8px var(--shadow-glow);
 }
 
 .porta-livre-text {
-  color: var(--vscode-testing-iconPassed) !important;
+  color: var(--accent-secondary) !important;
   font-weight: bold;
   font-size: 1.1em;
   text-align: center;
+  text-shadow: 0 0 10px var(--shadow-glow);
 }
 
 /* Estilos para portas vagas (tabelas vazias) */
@@ -759,18 +1092,134 @@
 }
 
 .badge-vaga {
-  background: var(--vscode-testing-iconFailed);
-  color: var(--vscode-editor-background);
+  background: var(--accent-primary);
+  color: var(--bg-primary);
   padding: 0.2rem 0.5rem;
   border-radius: 12px;
   font-size: 0.7rem;
   font-weight: bold;
   margin-left: 0.5rem;
+  box-shadow: 0 0 8px var(--shadow-glow);
 }
 
 .porta-vaga-text {
-  color: var(--vscode-testing-iconFailed) !important;
+  color: var(--accent-primary) !important;
   font-weight: bold;
   font-size: 1.1em;
   text-align: center;
+  text-shadow: 0 0 10px var(--shadow-glow);
+}
+
+/* Tabela de Conferência - Estilo Moderno */
+.conferencia-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  margin: 1.5rem auto;
+  max-width: 1400px;
+  background: var(--vscode-editor-background);
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.06);
+}
+
+.conferencia-table thead {
+  background: linear-gradient(
+    135deg,
+    var(--vscode-list-hoverBackground) 0%,
+    var(--vscode-editor-background) 100%
+  );
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.conferencia-table th {
+  color: var(--accent-primary);
+  font-weight: 700;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 1rem;
+  text-align: left;
+  border-bottom: 2px solid var(--accent-primary);
+  border-right: 1px solid var(--vscode-panel-border);
+}
+
+.conferencia-table th:last-child {
+  border-right: none;
+}
+
+.conferencia-table tbody tr {
+  transition: all 0.2s ease;
+  border-bottom: 1px solid var(--vscode-panel-border);
+}
+
+.conferencia-table tbody tr:hover {
+  background: var(--vscode-list-hoverBackground);
+  transform: scale(1.01);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.conferencia-table tbody tr[data-status="pendente"] {
+  border-left: 4px solid var(--accent-primary);
+  background: var(--vscode-diffEditor-insertedTextBackground);
+}
+
+.conferencia-table tbody tr[data-status="conferida"] {
+  border-left: 4px solid #00ffff;
+  background: rgba(0, 255, 255, 0.03);
+}
+
+.conferencia-table tbody tr[data-status="vaga"] {
+  border-left: 4px solid #00ff00;
+  background: rgba(0, 255, 0, 0.03);
+}
+
+.conferencia-table td {
+  padding: 0.75rem 1rem;
+  border-right: 1px solid var(--vscode-panel-border);
+  vertical-align: middle;
+}
+
+.conferencia-table td:last-child {
+  border-right: none;
+}
+
+.conferencia-table .porta-numero {
+  font-weight: 600;
+  text-align: center;
+  background: var(--vscode-list-hoverBackground);
+  border-radius: 4px;
+  min-width: 100px;
+}
+
+.conferencia-table .cliente-info {
+  font-family: monospace;
+  font-size: 0.9rem;
+  word-break: break-word;
+}
+
+.conferencia-table .acoes-cell {
+  text-align: center;
+  white-space: nowrap;
+}
+
+.conferencia-table .acoes-cell button {
+  margin: 0 0.2rem;
+}
+
+/* Animação para porta atual/pendente */
+@keyframes pulseRow {
+  0%,
+  100% {
+    box-shadow: 0 0 5px var(--accent-primary);
+  }
+  50% {
+    box-shadow: 0 0 20px var(--accent-primary);
+  }
+}
+
+.conferencia-table tbody tr[data-status="pendente"]:first-child {
+  animation: pulseRow 2s ease-in-out infinite;
 }

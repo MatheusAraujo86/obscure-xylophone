@@ -319,65 +319,6 @@ body[data-theme="light-green"] {
   --button-danger: linear-gradient(45deg, #2a0a0a, #4a1a1a);
 }
 
-/* Tema Vermelho Escuro - Flamengo */
-:root[data-theme="dark-red"],
-body[data-theme="dark-red"] {
-  --bg-primary: #0a0000;
-  --bg-secondary: #1a0000;
-  --bg-tertiary: #0d0000;
-  --bg-quaternary: #000000;
-  --bg-accent: #000000;
-  --text-primary: #e81f2d;
-  --text-secondary: #ff4444;
-  --text-accent: #ffffff;
-  --text-button: #ffffff;
-  --text-button-warning: #ffc107;
-  --text-button-danger: #ffffff;
-  --accent-primary: #e81f2d;
-  --accent-secondary: #c4001d;
-  --border-primary: rgba(232, 31, 45, 0.4);
-  --border-secondary: rgba(232, 31, 45, 0.2);
-  --shadow-primary: rgba(0, 0, 0, 0.8);
-  --shadow-glow: rgba(232, 31, 45, 0.3);
-  --hover-primary: rgba(232, 31, 45, 0.2);
-  --focus-ring: 0 0 0 2px rgba(232, 31, 45, 0.6),
-    0 0 15px rgba(232, 31, 45, 0.4);
-  --success: #e81f2d;
-  --warning: #ffc107;
-  --danger: #ff0000;
-  --info: #ff4444;
-  --card-bg: linear-gradient(145deg, #0a0000 0%, #1a0000 50%, #0d0000 100%);
-  --header-bg: linear-gradient(
-    90deg,
-    rgba(0, 0, 0, 0.9) 0%,
-    rgba(232, 31, 45, 0.2) 50%,
-    rgba(0, 0, 0, 0.9) 100%
-  );
-  --surface-primary: linear-gradient(
-    135deg,
-    rgba(10, 0, 0, 0.95) 0%,
-    rgba(26, 0, 0, 0.85) 100%
-  );
-  --surface-secondary: linear-gradient(
-    90deg,
-    rgba(0, 0, 0, 0.8) 0%,
-    rgba(20, 0, 0, 0.6) 100%
-  );
-  --surface-tertiary: linear-gradient(
-    45deg,
-    rgba(5, 0, 0, 0.9) 0%,
-    rgba(26, 10, 10, 0.7) 100%
-  );
-  --surface-quaternary: linear-gradient(
-    180deg,
-    rgba(8, 0, 0, 0.95) 0%,
-    rgba(15, 0, 0, 0.8) 100%
-  );
-  --button-primary: linear-gradient(45deg, #c4001d, #e81f2d);
-  --button-warning: linear-gradient(45deg, #cc8800, #ffc107);
-  --button-danger: linear-gradient(45deg, #990000, #ff0000);
-}
-
 /* Layout principal - Tema Responsivo */
 .app-container {
   min-height: 100vh;
@@ -735,27 +676,36 @@ body[data-theme="light-purple"] .card-header {
   border-color: var(--text-primary);
 }
 
-/* Estilos fixos para botões críticos - mantém cores do tema FUI em todos os temas */
 .btn-warning {
-  background: linear-gradient(45deg, #4d2600, #ff8800) !important;
-  color: #ffffff !important;
-  border-color: #ff8800 !important;
+  background: var(--button-warning);
+  color: var(--text-button-warning);
+  box-shadow: 0 4px 16px var(--shadow-primary), 0 0 20px var(--shadow-glow);
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  border-color: var(--border-primary);
 }
 
 .btn-warning:hover {
-  background: linear-gradient(45deg, #5d3000, #ffaa00) !important;
-  box-shadow: 0 6px 24px rgba(255, 136, 0, 0.4), 0 0 30px rgba(255, 136, 0, 0.3) !important;
+  background: var(--button-warning);
+  color: var(--text-accent);
+  box-shadow: 0 6px 24px var(--shadow-primary), 0 0 30px var(--shadow-glow);
+  transform: translateY(-2px);
+  border-color: var(--text-primary);
 }
 
 .btn-danger {
-  background: linear-gradient(45deg, #440000, #ff2222) !important;
-  color: #ffffff !important;
-  border-color: #ff2222 !important;
+  background: var(--button-danger);
+  color: var(--text-button-danger);
+  box-shadow: 0 4px 16px var(--shadow-primary), 0 0 20px var(--shadow-glow);
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  border-color: var(--border-primary);
 }
 
 .btn-danger:hover {
-  background: linear-gradient(45deg, #550000, #ff4444) !important;
-  box-shadow: 0 6px 24px rgba(255, 34, 34, 0.4), 0 0 30px rgba(255, 34, 34, 0.3) !important;
+  background: var(--button-danger);
+  color: var(--text-accent);
+  box-shadow: 0 6px 24px var(--shadow-primary), 0 0 30px var(--shadow-glow);
+  transform: translateY(-2px);
+  border-color: var(--text-primary);
 }
 
 /* Grupos de botões */
@@ -1571,17 +1521,20 @@ body[data-theme="light-purple"] .card-header {
 .footer-logo {
   display: flex;
   justify-content: center;
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
 }
 
 .footer-logo .logo-wrapper {
   justify-content: center;
   padding: 0;
+}
+
+.footer-logo .logo-image {
   transition: transform 0.3s ease;
 }
 
-.footer-logo .logo-wrapper:hover {
-  transform: scale(1.1);
+.footer-logo .logo-image:hover {
+  transform: scale(1.1) rotate(5deg);
 }
 
 .footer-title {
@@ -2047,8 +2000,8 @@ body[data-theme="light-purple"] .card-header {
 /* Estilos específicos para tema FUI Light */
 [data-theme="light-green"] .card {
   border: 2px solid var(--accent-primary);
-  box-shadow: 0 0 20px rgba(152, 201, 19, 0.2), 0 0 40px rgba(152, 201, 19, 0.1),
-    inset 0 0 20px rgba(152, 201, 19, 0.03);
+  box-shadow: 0 0 20px rgba(0, 102, 204, 0.2), 0 0 40px rgba(0, 102, 204, 0.1),
+    inset 0 0 20px rgba(0, 102, 204, 0.03);
   position: relative;
   overflow: hidden;
   background: rgba(255, 255, 255, 0.95);
@@ -2064,9 +2017,9 @@ body[data-theme="light-purple"] .card-header {
   background: linear-gradient(
     45deg,
     transparent,
-    rgba(152, 201, 19, 0.1),
+    rgba(0, 102, 204, 0.1),
     transparent,
-    rgba(152, 201, 19, 0.1)
+    rgba(0, 102, 204, 0.1)
   );
   z-index: -1;
   animation: fuiBorderGlowLight 3s linear infinite;
@@ -2082,7 +2035,7 @@ body[data-theme="light-purple"] .card-header {
   background: linear-gradient(
     90deg,
     transparent,
-    rgba(152, 201, 19, 0.08),
+    rgba(0, 102, 204, 0.08),
     transparent
   );
   animation: fuiScanLineLight 4s linear infinite;
@@ -2090,12 +2043,107 @@ body[data-theme="light-purple"] .card-header {
   pointer-events: none;
 }
 
+[data-theme="light-green"] .btn {
+  position: relative;
+  border: 1px solid var(--accent-primary);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-family: "Orbitron", monospace;
+  font-weight: 600;
+  color: #ffffff !important;
+  background: linear-gradient(
+    135deg,
+    rgba(0, 80, 160, 0.9),
+    rgba(0, 102, 204, 0.8)
+  );
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
+  transition: all 0.3s ease;
+  z-index: 2;
+}
+
+[data-theme="light-green"] .btn:hover {
+  box-shadow: 0 0 20px rgba(0, 102, 204, 0.4),
+    inset 0 0 20px rgba(0, 102, 204, 0.1);
+  transform: translateY(-2px);
+  color: #ffffff !important;
+  background: linear-gradient(
+    135deg,
+    rgba(0, 102, 204, 0.9),
+    rgba(0, 128, 221, 0.8)
+  );
+}
+
+[data-theme="light-green"] .btn-primary {
+  background: linear-gradient(135deg, #4499cc, #0066cc) !important;
+  border-color: var(--accent-primary);
+  color: #ffffff !important;
+}
+
+[data-theme="light-green"] .btn-primary:hover {
+  background: linear-gradient(135deg, #66aadd, #0080dd) !important;
+  color: #ffffff !important;
+}
+
+[data-theme="light-green"] .btn-warning {
+  background: linear-gradient(135deg, #cc7700, #ff9900) !important;
+  border-color: #cc7700;
+  color: #ffffff !important;
+}
+
+[data-theme="light-green"] .btn-warning:hover {
+  background: linear-gradient(135deg, #dd8800, #ffaa00) !important;
+  color: #ffffff !important;
+}
+
+[data-theme="light-green"] .btn-danger {
+  background: linear-gradient(135deg, #cc3333, #ff4444) !important;
+  border-color: #cc3333;
+  color: #ffffff !important;
+}
+
+[data-theme="light-green"] .btn-danger:hover {
+  background: linear-gradient(135deg, #dd4444, #ff5555) !important;
+  color: #ffffff !important;
+}
+
+[data-theme="light-green"] .btn-success {
+  background: linear-gradient(135deg, #0088aa, #00aacc) !important;
+  border-color: #0088aa;
+  color: #ffffff !important;
+}
+
+[data-theme="light-green"] .btn-success:hover {
+  background: linear-gradient(135deg, #0099bb, #00bbdd) !important;
+  color: #ffffff !important;
+}
+
+[data-theme="light-green"] .btn::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
+  transition: left 0.5s;
+  z-index: -1;
+}
+
+[data-theme="light-green"] .btn:hover::before {
+  left: 100%;
+}
+
 [data-theme="light-green"] input,
 [data-theme="light-green"] select,
 [data-theme="light-green"] textarea {
   border: 1px solid var(--accent-primary);
   background: rgba(255, 255, 255, 0.9);
-  color: #3d5209;
+  color: #003366;
   font-family: "Roboto Mono", monospace;
   font-weight: 500;
   text-shadow: none;
@@ -2103,17 +2151,16 @@ body[data-theme="light-purple"] .card-header {
 
 [data-theme="light-green"] input::placeholder,
 [data-theme="light-green"] textarea::placeholder {
-  color: rgba(152, 201, 19, 0.6);
+  color: rgba(0, 51, 102, 0.6);
 }
 
 [data-theme="light-green"] input:focus,
 [data-theme="light-green"] select:focus,
 [data-theme="light-green"] textarea:focus {
-  box-shadow: 0 0 0 2px rgba(152, 201, 19, 0.6),
-    0 0 20px rgba(152, 201, 19, 0.2);
+  box-shadow: 0 0 0 2px rgba(0, 102, 204, 0.6), 0 0 20px rgba(0, 102, 204, 0.2);
   border-color: var(--accent-primary);
   background: rgba(255, 255, 255, 0.95);
-  color: #3d5209;
+  color: #003366;
 }
 
 [data-theme="light-green"] .form-label {
@@ -2130,18 +2177,18 @@ body[data-theme="light-purple"] .card-header {
 [data-theme="light-green"] h4,
 [data-theme="light-green"] h5,
 [data-theme="light-green"] h6 {
-  text-shadow: 0 0 5px rgba(152, 201, 19, 0.3);
+  text-shadow: 0 0 5px rgba(0, 102, 204, 0.3);
   font-family: "Orbitron", sans-serif;
   text-transform: uppercase;
   letter-spacing: 2px;
-  color: #3d5209;
+  color: #003366;
   font-weight: 600;
 }
 
 [data-theme="light-green"] .table {
   border: 1px solid var(--accent-primary);
   background: rgba(255, 255, 255, 0.95);
-  color: #3d5209;
+  color: #003366;
 }
 
 [data-theme="light-green"] .table th {
@@ -2150,112 +2197,139 @@ body[data-theme="light-purple"] .card-header {
   text-transform: uppercase;
   font-size: 0.9em;
   letter-spacing: 1px;
-  background: rgba(152, 201, 19, 0.9);
+  background: rgba(0, 102, 204, 0.9);
   font-weight: 600;
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
 }
 
 [data-theme="light-green"] .table td {
-  border-bottom: 1px solid rgba(152, 201, 19, 0.2);
-  color: #3d5209;
+  border-bottom: 1px solid rgba(0, 102, 204, 0.2);
+  color: #003366;
   background: rgba(255, 255, 255, 0.8);
 }
 
 [data-theme="light-green"] .table tbody tr:hover {
-  background: rgba(152, 201, 19, 0.1);
-  box-shadow: inset 0 0 10px rgba(152, 201, 19, 0.1);
+  background: rgba(0, 102, 204, 0.1);
+  box-shadow: inset 0 0 10px rgba(0, 102, 204, 0.1);
 }
 
 [data-theme="light-green"] .table tbody tr:hover td {
-  color: #3d5209;
-  background: rgba(247, 253, 244, 0.9);
+  color: #003366;
+  background: rgba(240, 248, 255, 0.9);
 }
 
 /* Estilos específicos FUI Light - Theme Toggle */
 [data-theme="light-green"] .theme-toggle {
   background: linear-gradient(
     135deg,
-    rgba(247, 253, 244, 0.9),
-    rgba(236, 249, 230, 0.8)
+    rgba(240, 248, 255, 0.9),
+    rgba(220, 235, 255, 0.8)
   );
   border: 1px solid var(--accent-primary);
-  color: #3d5209 !important;
+  color: #003366 !important;
   font-weight: 600;
   text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
-  box-shadow: 0 4px 12px rgba(152, 201, 19, 0.2),
-    0 0 20px rgba(152, 201, 19, 0.1);
+  box-shadow: 0 4px 12px rgba(0, 102, 204, 0.2), 0 0 20px rgba(0, 102, 204, 0.1);
 }
 
 [data-theme="light-green"] .theme-toggle:hover {
   background: linear-gradient(
     135deg,
-    rgba(236, 249, 230, 0.95),
-    rgba(225, 245, 216, 0.9)
+    rgba(230, 243, 255, 0.95),
+    rgba(210, 230, 255, 0.9)
   );
   border-color: var(--accent-primary);
-  box-shadow: 0 6px 20px rgba(152, 201, 19, 0.3),
-    0 0 30px rgba(152, 201, 19, 0.15);
-  color: #3d5209 !important;
+  box-shadow: 0 6px 20px rgba(0, 102, 204, 0.3),
+    0 0 30px rgba(0, 102, 204, 0.15);
+  color: #003366 !important;
 }
 
-/* Menu de opções de tema para Verde Claro */
-[data-theme="light-green"] .theme-options {
+/* Estilos específicos FUI Light - ConferenciaCaixa Buttons */
+[data-theme="light-green"] .conferencia-caixa button,
+[data-theme="light-green"] .lock-btn,
+[data-theme="light-green"] .compare-btn,
+[data-theme="light-green"] .toggle-down-btn,
+[data-theme="light-green"] .voltar-porta-btn,
+[data-theme="light-green"] .toggle-btn,
+[data-theme="light-green"] .vaga-btn {
   background: linear-gradient(
     135deg,
-    rgba(247, 253, 244, 0.98),
-    rgba(236, 249, 230, 0.98)
-  );
-  border: 2px solid rgba(152, 201, 19, 0.5);
-  box-shadow: 0 8px 24px rgba(152, 201, 19, 0.2),
-    0 0 40px rgba(152, 201, 19, 0.15), 0 0 0 1px rgba(152, 201, 19, 0.3);
+    rgba(0, 80, 160, 0.9),
+    rgba(0, 102, 204, 0.8)
+  ) !important;
+  border: 1px solid var(--accent-primary) !important;
+  color: #ffffff !important;
+  font-family: "Orbitron", monospace !important;
+  font-weight: 600 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 1px !important;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6) !important;
+  box-shadow: 0 0 10px rgba(0, 102, 204, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
 }
 
-[data-theme="light-green"] .theme-option {
-  color: #3d5209;
-  font-weight: 600;
-  border-bottom: 1px solid rgba(152, 201, 19, 0.2);
-  background: transparent;
-}
-
-[data-theme="light-green"] .theme-option:hover {
+[data-theme="light-green"] .conferencia-caixa button:hover,
+[data-theme="light-green"] .lock-btn:hover,
+[data-theme="light-green"] .compare-btn:hover,
+[data-theme="light-green"] .toggle-down-btn:hover,
+[data-theme="light-green"] .voltar-porta-btn:hover,
+[data-theme="light-green"] .toggle-btn:hover,
+[data-theme="light-green"] .vaga-btn:hover {
   background: linear-gradient(
     135deg,
-    rgba(152, 201, 19, 0.15),
-    rgba(152, 201, 19, 0.1)
-  );
-  color: #2a3a06;
-  padding-left: 1rem;
+    rgba(0, 102, 204, 0.9),
+    rgba(0, 128, 221, 0.8)
+  ) !important;
+  color: #ffffff !important;
+  box-shadow: 0 0 20px rgba(0, 102, 204, 0.4), 0 0 40px rgba(0, 102, 204, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2) !important;
+  transform: translateY(-2px) !important;
+  border-color: var(--accent-primary) !important;
 }
 
-[data-theme="light-green"] .theme-option.active {
-  background: linear-gradient(
-    135deg,
-    rgba(152, 201, 19, 0.3),
-    rgba(152, 201, 19, 0.2)
-  );
-  color: #2a3a06;
-  font-weight: 700;
-  border-left: 3px solid #98c913;
-  box-shadow: inset 0 0 10px rgba(152, 201, 19, 0.1);
+/* Botões específicos com cores diferenciadas - FUI Light */
+[data-theme="light-green"] .compare-btn {
+  background: linear-gradient(135deg, #4499cc, #0066cc) !important;
 }
 
-[data-theme="light-green"] .theme-option-icon {
-  color: #98c913;
-  font-size: 0.9rem;
+[data-theme="light-green"] .compare-btn:hover {
+  background: linear-gradient(135deg, #66aadd, #0080dd) !important;
 }
 
-[data-theme="light-green"] .theme-option-name {
-  color: inherit;
-  font-weight: inherit;
+[data-theme="light-green"] .voltar-porta-btn {
+  background: linear-gradient(135deg, #cc7700, #ff9900) !important;
+  border-color: #cc7700 !important;
 }
 
-[data-theme="light-green"] .theme-toggle-text {
-  color: #3d5209;
-  font-weight: 600;
+[data-theme="light-green"] .voltar-porta-btn:hover {
+  background: linear-gradient(135deg, #dd8800, #ffaa00) !important;
 }
 
-[data-theme="light-green"] .theme-toggle-icon {
-  color: #98c913;
+[data-theme="light-green"] .vaga-btn {
+  background: linear-gradient(135deg, #cc3333, #ff4444) !important;
+  border-color: #cc3333 !important;
+}
+
+[data-theme="light-green"] .vaga-btn:hover {
+  background: linear-gradient(135deg, #dd4444, #ff5555) !important;
+}
+
+[data-theme="light-green"] .toggle-btn {
+  background: linear-gradient(135deg, #0088aa, #00aacc) !important;
+  border-color: #0088aa !important;
+}
+
+[data-theme="light-green"] .toggle-btn:hover {
+  background: linear-gradient(135deg, #0099bb, #00bbdd) !important;
+}
+
+[data-theme="light-green"] .lock-btn {
+  background: linear-gradient(135deg, #666666, #888888) !important;
+  border-color: var(--accent-primary) !important;
+}
+
+[data-theme="light-green"] .lock-btn:hover {
+  background: linear-gradient(135deg, #777777, #999999) !important;
 }
 
 [data-theme="light-green"] .app-container {
@@ -2271,121 +2345,21 @@ body[data-theme="light-purple"] .card-header {
   bottom: 0;
   background: radial-gradient(
       circle at 20% 50%,
-      rgba(152, 201, 19, 0.02) 0%,
+      rgba(0, 102, 204, 0.02) 0%,
       transparent 50%
     ),
     radial-gradient(
       circle at 80% 50%,
-      rgba(152, 201, 19, 0.02) 0%,
+      rgba(0, 102, 204, 0.02) 0%,
       transparent 50%
     ),
     radial-gradient(
       circle at 40% 20%,
-      rgba(152, 201, 19, 0.015) 0%,
+      rgba(0, 102, 204, 0.015) 0%,
       transparent 50%
     );
   pointer-events: none;
   z-index: -1;
-}
-
-/* Estilos da sidebar para tema Verde Claro - melhor legibilidade */
-[data-theme="light-green"] .sidebar {
-  background: rgba(247, 253, 244, 0.98);
-  border-right: 2px solid rgba(152, 201, 19, 0.3);
-  box-shadow: 2px 0 10px rgba(152, 201, 19, 0.1);
-}
-
-[data-theme="light-green"] .sidebar-item {
-  color: #3d5209;
-  font-weight: 600;
-  border-left: 3px solid transparent;
-}
-
-[data-theme="light-green"] .sidebar-item:hover {
-  background-color: rgba(152, 201, 19, 0.15);
-  color: #2a3a06;
-  border-left-color: #98c913;
-}
-
-[data-theme="light-green"] .sidebar-item-active {
-  background: linear-gradient(
-    90deg,
-    rgba(152, 201, 19, 0.25) 0%,
-    rgba(152, 201, 19, 0.1) 100%
-  );
-  color: #2a3a06;
-  border-left-color: #98c913;
-  font-weight: 700;
-  box-shadow: inset 0 0 10px rgba(152, 201, 19, 0.1);
-}
-
-[data-theme="light-green"] .sidebar-label {
-  color: inherit;
-  text-shadow: none;
-}
-
-[data-theme="light-green"] .sidebar-icon {
-  color: #98c913;
-}
-
-[data-theme="light-green"] .menu-toggle {
-  background: linear-gradient(
-    135deg,
-    rgba(152, 201, 19, 0.2),
-    rgba(152, 201, 19, 0.1)
-  );
-  border: 2px solid #98c913;
-  color: #3d5209;
-  font-weight: 700;
-}
-
-[data-theme="light-green"] .menu-toggle:hover {
-  background: linear-gradient(
-    135deg,
-    rgba(152, 201, 19, 0.3),
-    rgba(152, 201, 19, 0.15)
-  );
-  border-color: #7ba30f;
-  box-shadow: 0 0 15px rgba(152, 201, 19, 0.3);
-  color: #2a3a06;
-}
-
-/* Header e toolbar para tema Verde Claro */
-[data-theme="light-green"] .header {
-  background: linear-gradient(
-    90deg,
-    rgba(247, 253, 244, 0.95) 0%,
-    rgba(236, 249, 230, 0.95) 50%,
-    rgba(247, 253, 244, 0.95) 100%
-  );
-  border-bottom: 2px solid rgba(152, 201, 19, 0.4);
-  box-shadow: 0 2px 10px rgba(152, 201, 19, 0.15);
-}
-
-[data-theme="light-green"] .toolbar h1 {
-  color: #3d5209;
-  text-shadow: 0 0 10px rgba(152, 201, 19, 0.3),
-    0 1px 2px rgba(152, 201, 19, 0.2);
-}
-
-[data-theme="light-green"] .toolbar h1::before,
-[data-theme="light-green"] .toolbar h1::after {
-  color: #98c913;
-}
-
-/* Form labels e elementos para tema Verde Claro */
-[data-theme="light-green"] .form-label,
-[data-theme="light-green"] label {
-  color: #3d5209 !important;
-  font-weight: 600;
-  text-shadow: none;
-}
-
-[data-theme="light-green"] select,
-[data-theme="light-green"] option {
-  color: #3d5209 !important;
-  background: rgba(255, 255, 255, 0.95) !important;
-  font-weight: 500;
 }
 
 /* Animações para tema FUI Light */

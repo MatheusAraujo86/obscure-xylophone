@@ -325,7 +325,7 @@ function OutrasOpcoes({ posicaoData }) {
             <form className="form">
                 {/* Seção de Consultas Bridge ONT */}
                 <div className="form-group">
-                    <label>Consultas Bridge ONT</label>
+                    <label>Consultas PPPOE</label>
                     <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '0.5rem' }}>
                         <button
                             type="button"

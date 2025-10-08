@@ -6,6 +6,7 @@ import { useToast } from './hooks/useToast';
 import { useKeyboardShortcuts } from './hooks/useKeyboardShortcuts';
 import ThemeToggle from './components/ThemeToggle';
 import ToastContainer from './components/ToastContainer';
+import Logo from './components/Logo';
 import PosicaoCliente from './components/PosicaoCliente';
 import PesquisaCliente from './components/PesquisaCliente';
 import OutrasOpcoes from './components/OutrasOpcoes';
@@ -151,6 +152,9 @@ function App() {
       {/* Footer */}
       <footer className="footer">
         <div className="footer-content">
+          <div className="footer-logo">
+            <Logo size={50} showTitle={false} />
+          </div>
           <div className="footer-title">【 DESENVOLVIDO POR 】</div>
           <div className="footer-authors">◈ Matheus ◊ Esteban ◈</div>
           <div className="footer-subtitle">━━━━━ SISTEMA DE CONTROLE ONT ━━━━━</div>

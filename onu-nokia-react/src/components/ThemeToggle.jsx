@@ -10,10 +10,11 @@ function ThemeToggle() {
 
     const themes = [
         { id: 'fui', name: 'FUI Escuro', icon: '◐' },
-        { id: 'fui-light', name: 'FUI Claro', icon: '◑' },
+        { id: 'light-green', name: 'Verde Claro', icon: '◑' },
         { id: 'dark', name: 'Padrão Escuro', icon: '◪' },
         { id: 'dark-green', name: 'Verde Escuro', icon: '◕' },
-        { id: 'dark-purple', name: 'Roxo Escuro', icon: '◖' }
+        { id: 'dark-purple', name: 'Roxo Escuro', icon: '◖' },
+        { id: 'dark-red', name: 'Vermelho Escuro', icon: '◗' }
     ];
 
     const currentTheme = themes.find(t => t.id === theme) || themes[0];

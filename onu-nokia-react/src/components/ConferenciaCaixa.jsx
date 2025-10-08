@@ -18,8 +18,66 @@ const ConferenciaCaixa = () => {
     const [portaAtual, setPortaAtual] = useState(1);
     const [bloqueioAtivo, setBloqueioAtivo] = useState(false);
     const [historicoPortas, setHistoricoPortas] = useState([]); // Histórico de portas processadas
+    const [portasPendentes, setPortasPendentes] = useState([]); // Portas que precisam ser conferidas no grupo atual
 
     const portaCounterRef = useRef(1);
+
+    // Função para extrair posição, nome e descrição da caixa de uma linha
+    const extractPosicaoENome = (linha) => {
+        if (!linha || linha.trim() === '') return { posicao: '', nome: '', descricao: '' };
+        
+        // Padrão: 1/1/1/1    1/1/1/1/2      ALCL:B3DA95BD up down -26.0 6.0 "NOME" DESCRICAO
+        // ou:     1/1/8/6    1/1/8/6/1      ALCL:FC205F5D up up -27.6 2.5 JAQUELINE_RODRIGUES_DE_LIMA Blarg/39530/2132-jaquelinerlima
+        
+        // Tentar extrair nome entre aspas primeiro
+        const regexNomeComAspas = /"([^"]+)"/;
+        const matchNomeComAspas = linha.match(regexNomeComAspas);
+        let nome = '';
+        let indexFimNome = -1;
+        
+        if (matchNomeComAspas) {
+            // Nome está entre aspas
+            nome = matchNomeComAspas[1].trim();
+            indexFimNome = linha.indexOf(matchNomeComAspas[0]) + matchNomeComAspas[0].length;
+        } else {
+            // Nome SEM aspas - buscar após os números de sinal (ex: -27.6 2.5)
+            // Padrão: depois de "up/down" vem dois números (sinal), depois o nome
+            const regexNomeSemAspas = /(?:up|down)\s+(?:up|down)\s+[-\d.]+\s+[\d.]+\s+([A-Z_]+(?:[A-Z_]+)*)/i;
+            const matchNomeSemAspas = linha.match(regexNomeSemAspas);
+            if (matchNomeSemAspas) {
+                nome = matchNomeSemAspas[1].trim().replace(/_/g, ' '); // Substituir _ por espaço
+                indexFimNome = linha.indexOf(matchNomeSemAspas[1]) + matchNomeSemAspas[1].length;
+            }
+        }
+        
+        // Encontrar a posição (formato X/X/X/X ou X/X/X/X/X)
+        const regexPosicao = /(\d+\/\d+\/\d+\/\d+(?:\/\d+)?)/g;
+        const posicoesEncontradas = linha.match(regexPosicao);
+        // A segunda posição geralmente é a correta (primeira é rack/slot, segunda é porta completa)
+        const posicao = posicoesEncontradas && posicoesEncontradas.length > 1 ? 
+                        posicoesEncontradas[1] : 
+                        (posicoesEncontradas && posicoesEncontradas.length > 0 ? posicoesEncontradas[0] : '');
+        
+        // Extrair descrição da caixa (tudo após o nome)
+        let descricao = '';
+        if (indexFimNome > 0) {
+            // Pegar todo o resto da linha após o nome
+            const restoCompleto = linha.substring(indexFimNome).trim();
+            
+            // Remover múltiplos espaços e "undefined"
+            const descricaoLimpa = restoCompleto
+                .replace(/\s+/g, ' ')
+                .replace(/\bundefined\b/g, '')
+                .trim();
+            
+            // Só atribuir se não estiver vazio
+            if (descricaoLimpa && descricaoLimpa.length > 0) {
+                descricao = descricaoLimpa;
+            }
+        }
+        
+        return { posicao, nome, descricao };
+    };
 
     const handleButtonClick = async (callback) => {
         setIsLoading(true);
@@ -74,9 +132,7 @@ const ConferenciaCaixa = () => {
         const newDownData = [];
 
         let hasDifferences = false;
-        let firstDifferenceFound = false;
-        let firstDifferentRow1 = '';
-        let firstDifferentRow2 = '';
+        const allDifferences = []; // Array para armazenar todas as diferenças
 
         for (let i = 0; i < maxLength; i++) {
             const row1 = (table1Data[i] || '').trim();
@@ -96,14 +152,23 @@ const ConferenciaCaixa = () => {
             let isDifferent = false;
             for (let j = 0; j < compareLength; j++) {
                 if (cols1[j] !== cols2[j]) {
+                    // Verificar se é um caso de cliente down que ficou up
+                    const row1IsDown = row1.toLowerCase().includes("down");
+                    const row2IsUp = row2 && !row2.toLowerCase().includes("down");
+                    
+                    // Se estava down na tabela 1 e ficou up na tabela 2, ignorar essa diferença
+                    if (row1IsDown && row2IsUp) {
+                        isDifferent = false;
+                        break;
+                    }
+                    
                     hasDifferences = true;
                     isDifferent = true;
-                    // Capturar apenas a primeira diferença encontrada
-                    if (!firstDifferenceFound) {
-                        firstDifferenceFound = true;
-                        firstDifferentRow1 = row1;
-                        firstDifferentRow2 = row2;
-                    }
+                    // Armazenar todas as diferenças encontradas
+                    allDifferences.push({
+                        row1: row1,
+                        row2: row2
+                    });
                     break;
                 }
             }
@@ -131,8 +196,10 @@ const ConferenciaCaixa = () => {
             setDownData(newDownData);
         }
 
-        // Criar apenas UMA entrada para esta porta
+        // Criar entradas para TODAS as diferenças encontradas, cada uma em uma porta diferente
         let differences = [];
+        const novasPortasPendentes = [];
+        
         if (!hasDifferences) {
             // Adicionar entrada "Porta Vaga" quando não há diferenças
             const portaVagaEntry = {
@@ -143,21 +210,62 @@ const ConferenciaCaixa = () => {
                 isPortaLivre: true
             };
             differences.push(portaVagaEntry);
+            novasPortasPendentes.push(portaAtual);
             setMessage(`Porta ${portaAtual}: Porta Vaga - Marque como vaga para continuar`);
         } else {
-            // Adicionar entrada com a primeira diferença encontrada
-            const portaComDiferenca = {
-                line: `Porta ${portaAtual}`,
-                row1: firstDifferentRow1,
-                row2: firstDifferentRow2,
-                portaIndex: portaAtual,
-                isPortaLivre: false
-            };
-            differences.push(portaComDiferenca);
-            setMessage(`Porta ${portaAtual}: Diferenças detectadas - Marque como conferida após análise`);
+            // Cada diferença é uma porta separada
+            allDifferences.forEach((diff, index) => {
+                const numeroDaPorta = portaAtual + index;
+                
+                // Extrair posição e nome da linha que foi removida
+                const linhaRemovida = diff.row1 && !diff.row2 ? diff.row1 : 
+                                      !diff.row1 && diff.row2 ? diff.row2 : 
+                                      diff.row1;
+                
+                const { posicao, nome, descricao } = extractPosicaoENome(linhaRemovida);
+                
+                // Formatar o texto para exibição: Posição    "Nome"    Descrição
+                let displayText = '';
+                if (posicao && nome) {
+                    // Formato: 1/1/1/1/2    "NILSON BARBOSA DE OLIVEIRA"    SNT-CON-NQ-SP32-SS6-P01
+                    displayText = `${posicao}    "${nome}"`;
+                    // Só adiciona descrição se existir, não for undefined e não estiver vazio
+                    if (descricao && descricao !== 'undefined' && typeof descricao === 'string' && descricao.trim() !== '') {
+                        // Remover qualquer ocorrência de "undefined" da descrição
+                        const descricaoLimpa = descricao.replace(/\bundefined\b/g, '').trim();
+                        if (descricaoLimpa && descricaoLimpa.length > 0) {
+                            displayText += `    ${descricaoLimpa}`;
+                        }
+                    }
+                } else {
+                    // Se não conseguiu extrair, usar a linha completa como fallback
+                    displayText = linhaRemovida;
+                }
+                
+                const portaComDiferenca = {
+                    line: `Porta ${numeroDaPorta}`,
+                    row1: diff.row1,
+                    row2: diff.row2,
+                    displayText: displayText, // Texto formatado para exibição
+                    portaIndex: numeroDaPorta,
+                    isPortaLivre: false
+                };
+                differences.push(portaComDiferenca);
+                novasPortasPendentes.push(numeroDaPorta);
+            });
+            
+            // Atualizar a mensagem com a quantidade e portas afetadas
+            const primeiraPorta = portaAtual;
+            const ultimaPorta = portaAtual + allDifferences.length - 1;
+            if (allDifferences.length === 1) {
+                setMessage(`Porta ${primeiraPorta}: Diferença detectada - Marque como conferida após análise`);
+            } else {
+                setMessage(`Portas ${primeiraPorta} a ${ultimaPorta}: ${allDifferences.length} diferenças detectadas - Marque todas como conferidas`);
+            }
         }
 
         storeDifferences(differences);
+        setPortasPendentes(novasPortasPendentes);
 
         // Sempre bloquear após comparação até usuário marcar status
         setBloqueioAtivo(true);
@@ -171,6 +279,7 @@ const ConferenciaCaixa = () => {
         setPortasConferidas(new Set());
         setPortasVagas(new Set());
         setHistoricoPortas([]);
+        setPortasPendentes([]);
         setResultData([]);
         setDownData([]);
         setPortaAtual(1);
@@ -247,8 +356,8 @@ const ConferenciaCaixa = () => {
     const togglePortaConferida = (portaIndex) => {
         setPortasConferidas(prev => {
             const newSet = new Set(prev);
-            // Só permite marcar se não estiver já marcada
-            if (!newSet.has(portaIndex)) {
+            // Só permite marcar se não estiver já marcada e estiver nas portas pendentes
+            if (!newSet.has(portaIndex) && portasPendentes.includes(portaIndex)) {
                 newSet.add(portaIndex);
                 // Remover das vagas se estava marcada
                 setPortasVagas(prev => {
@@ -256,27 +365,40 @@ const ConferenciaCaixa = () => {
                     newVagas.delete(portaIndex);
                     return newVagas;
                 });
-                // Se marcou a porta atual, avançar
-                if (portaIndex === portaAtual) {
-                    const proximaPorta = portaAtual + 1;
-                    setBloqueioAtivo(false);
+                
+                // Adicionar ao histórico
+                setHistoricoPortas(prev => [...prev, {
+                    porta: portaIndex,
+                    tipo: 'conferida',
+                    timestamp: Date.now()
+                }]);
 
-                    // Adicionar ao histórico
-                    setHistoricoPortas(prev => [...prev, {
-                        porta: portaIndex,
-                        tipo: 'conferida',
-                        timestamp: Date.now()
-                    }]);
-
-                    // Verificar se chegou ao limite de 16 portas
-                    if (proximaPorta > 16) {
-                        setPortaAtual(proximaPorta); // Setar para 17 para ativar botão de nova conferência
-                        setMessage(`Porta ${portaIndex} conferida! Conferência da caixa concluída (16 portas). Use 'Comparar Tabelas' para iniciar nova conferência.`);
+                // Remover da lista de pendentes
+                setPortasPendentes(prev => {
+                    const novasPendentes = prev.filter(p => p !== portaIndex);
+                    
+                    // Se não há mais portas pendentes, liberar bloqueio e avançar
+                    if (novasPendentes.length === 0) {
+                        setBloqueioAtivo(false);
+                        // Usar o maior número de porta das que estavam pendentes
+                        const maiorPortaPendente = prev.length > 0 ? Math.max(...prev) : portaIndex;
+                        const proximaPorta = maiorPortaPendente + 1;
+                        
+                        // Verificar se chegou ao limite de 16 portas
+                        if (proximaPorta > 16) {
+                            setPortaAtual(proximaPorta);
+                            setMessage(`Porta ${portaIndex} conferida! Conferência da caixa concluída (16 portas). Use 'Comparar Tabelas' para iniciar nova conferência.`);
+                        } else {
+                            setPortaAtual(proximaPorta);
+                            setMessage(`Porta ${portaIndex} conferida! Pronto para Porta ${proximaPorta}`);
+                        }
                     } else {
-                        setPortaAtual(proximaPorta);
-                        setMessage(`Porta ${portaIndex} conferida! Pronto para Porta ${proximaPorta}`);
+                        // Ainda há portas pendentes
+                        setMessage(`Porta ${portaIndex} conferida! Ainda faltam ${novasPendentes.length} porta(s) pendente(s)`);
                     }
-                }
+                    
+                    return novasPendentes;
+                });
             }
             return newSet;
         });
@@ -285,8 +407,8 @@ const ConferenciaCaixa = () => {
     const marcarComoVaga = (portaIndex) => {
         setPortasVagas(prev => {
             const newSet = new Set(prev);
-            // Só permite marcar se não estiver já marcada
-            if (!newSet.has(portaIndex)) {
+            // Só permite marcar se não estiver já marcada e estiver nas portas pendentes
+            if (!newSet.has(portaIndex) && portasPendentes.includes(portaIndex)) {
                 newSet.add(portaIndex);
                 // Remover das conferidas se estava marcada
                 setPortasConferidas(prev => {
@@ -294,27 +416,40 @@ const ConferenciaCaixa = () => {
                     newConferidas.delete(portaIndex);
                     return newConferidas;
                 });
-                // Se marcou a porta atual, avançar
-                if (portaIndex === portaAtual) {
-                    const proximaPorta = portaAtual + 1;
-                    setBloqueioAtivo(false);
+                
+                // Adicionar ao histórico
+                setHistoricoPortas(prev => [...prev, {
+                    porta: portaIndex,
+                    tipo: 'vaga',
+                    timestamp: Date.now()
+                }]);
 
-                    // Adicionar ao histórico
-                    setHistoricoPortas(prev => [...prev, {
-                        porta: portaIndex,
-                        tipo: 'vaga',
-                        timestamp: Date.now()
-                    }]);
-
-                    // Verificar se chegou ao limite de 16 portas
-                    if (proximaPorta > 16) {
-                        setPortaAtual(proximaPorta); // Setar para 17 para ativar botão de nova conferência
-                        setMessage(`Porta ${portaIndex} marcada como vaga! Conferência da caixa concluída (16 portas). Use 'Comparar Tabelas' para iniciar nova conferência.`);
+                // Remover da lista de pendentes
+                setPortasPendentes(prev => {
+                    const novasPendentes = prev.filter(p => p !== portaIndex);
+                    
+                    // Se não há mais portas pendentes, liberar bloqueio e avançar
+                    if (novasPendentes.length === 0) {
+                        setBloqueioAtivo(false);
+                        // Usar o maior número de porta das que estavam pendentes
+                        const maiorPortaPendente = prev.length > 0 ? Math.max(...prev) : portaIndex;
+                        const proximaPorta = maiorPortaPendente + 1;
+                        
+                        // Verificar se chegou ao limite de 16 portas
+                        if (proximaPorta > 16) {
+                            setPortaAtual(proximaPorta);
+                            setMessage(`Porta ${portaIndex} marcada como vaga! Conferência da caixa concluída (16 portas). Use 'Comparar Tabelas' para iniciar nova conferência.`);
+                        } else {
+                            setPortaAtual(proximaPorta);
+                            setMessage(`Porta ${portaIndex} marcada como vaga! Pronto para Porta ${proximaPorta}`);
+                        }
                     } else {
-                        setPortaAtual(proximaPorta);
-                        setMessage(`Porta ${portaIndex} marcada como vaga! Pronto para Porta ${proximaPorta}`);
+                        // Ainda há portas pendentes
+                        setMessage(`Porta ${portaIndex} marcada como vaga! Ainda faltam ${novasPendentes.length} porta(s) pendente(s)`);
                     }
-                }
+                    
+                    return novasPendentes;
+                });
             }
             return newSet;
         });
@@ -340,6 +475,95 @@ const ConferenciaCaixa = () => {
             case 'conferida': return 'Conferida';
             default: return 'Pendente';
         }
+    };
+
+    const removerPorta = (portaIndex) => {
+        // Reorganizar todas as portas após a remoção
+        setStoredDifferences(prev => {
+            // Remover a porta especificada
+            const semPortaRemovida = prev.filter(diff => diff.portaIndex !== portaIndex);
+            
+            // Renumerar todas as portas que estão após a porta removida
+            const renumeradas = semPortaRemovida.map(diff => {
+                if (diff.portaIndex > portaIndex) {
+                    return {
+                        ...diff,
+                        portaIndex: diff.portaIndex - 1,
+                        line: `Porta ${diff.portaIndex - 1}`
+                    };
+                }
+                return diff;
+            });
+            
+            // Ajustar portaAtual
+            if (renumeradas.length === 0) {
+                setPortaAtual(1);
+            } else {
+                const maiorPorta = Math.max(...renumeradas.map(d => d.portaIndex));
+                setPortaAtual(maiorPorta);
+            }
+            
+            return renumeradas;
+        });
+
+        // Atualizar histórico - renumerar portas após a removida
+        setHistoricoPortas(prev => {
+            // Remover a porta do histórico
+            const semPortaRemovida = prev.filter(p => p.porta !== portaIndex);
+            
+            // Renumerar portas no histórico que estão após a removida
+            const renumeradas = semPortaRemovida.map(p => {
+                if (p.porta > portaIndex) {
+                    return {
+                        ...p,
+                        porta: p.porta - 1
+                    };
+                }
+                return p;
+            });
+            
+            return renumeradas;
+        });
+
+        // Atualizar status de conferidas - renumerar
+        setPortasConferidas(prev => {
+            const newSet = new Set();
+            prev.forEach(porta => {
+                if (porta !== portaIndex) {
+                    newSet.add(porta > portaIndex ? porta - 1 : porta);
+                }
+            });
+            return newSet;
+        });
+        
+        // Atualizar status de vagas - renumerar
+        setPortasVagas(prev => {
+            const newSet = new Set();
+            prev.forEach(porta => {
+                if (porta !== portaIndex) {
+                    newSet.add(porta > portaIndex ? porta - 1 : porta);
+                }
+            });
+            return newSet;
+        });
+
+        // Atualizar portas pendentes - renumerar
+        setPortasPendentes(prev => {
+            const semPortaRemovida = prev.filter(p => p !== portaIndex);
+            const renumeradas = semPortaRemovida.map(p => p > portaIndex ? p - 1 : p);
+            
+            // Se não há mais portas pendentes, liberar bloqueio
+            if (renumeradas.length === 0 && bloqueioAtivo) {
+                setBloqueioAtivo(false);
+                setMessage(`Porta ${portaIndex} removida! Portas renumeradas. Pronto para nova comparação`);
+            } else if (renumeradas.length > 0) {
+                setMessage(`Porta ${portaIndex} removida! Portas renumeradas. Ainda faltam ${renumeradas.length} porta(s) pendente(s)`);
+            } else {
+                setMessage(`Porta ${portaIndex} removida! Todas as portas foram renumeradas`);
+            }
+            
+            return renumeradas;
+        });
     };
 
     const voltarUmaPorta = () => {
@@ -439,15 +663,8 @@ const ConferenciaCaixa = () => {
                     onClick={() => handleButtonClick(compareTables)}
                     disabled={bloqueioAtivo && portaAtual <= 16}
                 >
-                    {portaAtual > 16 ? 'Começar Nova Conferência' : `Comparar Porta ${portaAtual}`}
+                    {portaAtual > 16 ? 'Começar Nova Conferência' : `Comparar Porta`}
                     {bloqueioAtivo && portaAtual <= 16 && ' (Bloqueado)'}
-                </button>
-                <button
-                    className="voltar-porta-btn"
-                    onClick={voltarUmaPorta}
-                    disabled={historicoPortas.length === 0}
-                >
-                    Voltar Uma Porta
                 </button>
                 <button
                     className="toggle-down-btn"
@@ -480,93 +697,116 @@ const ConferenciaCaixa = () => {
                 {message && <div className="message">{message}</div>}
             </div>
 
-            <table className="stored-differences-table">
-                <thead>
-                    <tr>
-                        <th>Porta</th>
-                        <th>Primeira Tabela</th>
-                        <th>Segunda Tabela</th>
-                        <th>Ações</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {storedDifferences
-                        .sort((a, b) => (a.portaIndex || 1) - (b.portaIndex || 1))
-                        .map((diff, index) => {
-                            const portaIndex = diff.portaIndex || index + 1;
-                            const status = getPortaStatus(portaIndex);
-                            const isPortaAtual = portaIndex === portaAtual;
-                            const isPortaLivre = diff.isPortaLivre;
-                            const isPortaVaga = diff.isPortaVaga;
-                            return (
-                                <tr key={`porta-${portaIndex}`} className={`status-${status} ${isPortaAtual ? 'porta-atual' : ''} ${isPortaLivre ? 'porta-livre' : ''} ${isPortaVaga ? 'porta-vaga' : ''}`}>
-                                    <td>
-                                        Porta {portaIndex}
-                                    </td>
-                                    <td className={isPortaLivre ? 'porta-livre-text' : (isPortaVaga ? 'porta-vaga-text' : '')}>
-                                        {isPortaLivre ? 'PORTA VAGA' : (isPortaVaga ? 'PORTA VAGA' : diff.row1)}
-                                    </td>
-                                    <td className={isPortaLivre ? 'porta-livre-text' : (isPortaVaga ? 'porta-vaga-text' : '')}>
-                                        {isPortaLivre ? 'PORTA VAGA' : (isPortaVaga ? 'PORTA VAGA' : diff.row2)}
-                                    </td>
-                                    <td>
-                                        {/* Lógica unificada para todas as portas */}
-                                        {status === 'pendente' ? (
-                                            <>
-                                                {/* Para portas com diferenças normais, mostrar apenas botão conferida */}
-                                                {!isPortaLivre && !isPortaVaga ? (
-                                                    <button
-                                                        className="toggle-btn"
-                                                        onClick={() => togglePortaConferida(portaIndex)}
-                                                        disabled={portaIndex !== portaAtual}
-                                                    >
-                                                        Marcar como Conferida
-                                                    </button>
-                                                ) : (
-                                                    /* Para portas vagas ou vagas, só botão de confirmar como vaga */
-                                                    <button
-                                                        className="vaga-btn"
-                                                        onClick={() => marcarComoVaga(portaIndex)}
-                                                        disabled={portaIndex !== portaAtual}
-                                                    >
-                                                        {isPortaVaga ? 'Confirmar Porta Vaga' : 'Confirmar Porta Vaga'}
-                                                    </button>
-                                                )}
-                                            </>
-                                        ) : (
-                                            /* Quando já marcada, sempre mostrar apenas o status */
-                                            <span className={`status-badge status-${status}`}>
-                                                {getStatusIcon(status)} {status === 'conferida' ? 'Conferida' : 'Vaga'}
-                                            </span>
-                                        )}
-                                    </td>
-                                </tr>
-                            );
-                        })}
-                    {/* Mostrar portas vagas mesmo sem diferenças */}
-                    {Array.from(portasVagas)
-                        .sort((a, b) => a - b)
-                        .map(portaIndex => {
-                            if (!storedDifferences.some(diff => diff.portaIndex === portaIndex)) {
+            {storedDifferences.length === 0 ? (
+                <div style={{ 
+                    padding: '2rem', 
+                    textAlign: 'center', 
+                    color: 'var(--vscode-descriptionForeground)',
+                    fontSize: '0.9rem'
+                }}>
+                    Nenhuma diferença encontrada. Compare as tabelas para ver os resultados aqui.
+                </div>
+            ) : (
+                <table className="conferencia-table">
+                    <thead>
+                        <tr>
+                            <th>Porta</th>
+                            <th>Cliente Removido / Status</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {storedDifferences
+                            .sort((a, b) => (a.portaIndex || 1) - (b.portaIndex || 1))
+                            .map((diff, index) => {
+                                const portaIndex = diff.portaIndex || index + 1;
+                                const status = getPortaStatus(portaIndex);
+                                const isPortaPendente = portasPendentes.includes(portaIndex);
+                                const isPortaLivre = diff.isPortaLivre;
+                                const isPortaVaga = diff.isPortaVaga;
+
                                 return (
-                                    <tr key={`vaga-${portaIndex}`} className="status-vaga">
-                                        <td>Porta {portaIndex}</td>
-                                        <td>
-                                            <span className="status-badge status-vaga">
-                                                Porta Vaga
-                                            </span>
+                                    <tr 
+                                        key={`porta-${portaIndex}`}
+                                        className={`status-${status}`}
+                                        data-status={status}
+                                    >
+                                        <td className="porta-numero">Porta {portaIndex}</td>
+                                        <td className="cliente-info">
+                                            {isPortaLivre ? (
+                                                <span className="badge-livre">PORTA VAGA</span>
+                                            ) : isPortaVaga ? (
+                                                <span className="badge-vaga">PORTA VAGA</span>
+                                            ) : (
+                                                <span>
+                                                    {diff.displayText ? diff.displayText : 
+                                                     (() => {
+                                                         // Se não tem displayText, extrair da linha original
+                                                         const linha = diff.row1 || diff.row2 || '';
+                                                         const { posicao, nome, descricao } = extractPosicaoENome(linha);
+                                                         if (posicao && nome) {
+                                                             let texto = `${posicao}    "${nome}"`;
+                                                             if (descricao && descricao !== 'undefined' && descricao.trim() !== '') {
+                                                                 const descricaoLimpa = descricao.replace(/\bundefined\b/g, '').trim();
+                                                                 if (descricaoLimpa) {
+                                                                     texto += `    ${descricaoLimpa}`;
+                                                                 }
+                                                             }
+                                                             return texto;
+                                                         }
+                                                         return linha;
+                                                     })()
+                                                    }
+                                                </span>
+                                            )}
                                         </td>
-                                        <td colSpan="2">Sem diferenças detectadas</td>
-                                        <td>
-                                            {/* Sem botões para portas vagas automáticas */}
+                                        <td className="acoes-cell">
+                                            {status === 'pendente' ? (
+                                                <>
+                                                    {!isPortaLivre && !isPortaVaga ? (
+                                                        <button
+                                                            className="toggle-btn"
+                                                            onClick={() => togglePortaConferida(portaIndex)}
+                                                            disabled={!isPortaPendente}
+                                                        >
+                                                            Conferida
+                                                        </button>
+                                                    ) : (
+                                                        <button
+                                                            className="vaga-btn"
+                                                            onClick={() => marcarComoVaga(portaIndex)}
+                                                            disabled={!isPortaPendente}
+                                                        >
+                                                            Vaga
+                                                        </button>
+                                                    )}
+                                                    <button
+                                                        className="remove-btn"
+                                                        onClick={() => removerPorta(portaIndex)}
+                                                    >
+                                                        Remover
+                                                    </button>
+                                                </>
+                                            ) : (
+                                                <>
+                                                    <span className={`status-badge status-${status}`}>
+                                                        {getStatusIcon(status)} {status === 'conferida' ? 'Conferida' : 'Vaga'}
+                                                    </span>
+                                                    <button
+                                                        className="remove-btn"
+                                                        onClick={() => removerPorta(portaIndex)}
+                                                    >
+                                                        Remover
+                                                    </button>
+                                                </>
+                                            )}
                                         </td>
                                     </tr>
                                 );
-                            }
-                            return null;
-                        })}
-                </tbody>
-            </table>
+                            })}
+                    </tbody>
+                </table>
+            )}
 
             <footer className="conferencia-footer">
 

@@ -19,6 +19,7 @@ const ConferenciaCaixa = () => {
     const [bloqueioAtivo, setBloqueioAtivo] = useState(false);
     const [historicoPortas, setHistoricoPortas] = useState([]); // Histórico de portas processadas
     const [portasPendentes, setPortasPendentes] = useState([]); // Portas que precisam ser conferidas no grupo atual
+    const [clientesDownMostrados, setClientesDownMostrados] = useState(new Set()); // Clientes down já exibidos
 
     const portaCounterRef = useRef(1);
 
@@ -162,6 +163,18 @@ const ConferenciaCaixa = () => {
                         break;
                     }
                     
+                    // Verificar se é um cliente down que já foi mostrado
+                    if (row1IsDown) {
+                        const { posicao, nome } = extractPosicaoENome(row1);
+                        const clienteId = posicao || nome || row1;
+                        
+                        // Se já foi mostrado, ignorar esta diferença
+                        if (clientesDownMostrados.has(clienteId)) {
+                            isDifferent = false;
+                            break;
+                        }
+                    }
+                    
                     hasDifferences = true;
                     isDifferent = true;
                     // Armazenar todas as diferenças encontradas
@@ -182,25 +195,87 @@ const ConferenciaCaixa = () => {
 
             // Só coleta dados de clientes down se não foram analisados independentemente
             if (row1.toLowerCase().includes("down") && !downTableVisible) {
-                newDownData.push({
-                    line: i + 1,
-                    content: row1
-                });
+                // Extrair identificador único do cliente (posição ou nome)
+                const { posicao, nome } = extractPosicaoENome(row1);
+                const clienteId = posicao || nome || row1;
+                
+                // Só adiciona se ainda não foi mostrado
+                if (!clientesDownMostrados.has(clienteId)) {
+                    newDownData.push({
+                        line: i + 1,
+                        content: row1
+                    });
+                }
             }
         }
 
         setResultData(newResultData);
         
+        // Atualizar o Set de clientes down ANTES de criar as diferenças
+        const novosClientesDown = new Set(clientesDownMostrados);
+        
         // Só atualiza downData se não foram analisados independentemente
         if (!downTableVisible) {
             setDownData(newDownData);
+            
+            // Adicionar os clientes down ao Set de já mostrados
+            newDownData.forEach(item => {
+                const { posicao, nome } = extractPosicaoENome(item.content);
+                const clienteId = posicao || nome || item.content;
+                novosClientesDown.add(clienteId);
+            });
         }
+        
+        // Adicionar clientes down de allDifferences ao Set
+        allDifferences.forEach(diff => {
+            const row1IsDown = diff.row1 && diff.row1.toLowerCase().includes("down");
+            if (row1IsDown) {
+                const { posicao, nome } = extractPosicaoENome(diff.row1);
+                const clienteId = posicao || nome || diff.row1;
+                novosClientesDown.add(clienteId);
+            }
+        });
+        
+        // Atualizar o estado do Set
+        setClientesDownMostrados(novosClientesDown);
 
         // Criar entradas para TODAS as diferenças encontradas, cada uma em uma porta diferente
         let differences = [];
         const novasPortasPendentes = [];
         
         if (!hasDifferences) {
+            // Verificar se as tabelas têm conteúdo e são idênticas a uma comparação anterior
+            const conteudoTabela1 = table1.trim();
+            const conteudoTabela2 = table2.trim();
+            
+            // Se ambas as tabelas têm conteúdo e são idênticas entre si
+            if (conteudoTabela1 && conteudoTabela2 && conteudoTabela1 === conteudoTabela2) {
+                // Verificar se esse conteúdo já foi usado em alguma porta anterior
+                const portaComMesmoConteudo = storedDifferences.find(stored => {
+                    // Comparar o conteúdo da linha com as diferenças armazenadas
+                    const linhasTabela1 = conteudoTabela1.split('\n').filter(l => l.trim());
+                    const linhaArmazenada = stored.row1 || stored.row2;
+                    
+                    // Verificar se alguma linha da tabela atual está nas diferenças armazenadas
+                    return linhasTabela1.some(linha => {
+                        const { posicao, nome } = extractPosicaoENome(linha.trim());
+                        const clienteId = posicao || nome;
+                        if (!clienteId) return false;
+                        
+                        const { posicao: storedPos, nome: storedNome } = extractPosicaoENome(linhaArmazenada);
+                        const storedId = storedPos || storedNome;
+                        return clienteId === storedId;
+                    });
+                });
+                
+                if (portaComMesmoConteudo) {
+                    showErrorAlert(`As tabelas são idênticas, mas esse conteúdo já foi registrado na Porta ${portaComMesmoConteudo.portaIndex}!\n\nPor favor, verifique se você atualizou as tabelas corretamente para a Porta ${portaAtual}.`);
+                    setMessage(`Erro: Conteúdo duplicado da Porta ${portaComMesmoConteudo.portaIndex} - Verifique as tabelas`);
+                    setIsLoading(false);
+                    return;
+                }
+            }
+            
             // Adicionar entrada "Porta Vaga" quando não há diferenças
             const portaVagaEntry = {
                 line: `Porta ${portaAtual}`,
@@ -213,6 +288,150 @@ const ConferenciaCaixa = () => {
             novasPortasPendentes.push(portaAtual);
             setMessage(`Porta ${portaAtual}: Porta Vaga - Marque como vaga para continuar`);
         } else {
+            // Verificar se alguma das diferenças já está em uma porta anterior
+            const diferencasDuplicadas = [];
+            
+            allDifferences.forEach((diff) => {
+                const linhaRemovida = diff.row1 && !diff.row2 ? diff.row1 : 
+                                      !diff.row1 && diff.row2 ? diff.row2 : 
+                                      diff.row1;
+                
+                const { posicao, nome } = extractPosicaoENome(linhaRemovida);
+                const clienteId = posicao || nome;
+                
+                if (clienteId) {
+                    // Verificar se já existe em storedDifferences
+                    const portaExistente = storedDifferences.find(stored => {
+                        const storedLinha = stored.row1 || stored.row2;
+                        const { posicao: storedPos, nome: storedNome } = extractPosicaoENome(storedLinha);
+                        const storedId = storedPos || storedNome;
+                        return storedId === clienteId;
+                    });
+                    
+                    if (portaExistente) {
+                        diferencasDuplicadas.push({
+                            cliente: clienteId,
+                            portaAnterior: portaExistente.portaIndex
+                        });
+                    }
+                }
+            });
+            
+                        // Se encontrou duplicatas, alertar e parar
+            if (diferencasDuplicadas.length > 0) {
+                const mensagensErro = diferencasDuplicadas.map(dup => 
+                    `Cliente "${dup.cliente}" já foi registrado na Porta ${dup.portaAnterior}`
+                ).join('\n');
+                
+                showErrorAlert(`Diferenças duplicadas detectadas!\n\n${mensagensErro}\n\nPor favor, verifique se a Porta ${portaAtual} foi comparada corretamente. As tabelas podem estar idênticas à comparação anterior.`);
+                setMessage(`Erro: Diferenças duplicadas - Verifique a Porta ${portaAtual}`);
+                setIsLoading(false);
+                return;
+            }
+            
+            // Verificar se há múltiplas diferenças - indicando erro na conferência
+            if (allDifferences.length > 1) {
+                // Extrair informações de cada diferença para mostrar no alerta
+                const listadiferencas = allDifferences.map((diff, index) => {
+                    const linhaRemovida = diff.row1 && !diff.row2 ? diff.row1 : 
+                                          !diff.row1 && diff.row2 ? diff.row2 : 
+                                          diff.row1;
+                    const { posicao, nome } = extractPosicaoENome(linhaRemovida);
+                    
+                    if (posicao && nome) {
+                        return `${index + 1}. ${posicao} - "${nome}"`;
+                    } else if (nome) {
+                        return `${index + 1}. "${nome}"`;
+                    } else if (posicao) {
+                        return `${index + 1}. ${posicao}`;
+                    } else {
+                        // Mostrar apenas os primeiros 60 caracteres da linha
+                        const linhaResumida = linhaRemovida.length > 60 ? 
+                                              linhaRemovida.substring(0, 60) + '...' : 
+                                              linhaRemovida;
+                        return `${index + 1}. ${linhaResumida}`;
+                    }
+                }).join('\n');
+                
+                showErrorAlert(
+                    `Múltiplas diferenças detectadas (${allDifferences.length} clientes)!\n\n` +
+                    `━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n` +
+                    `DIFERENÇAS ENCONTRADAS:\n` +
+                    `━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n` +
+                    `${listadiferencas}\n\n` +
+                    `━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n` +
+                    `Isso indica que as tabelas não foram atualizadas\n` +
+                    `corretamente ou que múltiplos clientes foram\n` +
+                    `removidos simultaneamente.\n\n` +
+                    `Por favor:\n\n` +
+                    `1. Verifique se você atualizou a\n` +
+                    `   "Tabela Depois" corretamente\n\n` +
+                    `2. Certifique-se de que apenas UM cliente\n` +
+                    `   foi removido por vez\n\n` +
+                    `3. Faça uma nova comparação da Porta ${portaAtual}`
+                );
+                setMessage(`Erro na Porta ${portaAtual}: ${allDifferences.length} diferenças - Refaça a conferência`);
+                setIsLoading(false);
+                return;
+            }
+            
+            // Processar a diferença única
+            const diff = allDifferences[0];
+            const numeroDaPorta = portaAtual;
+            
+            // Extrair posição e nome da linha que foi removida
+            const linhaRemovida = diff.row1 && !diff.row2 ? diff.row1 : 
+                                  !diff.row1 && diff.row2 ? diff.row2 : 
+                                  diff.row1;
+            
+            const { posicao, nome, descricao } = extractPosicaoENome(linhaRemovida);
+            
+            // Formatar o texto para exibição: Posição    "Nome"    Descrição
+            let displayText = '';
+            if (posicao && nome) {
+                // Formato: 1/1/1/1/2    "NILSON BARBOSA DE OLIVEIRA"    SNT-CON-NQ-SP32-SS6-P01
+                displayText = `${posicao}    "${nome}"`;
+                // Só adiciona descrição se existir, não for undefined e não estiver vazio
+                if (descricao && descricao !== 'undefined' && typeof descricao === 'string' && descricao.trim() !== '') {
+                    // Remover qualquer ocorrência de "undefined" da descrição
+                    const descricaoLimpa = descricao.replace(/\bundefined\b/g, '').trim();
+                    if (descricaoLimpa && descricaoLimpa.length > 0) {
+                        displayText += `    ${descricaoLimpa}`;
+                    }
+                }
+            } else {
+                // Se não conseguiu extrair, usar a linha completa como fallback
+                displayText = linhaRemovida;
+            }
+            
+            const portaComDiferenca = {
+                line: `Porta ${numeroDaPorta}`,
+                row1: diff.row1,
+                row2: diff.row2,
+                displayText: displayText, // Texto formatado para exibição
+                portaIndex: numeroDaPorta,
+                isPortaLivre: false
+            };
+            differences.push(portaComDiferenca);
+            novasPortasPendentes.push(numeroDaPorta);
+            
+            setMessage(`Porta ${numeroDaPorta}: Diferença detectada - Marque como conferida após análise`);
+            
+            // Verificar se há múltiplas diferenças (mais de uma)
+            if (allDifferences.length > 1) {
+                showErrorAlert(
+                    `Foram detectadas ${allDifferences.length} diferenças na comparação!\n\n` +
+                    `Isso indica que mais de um cliente foi removido/alterado, ou que as tabelas não foram atualizadas corretamente.\n\n` +
+                    `Por favor:\n` +
+                    `1. Verifique se você atualizou a "Tabela Depois" corretamente\n` +
+                    `2. Certifique-se de que apenas UMA porta foi alterada\n` +
+                    `3. Compare novamente a Porta ${portaAtual}`
+                );
+                setMessage(`Erro: ${allDifferences.length} diferenças detectadas - Verifique e compare novamente`);
+                setIsLoading(false);
+                return;
+            }
+            
             // Cada diferença é uma porta separada
             allDifferences.forEach((diff, index) => {
                 const numeroDaPorta = portaAtual + index;
@@ -282,6 +501,7 @@ const ConferenciaCaixa = () => {
         setPortasPendentes([]);
         setResultData([]);
         setDownData([]);
+        setClientesDownMostrados(new Set()); // Limpar o Set de clientes down já mostrados
         setPortaAtual(1);
         setBloqueioAtivo(false);
         setMessage('Nova conferência iniciada! Pronto para Porta 1.');
@@ -333,14 +553,30 @@ const ConferenciaCaixa = () => {
             const row1 = (table1Data[i] || '').trim();
             
             if (row1.toLowerCase().includes("down")) {
-                newDownData.push({
-                    line: i + 1,
-                    content: row1
-                });
+                // Extrair identificador único do cliente (posição ou nome)
+                const { posicao, nome } = extractPosicaoENome(row1);
+                const clienteId = posicao || nome || row1;
+                
+                // Só adiciona se ainda não foi mostrado
+                if (!clientesDownMostrados.has(clienteId)) {
+                    newDownData.push({
+                        line: i + 1,
+                        content: row1
+                    });
+                }
             }
         }
 
         setDownData(newDownData);
+        
+        // Adicionar os clientes down ao Set de já mostrados
+        const novosClientesDown = new Set(clientesDownMostrados);
+        newDownData.forEach(item => {
+            const { posicao, nome } = extractPosicaoENome(item.content);
+            const clienteId = posicao || nome || item.content;
+            novosClientesDown.add(clienteId);
+        });
+        setClientesDownMostrados(novosClientesDown);
 
         if (newDownData.length === 0) {
             setMessage('Nenhum cliente down encontrado na primeira tabela.');

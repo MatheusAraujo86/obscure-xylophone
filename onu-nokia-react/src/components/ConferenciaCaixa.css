@@ -139,13 +139,23 @@
 .lock-btn {
   font-size: 0.9rem;
   padding: 0.5rem 1rem;
-  border-color: var(--accent-secondary);
+  border-color: var(--accent-primary);
+  background: linear-gradient(
+    135deg,
+    var(--accent-primary),
+    var(--accent-secondary)
+  ) !important;
+  color: var(--text-button) !important;
 }
 
 .lock-btn:hover {
-  border-color: var(--accent-secondary);
-  background: var(--accent-secondary);
-  color: var(--text-accent);
+  border-color: var(--accent-primary) !important;
+  background: linear-gradient(
+    135deg,
+    var(--bg-secondary),
+    var(--bg-tertiary)
+  ) !important;
+  color: var(--text-button) !important;
 }
 
 .conferencia-caixa textarea {
@@ -276,6 +286,12 @@
 /* Variações de cores para diferentes tipos de botão */
 .compare-btn {
   border-color: var(--accent-primary);
+  background: linear-gradient(
+    135deg,
+    var(--accent-primary),
+    var(--accent-secondary)
+  ) !important;
+  color: var(--text-button) !important;
 }
 
 .compare-btn:hover,
@@ -285,21 +301,30 @@
   border-color: var(--accent-primary) !important;
   background: linear-gradient(
     135deg,
+    var(--bg-secondary),
+    var(--bg-tertiary)
+  ) !important;
+  color: var(--text-button) !important;
+}
+
+.toggle-down-btn {
+  border-color: var(--accent-primary);
+  background: linear-gradient(
+    135deg,
     var(--accent-primary),
     var(--accent-secondary)
   ) !important;
   color: var(--text-button) !important;
 }
 
-.toggle-down-btn {
-  border-color: var(--accent-secondary);
-  background: var(--button-danger);
-}
-
 .toggle-down-btn:hover {
-  border-color: var(--accent-secondary);
-  background: var(--button-danger);
-  filter: brightness(1.1);
+  border-color: var(--accent-primary) !important;
+  background: linear-gradient(
+    135deg,
+    var(--bg-secondary),
+    var(--bg-tertiary)
+  ) !important;
+  color: var(--text-button) !important;
 }
 
 .toggle-result-btn {
@@ -1203,10 +1228,21 @@
 .conferencia-table .acoes-cell {
   text-align: center;
   white-space: nowrap;
+  padding: 0.5rem 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
 }
 
 .conferencia-table .acoes-cell button {
-  margin: 0 0.2rem;
+  margin: 0;
+  flex-shrink: 0;
+}
+
+.conferencia-table .acoes-cell .status-badge {
+  margin-right: 0;
+  flex-shrink: 0;
 }
 
 /* Animação para porta atual/pendente */

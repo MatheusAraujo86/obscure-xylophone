@@ -322,16 +322,16 @@ body[data-theme="light-green"] {
 /* Tema Vermelho Escuro - Flamengo */
 :root[data-theme="dark-red"],
 body[data-theme="dark-red"] {
-  --bg-primary: #0a0000;
-  --bg-secondary: #1a0000;
-  --bg-tertiary: #0d0000;
+  --bg-primary: #000000;
+  --bg-secondary: #000000;
+  --bg-tertiary: #000000;
   --bg-quaternary: #000000;
   --bg-accent: #000000;
   --text-primary: #e81f2d;
   --text-secondary: #ff4444;
   --text-accent: #ffffff;
   --text-button: #ffffff;
-  --text-button-warning: #ffc107;
+  --text-button-warning: #ffffff;
   --text-button-danger: #ffffff;
   --accent-primary: #e81f2d;
   --accent-secondary: #c4001d;
@@ -346,36 +346,15 @@ body[data-theme="dark-red"] {
   --warning: #ffc107;
   --danger: #ff0000;
   --info: #ff4444;
-  --card-bg: linear-gradient(145deg, #0a0000 0%, #1a0000 50%, #0d0000 100%);
-  --header-bg: linear-gradient(
-    90deg,
-    rgba(0, 0, 0, 0.9) 0%,
-    rgba(232, 31, 45, 0.2) 50%,
-    rgba(0, 0, 0, 0.9) 100%
-  );
-  --surface-primary: linear-gradient(
-    135deg,
-    rgba(10, 0, 0, 0.95) 0%,
-    rgba(26, 0, 0, 0.85) 100%
-  );
-  --surface-secondary: linear-gradient(
-    90deg,
-    rgba(0, 0, 0, 0.8) 0%,
-    rgba(20, 0, 0, 0.6) 100%
-  );
-  --surface-tertiary: linear-gradient(
-    45deg,
-    rgba(5, 0, 0, 0.9) 0%,
-    rgba(26, 10, 10, 0.7) 100%
-  );
-  --surface-quaternary: linear-gradient(
-    180deg,
-    rgba(8, 0, 0, 0.95) 0%,
-    rgba(15, 0, 0, 0.8) 100%
-  );
-  --button-primary: linear-gradient(45deg, #c4001d, #e81f2d);
-  --button-warning: linear-gradient(45deg, #cc8800, #ffc107);
-  --button-danger: linear-gradient(45deg, #990000, #ff0000);
+  --card-bg: #000000;
+  --header-bg: #000000;
+  --surface-primary: #000000;
+  --surface-secondary: #000000;
+  --surface-tertiary: #000000;
+  --surface-quaternary: #000000;
+  --button-primary: linear-gradient(45deg, #e81f2d, #c4001d);
+  --button-warning: linear-gradient(45deg, #ffc107, #cc8800);
+  --button-danger: linear-gradient(45deg, #ff0000, #990000);
 }
 
 /* Layout principal - Tema Responsivo */
@@ -2594,4 +2573,25 @@ body[data-theme="light-purple"] {
   letter-spacing: 0.2px;
   flex: 1;
   text-align: left;
+}
+
+/* Tema Dark-Red - Backgrounds pretos sólidos */
+[data-theme="dark-red"] .app-container {
+  background: #000000 !important;
+}
+
+[data-theme="dark-red"] .app-container::before {
+  background: none !important;
+}
+
+[data-theme="dark-red"] .footer {
+  background: #000000 !important;
+}
+
+[data-theme="dark-red"] .card-header {
+  color: #ffffff !important;
+}
+
+[data-theme="dark-red"] .btn {
+  color: #ffffff !important;
 }

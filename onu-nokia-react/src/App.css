@@ -1918,26 +1918,6 @@ body[data-theme="light-purple"] .card-header {
     box-shadow: 0 0 20px rgba(0, 240, 255, 0.8);
   }
 }
-  }
-
-  .footer-content {
-    max-width: 1200px;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-    padding: 0 1rem;
-    width: 100%;
-    align-items: center;
-    ),
-    radial-gradient(
-      circle at 40% 20%,
-      rgba(0, 240, 255, 0.02) 0%,
-      transparent 50%
-    );
-  pointer-events: none;
-  z-index: -1;
-}
 
 /* Estilos específicos FUI - Theme Toggle */
 [data-theme="fui"] .theme-toggle {

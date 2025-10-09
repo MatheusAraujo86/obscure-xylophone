@@ -146,20 +146,20 @@ function App() {
           <div className={`dynamic-section ${activeComponent === 'conferencia' ? 'dynamic-section-full' : ''}`}>
             {renderActiveComponent()}
           </div>
+
+          {/* Footer integrado ao grid */}
+          <div className="footer-integrated">
+            <div className="footer-content">
+              <div className="footer-logo">
+                <Logo size={50} showTitle={false} />
+              </div>
+              <div className="footer-title">【 DESENVOLVIDO POR 】</div>
+              <div className="footer-authors">◈ Matheus ◊ Esteban ◈</div>
+              <div className="footer-subtitle">━━━━━ SISTEMA DE CONTROLE ONT ━━━━━</div>
+            </div>
+          </div>
         </main>
       </div>
-      
-      {/* Footer */}
-      <footer className="footer">
-        <div className="footer-content">
-          <div className="footer-logo">
-            <Logo size={50} showTitle={false} />
-          </div>
-          <div className="footer-title">【 DESENVOLVIDO POR 】</div>
-          <div className="footer-authors">◈ Matheus ◊ Esteban ◈</div>
-          <div className="footer-subtitle">━━━━━ SISTEMA DE CONTROLE ONT ━━━━━</div>
-        </div>
-      </footer>
     </div>
   );
 }

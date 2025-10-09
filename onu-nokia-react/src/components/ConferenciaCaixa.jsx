@@ -934,13 +934,9 @@ const ConferenciaCaixa = () => {
             </div>
 
             {storedDifferences.length === 0 ? (
-                <div style={{ 
-                    padding: '2rem', 
-                    textAlign: 'center', 
-                    color: 'var(--vscode-descriptionForeground)',
-                    fontSize: '0.9rem'
-                }}>
-                    Nenhuma diferença encontrada. Compare as tabelas para ver os resultados aqui.
+                <div className="empty-state">
+                    <h3>Nenhuma diferença encontrada</h3>
+                    <p>Compare as tabelas para ver os resultados aqui.</p>
                 </div>
             ) : (
                 <table className="conferencia-table">

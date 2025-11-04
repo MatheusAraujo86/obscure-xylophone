@@ -2610,9 +2610,10 @@ body[data-theme="light-purple"] {
 .swal2-popup.colored-toast {
   padding: 1.5rem 2rem !important;
   border-radius: 12px !important;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15), 
-              0 4px 12px rgba(34, 197, 94, 0.2) !important;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15), 0 4px 12px rgba(34, 197, 94, 0.2) !important;
   border: 2px solid #22c55e !important;
+  min-width: 450px !important;
+  max-width: 500px !important;
 }
 
 .swal2-popup.colored-toast .swal2-title {
@@ -2621,12 +2622,14 @@ body[data-theme="light-purple"] {
   color: #166534 !important;
   margin-bottom: 0.5rem !important;
   letter-spacing: 0.3px !important;
+  white-space: nowrap !important;
 }
 
 .swal2-popup.colored-toast .swal2-html-container {
   margin: 0 !important;
   font-size: 1.1rem !important;
   line-height: 1.5 !important;
+  white-space: nowrap !important;
 }
 
 .swal2-popup.colored-toast .swal2-icon {
@@ -2638,7 +2641,9 @@ body[data-theme="light-purple"] {
   border-color: rgba(34, 197, 94, 0.3) !important;
 }
 
-.swal2-popup.colored-toast .swal2-icon.swal2-success [class^='swal2-success-line'] {
+.swal2-popup.colored-toast
+  .swal2-icon.swal2-success
+  [class^="swal2-success-line"] {
   background-color: #22c55e !important;
 }
 
@@ -2655,5 +2660,21 @@ body[data-theme="light-purple"] {
   to {
     transform: translateX(0);
     opacity: 1;
+  }
+}
+
+/* Responsividade para telas menores */
+@media (max-width: 768px) {
+  .swal2-popup.colored-toast {
+    min-width: 320px !important;
+    max-width: 90vw !important;
+  }
+  
+  .swal2-popup.colored-toast .swal2-title {
+    white-space: normal !important;
+  }
+  
+  .swal2-popup.colored-toast .swal2-html-container {
+    white-space: normal !important;
   }
 }

@@ -16,12 +16,13 @@ export function useSweetAlert() {
       showConfirmButton: false,
       timer: 2500,
       toast: true,
-      background: '#f0fdf4',
-      iconColor: '#22c55e',
+      background: "#f0fdf4",
+      iconColor: "#22c55e",
+      width: '450px',
       customClass: {
-        popup: 'colored-toast',
-        title: 'toast-title'
-      }
+        popup: "colored-toast",
+        title: "toast-title",
+      },
     });
   };
 

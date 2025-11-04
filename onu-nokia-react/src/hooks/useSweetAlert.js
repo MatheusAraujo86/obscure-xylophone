@@ -11,9 +11,17 @@ export function useSweetAlert() {
     Swal.fire({
       position: "top-end",
       icon: "success",
-      title: "Salvo na área de transferência",
+      title: "✓ Comando Copiado",
+      html: '<div style="font-size: 1.1rem; font-weight: 500; color: #2d3748;">Salvo na área de transferência</div>',
       showConfirmButton: false,
-      timer: 1500,
+      timer: 2500,
+      toast: true,
+      background: '#f0fdf4',
+      iconColor: '#22c55e',
+      customClass: {
+        popup: 'colored-toast',
+        title: 'toast-title'
+      }
     });
   };
 

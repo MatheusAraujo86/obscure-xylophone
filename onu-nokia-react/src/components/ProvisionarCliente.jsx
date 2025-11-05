@@ -8,6 +8,7 @@ import {
     VLANS 
 } from '../utils/validation';
 import { useSweetAlert } from '../hooks/useSweetAlert';
+import HelpModal from './HelpModal';
 
 /**
  * Componente para provisionar cliente
@@ -21,8 +22,102 @@ function ProvisionarCliente({ posicaoData }) {
         provPass: '',
         vlan: '2800' // valor padrão
     });
+    const [isHelpModalOpen, setIsHelpModalOpen] = useState(false);
     
     const { showSuccessAlert, showErrorAlert } = useSweetAlert();
+
+    // Dados de ajuda dos comandos
+    const helpCommands = [
+        {
+            title: "PROVISIONAR CLIENTE",
+            items: [
+                {
+                    name: "Descrição 1 (desc1)",
+                    description: "Nome completo do cliente."
+                },
+                {
+                    name: "Descrição 2 (desc2)",
+                    description: "Coloque a CTO, caso não tenha, coloque o PPPoE."
+                },
+                {
+                    name: "S°NUMBER (sernum)",
+                    description: "Número de serial da ONT, como é Nokia, ALCL."
+                },
+                {
+                    name: "Usuário PPPOE",
+                    description: "Colocar o usuário PPPoE do cliente."
+                },
+                {
+                    name: "Senha PPPOE",
+                    description: "Colocar a senha do PPPoE do cliente."
+                },
+                {
+                    name: "VLAN",
+                    description: "Selecione a VLAN da cidade em que a ONT se encontra."
+                }
+            ]
+        },
+        {
+            title: "PROVISIONAR ONU - COMANDOS",
+            items: [
+                {
+                    name: "Criar e Definir Padrões da ONT",
+                    command: 'ENT-ONT::ONT-1-1-1-1-1::::DESC1="Descrição 1 (desc1)",DESC2="Descrição 2 (desc2)",SERNUM="S°NUMBER (sernum)",SWVERPLND=AUTO,OPTICSHIST=ENABLE,PLNDCFGFILE1=AUTO,DLCFGFILE1=AUTO,VOIPALLOWED=VEIP;',
+                    explanation: "Cria e define os padrões da ONT com descrições, número de série e configurações básicas."
+                },
+                {
+                    name: "Ativar a ONT",
+                    command: "ED-ONT::ONT-1-1-1-1-1:::::IS;",
+                    explanation: "Ativa a ONT para operação."
+                },
+                {
+                    name: "Criar Interface Lógica (ONTCARD)",
+                    command: "ENT-ONTCARD::ONTCARD-1-1-1-1-1-14:::VEIP,1,0::IS;",
+                    explanation: "Cria a interface lógica (ONTCARD) VEIP."
+                },
+                {
+                    name: "Criar Porta Lógica (LOGPORT/Ethernet UNI)",
+                    command: "ENT-LOGPORT::ONTL2UNI-1-1-1-1-1-14-1:::;",
+                    explanation: "Cria a porta lógica Ethernet UNI."
+                },
+                {
+                    name: "Ativar Interface VEIP",
+                    command: "ED-ONTVEIP::ONTVEIP-1-1-1-1-1-14-1:::::IS;",
+                    explanation: "Ativa a interface VEIP da ONT."
+                },
+                {
+                    name: "Aplicar Perfil QoS de Upload",
+                    command: "SET-QOS-USQUEUE::ONTL2UNIQ-1-1-1-1-1-14-1-0::::USBWPROFNAME=HSI_1G_UP;",
+                    explanation: "Aplica o perfil QoS de upload (1 Gbps)."
+                },
+                {
+                    name: "Limitar MACs Permitidos",
+                    command: "SET-VLANPORT::ONTL2UNI-1-1-1-1-1-14-1:::MAXNUCMACADR=4,CMITMAXNUMMACADDR=1;",
+                    explanation: "Limita o número de MACs permitidos na porta."
+                },
+                {
+                    name: "Configurar VLAN",
+                    command: 'ENT-VLANEGPORT::ONTL2UNI-1-1-1-1-1-14-1:::0,"VLAN":PORTTRANSMODE=SINGLETAGGED;\nENT-VLANEGPORT::ONTL2UNI-1-1-1-1-1-14-1:::0,777:PORTTRANSMODE=SINGLETAGGED;',
+                    explanation: "Configura as VLANs para a porta (VLAN selecionada e VLAN 777)."
+                },
+                {
+                    name: "Definir VLAN na WAN da ONT",
+                    command: 'ENT-HGUTR069-SPARAM::HGUTR069SPARAM-1-1-1-1-1-1::::PARAMNAME=InternetGatewayDevice.WANDevice.1.WANConnectionDevice.1.X_CT-COM_WANGponLinkConfig.VLANIDMark,PARAMVALUE="VLAN";',
+                    explanation: "Define a VLAN usada na interface WAN da ONT."
+                },
+                {
+                    name: "Configurar Senha e Usuário PPPoE",
+                    command: 'ENT-HGUTR069-SPARAM::HGUTR069SPARAM-1-1-1-1-1-2::::PARAMNAME=InternetGatewayDevice.WANDevice.1.WANConnectionDevice.1.WANPPPConnection.1.Username,PARAMVALUE="Usuário PPPOE";\nENT-HGUTR069-SPARAM::HGUTR069SPARAM-1-1-1-1-1-3::::PARAMNAME=InternetGatewayDevice.WANDevice.1.WANConnectionDevice.1.WANPPPConnection.1.Password,PARAMVALUE="Senha PPPOE";',
+                    explanation: "Configura o usuário e senha PPPoE para autenticação."
+                },
+                {
+                    name: "Configurar Senha WEB",
+                    command: 'ENT-HGUTR069-SPARAM::HGUTR069SPARAM-1-1-1-1-1-8::::PARAMNAME=InternetGatewayDevice.X_Authentication.WebAccount.Password,PARAMVALUE="S°NUMBER (sernum)";\nENT-HGUTR069-SPARAM::HGUTR069SPARAM-1-1-1-1-1-9::::PARAMNAME=InternetGatewayDevice.X_Authentication.Account.Password,PARAMVALUE="S°NUMBER (sernum)";',
+                    explanation: "Configura a senha de acesso web da ONT usando o número de série."
+                }
+            ]
+        }
+    ];
 
     const handleInputChange = (field, value) => {
         let processedValue = value;
@@ -125,11 +220,25 @@ function ProvisionarCliente({ posicaoData }) {
     };
 
     return (
-        <div className="card">
-            <div className="card-header">
-                <span className="icon">◯</span>
-                <h3>PROVISIONAR CLIENTE</h3>
-            </div>
+        <>
+            <HelpModal
+                isOpen={isHelpModalOpen}
+                onClose={() => setIsHelpModalOpen(false)}
+                commands={helpCommands}
+            />
+            <div className="card">
+                <div className="card-header">
+                    <span className="icon">◯</span>
+                    <h3>PROVISIONAR CLIENTE</h3>
+                    <button
+                        type="button"
+                        className="help-button"
+                        onClick={() => setIsHelpModalOpen(true)}
+                        title="Ajuda sobre comandos"
+                    >
+                        ?
+                    </button>
+                </div>
             <form className="form">
                 <div className="form-group">
                     <label htmlFor="provNome">Descrição 1 (desc1)</label>
@@ -211,6 +320,7 @@ function ProvisionarCliente({ posicaoData }) {
                 </button>
             </form>
         </div>
+        </>
     );
 }
 

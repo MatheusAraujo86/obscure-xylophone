@@ -11,6 +11,7 @@ import {
     copyToClipboard
 } from '../utils/validation';
 import { useSweetAlert } from '../hooks/useSweetAlert';
+import HelpModal from './HelpModal';
 
 /**
  * Componente para configurar rede Wi-Fi
@@ -20,8 +21,46 @@ function ConfiguracaoWifi({ posicaoData }) {
         nomeRede: '',
         senhaRede: ''
     });
+    const [isHelpModalOpen, setIsHelpModalOpen] = useState(false);
     
     const { showSuccessAlert, showErrorAlert } = useSweetAlert();
+
+    // Dados de ajuda dos comandos
+    const helpCommands = [
+        {
+            title: "CONFIGURAR REDE Wi-Fi",
+            items: [
+                {
+                    name: "Nome da Rede Wi-Fi",
+                    description: "Irá inserir o nome desejado da rede Wi-Fi."
+                },
+                {
+                    name: "Senha da Rede Wi-Fi",
+                    description: "Irá inserir a senha desejada do Wi-Fi."
+                }
+            ]
+        },
+        {
+            title: "COMANDOS",
+            items: [
+                {
+                    name: "Deletar Nome e Senha do Wi-Fi",
+                    command: "DLT-HGUTR069-SPARAM::HGUTR069SPARAM-1-1-1-1-1-4;\nDLT-HGUTR069-SPARAM::HGUTR069SPARAM-1-1-1-1-1-6;",
+                    explanation: "Deleta o nome e senha do Wi-Fi atuais antes de configurar novos valores."
+                },
+                {
+                    name: "Configurar Nome do Wi-Fi",
+                    command: 'ENT-HGUTR069-SPARAM::HGUTR069SPARAM-1-1-1-1-1-4::::PARAMNAME=InternetGatewayDevice.LANDevice.1.WLANConfiguration.1.SSID,PARAMVALUE="Nome da Rede Wi-Fi";\nENT-HGUTR069-SPARAM::HGUTR069SPARAM-1-1-1-1-1-6::::PARAMNAME=InternetGatewayDevice.LANDevice.1.WLANConfiguration.5.SSID,PARAMVALUE="Nome da Rede Wi-Fi_5G";',
+                    explanation: "Configura o nome do Wi-Fi para as redes 2.4GHz e 5GHz."
+                },
+                {
+                    name: "Configurar Senha do Wi-Fi",
+                    command: 'DLT-HGUTR069-SPARAM::HGUTR069SPARAM-1-1-1-1-1-5;DLT-HGUTR069-SPARAM::HGUTR069SPARAM-1-1-1-1-1-7;\nENT-HGUTR069-SPARAM::HGUTR069SPARAM-1-1-1-1-1-5::::PARAMNAME=InternetGatewayDevice.LANDevice.1.WLANConfiguration.1.PreSharedKey.1.PreSharedKey,PARAMVALUE="Senha da Rede Wi-Fi";\nENT-HGUTR069-SPARAM::HGUTR069SPARAM-1-1-1-1-1-7::::PARAMNAME=InternetGatewayDevice.LANDevice.1.WLANConfiguration.5.PreSharedKey.1.PreSharedKey,PARAMVALUE="Senha da Rede Wi-Fi";',
+                    explanation: "Configura a senha do Wi-Fi para as redes 2.4GHz e 5GHz."
+                }
+            ]
+        }
+    ];
 
     const handleInputChange = (field, value) => {
         setWifiData({ ...wifiData, [field]: value });
@@ -106,11 +145,25 @@ function ConfiguracaoWifi({ posicaoData }) {
     };
 
     return (
-        <div className="card">
-            <div className="card-header">
-                <span className="icon">◈</span>
-                <h3>CONFIGURAR REDE Wi-Fi</h3>
-            </div>
+        <>
+            <HelpModal
+                isOpen={isHelpModalOpen}
+                onClose={() => setIsHelpModalOpen(false)}
+                commands={helpCommands}
+            />
+            <div className="card">
+                <div className="card-header">
+                    <span className="icon">◈</span>
+                    <h3>CONFIGURAR REDE Wi-Fi</h3>
+                    <button
+                        type="button"
+                        className="help-button"
+                        onClick={() => setIsHelpModalOpen(true)}
+                        title="Ajuda sobre comandos"
+                    >
+                        ?
+                    </button>
+                </div>
             <form className="form">
                 <div className="form-group">
                     <label htmlFor="nomeRede">Nome da Rede Wi-Fi</label>
@@ -161,6 +214,7 @@ function ConfiguracaoWifi({ posicaoData }) {
                 </div>
             </form>
         </div>
+        </>
     );
 }
 

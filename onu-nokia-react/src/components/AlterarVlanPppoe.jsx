@@ -7,6 +7,7 @@ import {
     VLANS
 } from '../utils/validation';
 import { useSweetAlert } from '../hooks/useSweetAlert';
+import HelpModal from './HelpModal';
 
 /**
  * Componente para alterar VLAN e PPPOE
@@ -17,8 +18,45 @@ function AlterarVlanPppoe({ posicaoData }) {
         altpass: '',
         vlan: '2800' // valor padrão
     });
+    const [isHelpModalOpen, setIsHelpModalOpen] = useState(false);
     
     const { showSuccessAlert, showErrorAlert } = useSweetAlert();
+
+    // Dados de ajuda dos comandos
+    const helpCommands = [
+        {
+            title: "ALTERAR VLAN PPPOE",
+            items: [
+                {
+                    name: "Usuário PPPOE",
+                    description: "Colocar o usuário PPPoE do cliente."
+                },
+                {
+                    name: "Senha PPPOE",
+                    description: "Colocar a senha do PPPoE do cliente."
+                },
+                {
+                    name: "VLAN",
+                    description: "Selecione a VLAN da cidade em que a ONT se encontra."
+                }
+            ]
+        },
+        {
+            title: "COMANDOS",
+            items: [
+                {
+                    name: "Deletar VLAN e PPPoE Atuais",
+                    command: "DLT-HGUTR069-SPARAM::HGUTR069SPARAM-1-1-1-1-1-1;\nDLT-HGUTR069-SPARAM::HGUTR069SPARAM-1-1-1-1-1-2;\nDLT-HGUTR069-SPARAM::HGUTR069SPARAM-1-1-1-1-1-3;",
+                    explanation: "Deleta a VLAN e PPPoE atuais da ONT antes de configurar novos valores."
+                },
+                {
+                    name: "Configurar VLAN e PPPoE Novos",
+                    command: 'ENT-HGUTR069-SPARAM::HGUTR069SPARAM-1-1-1-1-1-1::::PARAMNAME=InternetGatewayDevice.WANDevice.1.WANConnectionDevice.1.X_CT-COM_WANGponLinkConfig.VLANIDMark,PARAMVALUE="VLAN";\nENT-HGUTR069-SPARAM::HGUTR069SPARAM-1-1-1-1-1-2::::PARAMNAME=InternetGatewayDevice.WANDevice.1.WANConnectionDevice.1.WANPPPConnection.1.Username,PARAMVALUE="Usuário PPPOE";\nENT-HGUTR069-SPARAM::HGUTR069SPARAM-1-1-1-1-1-3::::PARAMNAME=InternetGatewayDevice.WANDevice.1.WANConnectionDevice.1.WANPPPConnection.1.Password,PARAMVALUE="Senha PPPOE";',
+                    explanation: "Configura a VLAN e PPPoE novos com os valores informados."
+                }
+            ]
+        }
+    ];
 
     const handleInputChange = (field, value) => {
         setVlanPppoeData({ ...vlanPppoeData, [field]: value });
@@ -83,11 +121,25 @@ function AlterarVlanPppoe({ posicaoData }) {
     };
 
     return (
-        <div className="card">
-            <div className="card-header">
-                <span className="icon">◊</span>
-                <h3>ALTERAR VLAN PPPOE</h3>
-            </div>
+        <>
+            <HelpModal
+                isOpen={isHelpModalOpen}
+                onClose={() => setIsHelpModalOpen(false)}
+                commands={helpCommands}
+            />
+            <div className="card">
+                <div className="card-header">
+                    <span className="icon">◊</span>
+                    <h3>ALTERAR VLAN PPPOE</h3>
+                    <button
+                        type="button"
+                        className="help-button"
+                        onClick={() => setIsHelpModalOpen(true)}
+                        title="Ajuda sobre comandos"
+                    >
+                        ?
+                    </button>
+                </div>
             <form className="form">
                 <div className="form-group">
                     <label htmlFor="altPppoe">Usuário PPPOE</label>
@@ -135,6 +187,7 @@ function AlterarVlanPppoe({ posicaoData }) {
                 </button>
             </form>
         </div>
+        </>
     );
 }
 

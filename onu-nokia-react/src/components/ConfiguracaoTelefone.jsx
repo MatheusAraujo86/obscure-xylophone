@@ -7,6 +7,7 @@ import {
     PHONE_PORTS
 } from '../utils/validation';
 import { useSweetAlert } from '../hooks/useSweetAlert';
+import HelpModal from './HelpModal';
 
 /**
  * Componente para configurar telefone
@@ -17,8 +18,50 @@ function ConfiguracaoTelefone({ posicaoData }) {
         inputUsuarioSIP: '',
         inputSenhaSIP: ''
     });
+    const [isHelpModalOpen, setIsHelpModalOpen] = useState(false);
     
     const { showSuccessAlert, showErrorAlert } = useSweetAlert();
+
+    // Dados de ajuda dos comandos
+    const helpCommands = [
+        {
+            title: "CONFIGURAR TELEFONE",
+            items: [
+                {
+                    name: "Porta do Telefone",
+                    description: "Selecionar a porta FXS onde será configurado o telefone (1 ou 2)."
+                },
+                {
+                    name: "Usuário SIP",
+                    description: "Número fixo do cliente, encontrado no Sipulse."
+                },
+                {
+                    name: "Senha SIP",
+                    description: "Senha do cliente, também é encontrada no Sipulse."
+                }
+            ]
+        },
+        {
+            title: "COMANDOS",
+            items: [
+                {
+                    name: "Habilitar Porta e VLAN",
+                    command: "SET-QOS-USQUEUE::ONTL2UNIQ-1-1-1-1-1-14-1-5::::USBWPROFNAME=HSI_1G_UP;\nENT-VLANEGPORT::ONTL2UNI-1-1-1-1-1-14-1:::0,\"VLAN\":PORTTRANSMODE=SINGLETAGGED;",
+                    explanation: "Habilita porta e VLAN para o serviço de telefonia."
+                },
+                {
+                    name: "Configurar Servidor SIP",
+                    command: 'ENT-HGUTR069-SPARAM::HGUTR069SPARAM-1-1-1-1-1-10::::PARAMNAME=InternetGatewayDevice.Services.VoiceService.1.VoiceProfile.1.SIP.OutboundProxy,PARAMVALUE=10.255.0.1;\nENT-HGUTR069-SPARAM::HGUTR069SPARAM-1-1-1-1-1-11::::PARAMNAME=InternetGatewayDevice.Services.VoiceService.1.VoiceProfile.1.SIP.ProxyServer,PARAMVALUE=10.255.0.1;\nENT-HGUTR069-SPARAM::HGUTR069SPARAM-1-1-1-1-1-12::::PARAMNAME=InternetGatewayDevice.Services.VoiceService.1.VoiceProfile.1.SIP.RegistrarServer,PARAMVALUE=10.255.0.1;\nENT-HGUTR069-SPARAM::HGUTR069SPARAM-1-1-1-1-1-13::::PARAMNAME=InternetGatewayDevice.Services.VoiceService.1.VoiceProfile.1.SIP.UserAgentDomain,PARAMVALUE="sip.solucaonetwork.com";',
+                    explanation: "Configura o servidor SIP com os endereços de proxy, registrar e domínio."
+                },
+                {
+                    name: "Configurar Linha do Cliente",
+                    command: 'ENT-HGUTR069-SPARAM::HGUTR069SPARAM-1-1-1-1-1-14::::PARAMNAME=InternetGatewayDevice.Services.VoiceService.1.VoiceProfile.1.Line."Porta do Telefone".Enable,PARAMVALUE=Enabled;\nENT-HGUTR069-SPARAM::HGUTR069SPARAM-1-1-1-1-1-15::::PARAMNAME=InternetGatewayDevice.Services.VoiceService.1.VoiceProfile.1.Line."Porta do Telefone".DirectoryNumber,PARAMVALUE="Usuário SIP";\nENT-HGUTR069-SPARAM::HGUTR069SPARAM-1-1-1-1-1-16::::PARAMNAME=InternetGatewayDevice.Services.VoiceService.1.VoiceProfile.1.Line."Porta do Telefone".SIP.AuthUserName,PARAMVALUE="Usuário SIP";\nENT-HGUTR069-SPARAM::HGUTR069SPARAM-1-1-1-1-1-17::::PARAMNAME=InternetGatewayDevice.Services.VoiceService.1.VoiceProfile.1.Line."Porta do Telefone".SIP.AuthPassword,PARAMVALUE="Senha SIP";',
+                    explanation: "Configura a linha do cliente com usuário e senha SIP na porta selecionada."
+                }
+            ]
+        }
+    ];
 
     const handleInputChange = (field, value) => {
         setPhoneData({ ...phoneData, [field]: value });
@@ -88,11 +131,25 @@ function ConfiguracaoTelefone({ posicaoData }) {
     };
 
     return (
-        <div className="card">
-            <div className="card-header">
-                <span className="icon">◐</span>
-                <h3>CONFIGURAR TELEFONE</h3>
-            </div>
+        <>
+            <HelpModal
+                isOpen={isHelpModalOpen}
+                onClose={() => setIsHelpModalOpen(false)}
+                commands={helpCommands}
+            />
+            <div className="card">
+                <div className="card-header">
+                    <span className="icon">◐</span>
+                    <h3>CONFIGURAR TELEFONE</h3>
+                    <button
+                        type="button"
+                        className="help-button"
+                        onClick={() => setIsHelpModalOpen(true)}
+                        title="Ajuda sobre comandos"
+                    >
+                        ?
+                    </button>
+                </div>
             <form className="form">
                 <div className="form-group">
                     <label htmlFor="portaTelefonica">Porta do Telefone</label>
@@ -140,6 +197,7 @@ function ConfiguracaoTelefone({ posicaoData }) {
                 </button>
             </form>
         </div>
+        </>
     );
 }
 

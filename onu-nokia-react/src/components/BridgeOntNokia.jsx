@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useSweetAlert } from '../hooks/useSweetAlert';
 import { copyToClipboard } from '../utils/validation';
+import HelpModal from './HelpModal';
 
 /**
  * Componente para configuração de Bridge ONT Nokia
@@ -18,6 +19,7 @@ function BridgeOntNokia({ posicaoData }) {
 
     const [comandos, setComandos] = useState('');
     const [showModal, setShowModal] = useState(false);
+    const [isHelpModalOpen, setIsHelpModalOpen] = useState(false);
     const { showSuccessAlert, showErrorAlert, showInfoAlert } = useSweetAlert();
 
     // Lista de cidades
@@ -64,6 +66,96 @@ function BridgeOntNokia({ posicaoData }) {
         "IVINHEMA - MS": "300",
         "BAYTAPORÃ - MS": "300"
     };
+
+    // Dados de ajuda dos comandos
+    const helpCommands = [
+        {
+            title: "BRIDGE ONT NOKIA",
+            items: [
+                {
+                    name: "Tipo de Bridge",
+                    description: "Seleciona qual Bridge irá realizar, se é Rede ou Voip."
+                },
+                {
+                    name: "Porta LAN",
+                    description: "Define qual porta LAN o Bridge será realizado."
+                },
+                {
+                    name: "Card Type",
+                    description: "Define qual Card Type utilizará para o Bridge ser realizado."
+                },
+                {
+                    name: "Descrição 1 (desc1)",
+                    description: "Nome completo do cliente."
+                },
+                {
+                    name: "Descrição 2 (desc2)",
+                    description: "Coloque a CTO, caso não tenha, coloque o PPPoE."
+                },
+                {
+                    name: "S°NUMBER (sernum)",
+                    description: "Número de serial da ONT, como é Nokia, ALCL."
+                },
+                {
+                    name: "VLAN Utilizada",
+                    description: "Selecione a VLAN da cidade em que a ONT se encontra."
+                }
+            ]
+        },
+        {
+            title: "GERAR COMANDOS - PASSO A PASSO",
+            items: [
+                {
+                    name: "1° PASSO - Desprovisionar ONT",
+                    command: "configure equipment ont interface 1/1/\"Slot/PON/Posição da ONT\" admin-state down\nconfigure equipment ont no interface 1/1/\"Slot/PON/Posição da ONT\"",
+                    explanation: "Desativa a ONT logicamente e remove totalmente a ONT da OLT."
+                },
+                {
+                    name: "2° PASSO - Provisionar ONT",
+                    command: "configure equipment ont interface 1/1/\"Slot/PON/Posição da ONT\" sw-ver-pland auto desc1 \"Descrição 1 (desc1)\" desc2 \"Descrição 2 (desc2)\" sernum \"S°NUMBER (sernum)\" subslocid WILDCARD fec-up disable optics-hist enable sw-dnload-version disabled voip-allowed veip log-auth-pwd plain:** pland-cfgfile1 auto dnload-cfgfile1 auto planned-us-rate nominal-line-rate\n\nconfigure equipment ont interface 1/1/\"Slot/PON/Posição da ONT\" admin-state up",
+                    explanation: "Cria a ONT com descrições, número de série, permissões e parâmetros básicos, depois ativa a ONT para operação."
+                },
+                {
+                    name: "3° PASSO - Porta Bridge",
+                    command: "configure equipment ont slot 1/1/\"Slot/PON/Posição da ONT/Card Type\" planned-card-type ethernet plndnumdataports 4 plndnumvoiceports 0 admin-state up\n\nconfigure qos interface 1/1/\"Slot/PON/Posição da ONT/Card Type/Porta LAN\" upstream-queue 0 bandwidth-profile name:HSI_1G_UP\n\nconfigure interface port uni:1/1/\"Slot/PON/Posição da ONT/Card Type/Porta LAN\" admin-up\nconfigure bridge port 1/1/\"Slot/PON/Posição da ONT/Card Type/Porta LAN\" max-unicast-mac 12 max-committed-mac 1\nconfigure bridge port 1/1/\"Slot/PON/Posição da ONT/Card Type/Porta LAN\" vlan-id \"VLAN Utilizada\"\nconfigure bridge port 1/1/\"Slot/PON/Posição da ONT/Card Type/Porta LAN\" pvid \"VLAN Utilizada\"",
+                    explanation: "Cria o card Ethernet com 4 portas de dados, define o perfil de upload (1 Gbps), ativa a porta LAN, limita o número de MACs e define a VLAN. Para Bridge Voip, a fila muda de 0 para 5."
+                },
+                {
+                    name: "4° PASSO - Comando TL1",
+                    command: "ENT-HGUTR069-SPARAM::HGUTR069SPARAM-1-1-\"Slot-PON-Posição da ONT\"-30::::PARAMNAME=InternetGatewayDevice.X_ASB_COM_EthPort.EthPort.\"Porta LAN\".isTr069Domain,PARAMVALUE=false;",
+                    explanation: "Define que a porta LAN escolhida não será usada para TR-069 (somente uso do cliente)."
+                }
+            ]
+        },
+        {
+            title: "DIFERENÇAS ENTRE BRIDGE DE REDE E VOIP",
+            items: [
+                {
+                    name: "Fila de Prioridade QoS",
+                    description: "Para rede é 0 e para VoIP é 5."
+                },
+                {
+                    name: "VLAN",
+                    description: "A VLAN será diferente para cada tipo de bridge."
+                }
+            ]
+        },
+        {
+            title: "COMANDOS DE VERIFICAÇÃO",
+            items: [
+                {
+                    name: "Verificar VLAN",
+                    command: "info configure bridge port 1/1/\"Slot/PON/Posição da ONT/Card Type/Porta LAN\"",
+                    explanation: "Mostra a configuração da porta de bridge, incluindo VLAN, PVID, limite de MACs e estado da porta."
+                },
+                {
+                    name: "Verificar MAC",
+                    command: "show vlan bridge-port-fdb 1/1/\"Slot/PON/Posição da ONT/Card Type/Porta LAN\"",
+                    explanation: "Mostra a tabela de MACs aprendidos na porta, indicando quais dispositivos estão conectados e em qual VLAN."
+                }
+            ]
+        }
+    ];
 
     const handleInputChange = (field, value) => {
         let processedValue = value;
@@ -211,11 +303,25 @@ ENT-HGUTR069-SPARAM::HGUTR069SPARAM-1-1-${inputSlot}-${inputGpon}-${inputIndex}-
     };
 
     return (
-        <div className="card">
-            <div className="card-header">
-                <span className="icon">◪</span>
-                <h3>BRIDGE ONT NOKIA</h3>
-            </div>
+        <>
+            <HelpModal
+                isOpen={isHelpModalOpen}
+                onClose={() => setIsHelpModalOpen(false)}
+                commands={helpCommands}
+            />
+            <div className="card">
+                <div className="card-header">
+                    <span className="icon">◪</span>
+                    <h3>BRIDGE ONT NOKIA</h3>
+                    <button
+                        type="button"
+                        className="help-button"
+                        onClick={() => setIsHelpModalOpen(true)}
+                        title="Ajuda sobre comandos"
+                    >
+                        ?
+                    </button>
+                </div>
             
             <form className="form">
                 <div className="form-group">
@@ -391,6 +497,7 @@ ENT-HGUTR069-SPARAM::HGUTR069SPARAM-1-1-${inputSlot}-${inputGpon}-${inputIndex}-
                 </div>
             )}
         </div>
+        </>
     );
 }
 

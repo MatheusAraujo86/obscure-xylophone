@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { pesquisarPorNome, pesquisarPorAlcl } from '../services/onuService';
 import { validateAlcl, copyToClipboard } from '../utils/validation';
 import { useSweetAlert } from '../hooks/useSweetAlert';
+import HelpModal from './HelpModal';
 
 /**
  * Componente para pesquisar clientes por nome ou ALCL
@@ -11,8 +12,45 @@ function PesquisaCliente() {
         pesquisarAlcl: '',
         pesquisarNome: ''
     });
+    const [isHelpModalOpen, setIsHelpModalOpen] = useState(false);
     
     const { showSuccessAlert, showErrorAlert } = useSweetAlert();
+
+    // Dados de ajuda dos comandos
+    const helpCommands = [
+        {
+            title: "POSIÇÃO DO CLIENTE",
+            items: [
+                {
+                    name: "Slot GPON",
+                    description: "Slot em que o cliente se encontra."
+                },
+                {
+                    name: "Porta PON",
+                    description: "PON em que o cliente se encontra."
+                },
+                {
+                    name: "Posição da ONT",
+                    description: "Posição do cliente dentro da PON (1 - 128)."
+                }
+            ]
+        },
+        {
+            title: "COMANDOS PARA IDENTIFICAR CLIENTE",
+            items: [
+                {
+                    name: "Inserir ALCL",
+                    command: 'show equipment ont index sn:ALCL:"Número de serial"',
+                    explanation: "Aqui será colocado o número de serial da ONT. Como é Nokia, então ALCL. Identifica a ONT do cliente pelo número de serial."
+                },
+                {
+                    name: "Inserir Nome",
+                    command: 'show equipment ont status pon | match exact:"NOME"',
+                    explanation: "Aqui iremos colocar o nome caso não conseguirmos identificar o ALCL. Identifica a ONT do cliente pelo nome."
+                }
+            ]
+        }
+    ];
 
     const handleInputChange = (field, value) => {
         let processedValue = value;
@@ -60,11 +98,25 @@ function PesquisaCliente() {
     };
 
     return (
-        <div className="card">
-            <div className="card-header">
-                <span className="icon">◯</span>
-                <h3>PESQUISAR CLIENTE</h3>
-            </div>
+        <>
+            <HelpModal
+                isOpen={isHelpModalOpen}
+                onClose={() => setIsHelpModalOpen(false)}
+                commands={helpCommands}
+            />
+            <div className="card">
+                <div className="card-header">
+                    <span className="icon">◯</span>
+                    <h3>PESQUISAR CLIENTE</h3>
+                    <button
+                        type="button"
+                        className="help-button"
+                        onClick={() => setIsHelpModalOpen(true)}
+                        title="Ajuda sobre comandos"
+                    >
+                        ?
+                    </button>
+                </div>
             <form className="form">
                 <div className="form-group">
                     <label htmlFor="pesquisarAlcl">ALCL</label>
@@ -98,6 +150,7 @@ function PesquisaCliente() {
                 </button>
             </form>
         </div>
+        </>
     );
 }
 

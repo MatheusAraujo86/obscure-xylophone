@@ -9,6 +9,7 @@ import {
 } from '../services/onuService';
 import { areAllNumeric, copyToClipboard } from '../utils/validation';
 import { useSweetAlert } from '../hooks/useSweetAlert';
+import HelpModal from './HelpModal';
 
 /**
  * Componente com opções adicionais para gerenciamento da ONU
@@ -20,6 +21,69 @@ function OutrasOpcoes({ posicaoData }) {
     const [modalPppoeUser, setModalPppoeUser] = useState({ isOpen: false, inputValue: '' });
     const [modalPppoeIp, setModalPppoeIp] = useState({ isOpen: false, inputValue: '' });
     const [modalVelocidade, setModalVelocidade] = useState({ isOpen: false, inputValue: '' });
+    const [isHelpModalOpen, setIsHelpModalOpen] = useState(false);
+
+    // Dados de ajuda dos comandos
+    const helpCommands = [
+        {
+            title: "CONSULTAS PPPOE",
+            items: [
+                {
+                    name: "Verificar Velocidade",
+                    description: "Para verificar as velocidades de download e upload do PPPoE.",
+                    command: 'show network-access aaa subscribers username "pppoe"',
+                    explanation: "Mostra os detalhes AAA (autenticação, autorização e contabilização) do usuário PPPoE, útil pra verificar se ele autenticou corretamente no RADIUS."
+                },
+                {
+                    name: "Verificar IP do PPPoE",
+                    description: "Para verificar o IP autenticado do PPPoE.",
+                    command: 'show subscriber user-name "pppoe"',
+                    explanation: "Exibe as informações completas da sessão PPPoE de um usuário, como IP, VLAN, interface e status da conexão."
+                },
+                {
+                    name: "Verificar PPPoE do IP",
+                    description: "Para verificar o PPPoE que o IP está autenticado.",
+                    command: 'show subscriber address "IP"',
+                    explanation: "Mostra quem está usando um determinado IP, exibindo dados da sessão como login, interface e tempo conectado."
+                }
+            ]
+        },
+        {
+            title: "OPERAÇÕES",
+            items: [
+                {
+                    name: "Pesquisar PON",
+                    command: "show equipment ont status pon 1/1/1/1",
+                    explanation: "Mostra o status geral das ONTs conectadas à porta PON."
+                },
+                {
+                    name: "Pesquisar Alarmes",
+                    command: "show equipment ont operational-data 1/1/1/1/1 detail",
+                    explanation: "Exibe os alarmes e dados operacionais detalhados de uma ONT específica."
+                },
+                {
+                    name: "Reiniciar ONU (TL1)",
+                    command: "INIT-SYS::ONT-1-1-1-1-1:::11;",
+                    explanation: "Reinicia a ONT remotamente pelo comando TL1."
+                },
+                {
+                    name: "ONU Solicitando Provisionamento",
+                    command: "show pon unprovision-onu",
+                    explanation: "Mostra ONUs conectadas fisicamente, mas ainda não provisionadas no sistema."
+                },
+                {
+                    name: "Verificar Fibra",
+                    command: "show equipment ont optics 1/1/1/1/1",
+                    explanation: "Exibe os níveis ópticos (RX/TX) e informações da fibra da ONT."
+                },
+                {
+                    name: "Desprovisionar ONU (TL1)",
+                    command: "ED-ONT::ONT-1-1-1-1-1:::::OOS;DLT-ONT::ONT-1-1-1-1-1::;",
+                    explanation: "Remove a ONT da PON, tirando-a de serviço (OOS) e excluindo-a do sistema."
+                }
+            ]
+        }
+    ];
 
     const executeCommand = async (commandFunction, requiredFields = []) => {
         try {
@@ -320,6 +384,15 @@ function OutrasOpcoes({ posicaoData }) {
             <div className="card-header">
                 <span className="icon">◆</span>
                 <h3>OUTRAS OPÇÕES</h3>
+                <button 
+                    type="button"
+                    className="help-button"
+                    onClick={() => setIsHelpModalOpen(true)}
+                    title="Ajuda sobre comandos"
+                    aria-label="Abrir ajuda sobre comandos"
+                >
+                    ?
+                </button>
             </div>
             
             <form className="form">
@@ -414,6 +487,13 @@ function OutrasOpcoes({ posicaoData }) {
                 </div>
             </form>
         </div>
+
+        {/* Modal de Ajuda */}
+        <HelpModal 
+            isOpen={isHelpModalOpen}
+            onClose={() => setIsHelpModalOpen(false)}
+            commands={helpCommands}
+        />
         </>
     );
 }

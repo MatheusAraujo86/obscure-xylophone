@@ -7,14 +7,45 @@ import {
     copyToClipboard
 } from '../utils/validation';
 import { useSweetAlert } from '../hooks/useSweetAlert';
+import HelpModal from './HelpModal';
 
 /**
  * Componente para alterar senha de acesso web da ONT
  */
 function AlterarSenhaWeb({ posicaoData }) {
     const [senhaWeb, setSenhaWeb] = useState('');
+    const [isHelpModalOpen, setIsHelpModalOpen] = useState(false);
     
     const { showSuccessAlert, showErrorAlert } = useSweetAlert();
+
+    // Dados de ajuda dos comandos
+    const helpCommands = [
+        {
+            title: "ALTERAR SENHA DE ACESSO WEB",
+            items: [
+                {
+                    name: "S°NUMBER (sernum)",
+                    description: "Número de serial da ONT",
+                    explanation: "Como é Nokia, use o formato ALCL."
+                }
+            ]
+        },
+        {
+            title: "COMANDOS",
+            items: [
+                {
+                    name: "Deletar Usuário e Senha Atuais",
+                    command: "DLT-HGUTR069-SPARAM::HGUTR069SPARAM-1-1-1-1-1-8;\nDLT-HGUTR069-SPARAM::HGUTR069SPARAM-1-1-1-1-1-9;",
+                    explanation: "Deleta o usuário e senha atuais da ONT antes de configurar novos valores."
+                },
+                {
+                    name: "Configurar Usuário e Senha Novos",
+                    command: 'ENT-HGUTR069-SPARAM::HGUTR069SPARAM-1-1-1-1-1-8::::PARAMNAME=InternetGatewayDevice.X_Authentication.WebAccount.Password,PARAMVALUE="S°NUMBER (sernum)";\nENT-HGUTR069-SPARAM::HGUTR069SPARAM-1-1-1-1-1-9::::PARAMNAME=InternetGatewayDevice.X_Authentication.Account.Password,PARAMVALUE="S°NUMBER (sernum)";',
+                    explanation: "Configura o usuário e senha novos usando o número de série da ONT (ALCL)."
+                }
+            ]
+        }
+    ];
 
     const handleInputChange = (value) => {
         // Converter para maiúscula e limitar a 12 caracteres
@@ -90,33 +121,51 @@ function AlterarSenhaWeb({ posicaoData }) {
     };
 
     return (
-        <div className="card">
-            <div className="card-header">
-                <span className="icon">◇</span>
-                <h3>ALTERAR SENHA DE ACESSO WEB</h3>
-            </div>
-            <form className="form">
-                <div className="form-group">
-                    <label htmlFor="senhaWeb">S°NUMBER (sernum)</label>
-                    <input
-                        id="senhaWeb"
-                        type="text"
-                        className="form-input"
-                        value={senhaWeb}
-                        onChange={(e) => handleInputChange(e.target.value)}
-                        placeholder="ALCL da ONT"
-                        maxLength="12"
-                    />
+        <>
+            {/* Modal de Ajuda */}
+            <HelpModal 
+                isOpen={isHelpModalOpen}
+                onClose={() => setIsHelpModalOpen(false)}
+                commands={helpCommands}
+            />
+
+            <div className="card">
+                <div className="card-header">
+                    <span className="icon">◇</span>
+                    <h3>ALTERAR SENHA DE ACESSO WEB</h3>
+                    <button 
+                        type="button"
+                        className="help-button"
+                        onClick={() => setIsHelpModalOpen(true)}
+                        title="Ajuda sobre comandos"
+                        aria-label="Abrir ajuda sobre comandos"
+                    >
+                        ?
+                    </button>
                 </div>
-                <button
-                    type="button"
-                    className="btn btn-primary btn-full"
-                    onClick={handleAlterarSenhaWeb}
-                >
-                    ◪ Alterar senha web
-                </button>
-            </form>
-        </div>
+                <form className="form">
+                    <div className="form-group">
+                        <label htmlFor="senhaWeb">S°NUMBER (sernum)</label>
+                        <input
+                            id="senhaWeb"
+                            type="text"
+                            className="form-input"
+                            value={senhaWeb}
+                            onChange={(e) => handleInputChange(e.target.value)}
+                            placeholder="ALCL da ONT"
+                            maxLength="12"
+                        />
+                    </div>
+                    <button
+                        type="button"
+                        className="btn btn-primary btn-full"
+                        onClick={handleAlterarSenhaWeb}
+                    >
+                        ◪ Alterar senha web
+                    </button>
+                </form>
+            </div>
+        </>
     );
 }
 

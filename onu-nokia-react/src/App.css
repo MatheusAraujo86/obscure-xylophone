@@ -748,6 +748,68 @@ body[data-theme="light-purple"] .card-header {
   box-shadow: 0 6px 24px rgba(255, 34, 34, 0.4), 0 0 30px rgba(255, 34, 34, 0.3) !important;
 }
 
+/* Botão de Ajuda */
+.help-button {
+  position: relative;
+  overflow: hidden;
+  margin-left: auto;
+  background: linear-gradient(
+    135deg,
+    var(--accent-primary),
+    var(--accent-secondary)
+  ) !important;
+  border: 2px solid var(--accent-primary);
+  border-radius: 50%;
+  width: 35px;
+  height: 35px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: var(--text-button) !important;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 16px var(--shadow-primary), 0 0 20px var(--shadow-glow);
+}
+
+/* Efeito shine para o botão de ajuda */
+.help-button::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
+  transition: left 0.5s ease;
+}
+
+.help-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 24px var(--shadow-primary), 0 0 30px var(--shadow-glow);
+  border-color: var(--accent-primary) !important;
+  background: linear-gradient(
+    135deg,
+    var(--bg-secondary),
+    var(--bg-tertiary)
+  ) !important;
+  color: var(--text-button) !important;
+}
+
+.help-button:hover::before {
+  left: 100%;
+}
+
+.help-button:active {
+  transform: translateY(0);
+}
+
 /* Grupos de botões */
 .button-group {
   display: flex;
@@ -2604,77 +2666,4 @@ body[data-theme="light-purple"] {
 
 [data-theme="dark-red"] .btn {
   color: #ffffff !important;
-}
-
-/* SweetAlert2 Toast Customization - Melhor Legibilidade */
-.swal2-popup.colored-toast {
-  padding: 1.5rem 2rem !important;
-  border-radius: 12px !important;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15), 0 4px 12px rgba(34, 197, 94, 0.2) !important;
-  border: 2px solid #22c55e !important;
-  min-width: 450px !important;
-  max-width: 500px !important;
-}
-
-.swal2-popup.colored-toast .swal2-title {
-  font-size: 1.25rem !important;
-  font-weight: 700 !important;
-  color: #166534 !important;
-  margin-bottom: 0.5rem !important;
-  letter-spacing: 0.3px !important;
-  white-space: nowrap !important;
-}
-
-.swal2-popup.colored-toast .swal2-html-container {
-  margin: 0 !important;
-  font-size: 1.1rem !important;
-  line-height: 1.5 !important;
-  white-space: nowrap !important;
-}
-
-.swal2-popup.colored-toast .swal2-icon {
-  border-color: #22c55e !important;
-  margin: 0.5rem 0 !important;
-}
-
-.swal2-popup.colored-toast .swal2-icon.swal2-success .swal2-success-ring {
-  border-color: rgba(34, 197, 94, 0.3) !important;
-}
-
-.swal2-popup.colored-toast
-  .swal2-icon.swal2-success
-  [class^="swal2-success-line"] {
-  background-color: #22c55e !important;
-}
-
-/* Animação suave de entrada */
-.swal2-popup.colored-toast.swal2-show {
-  animation: slideInRight 0.3s ease-out !important;
-}
-
-@keyframes slideInRight {
-  from {
-    transform: translateX(100%);
-    opacity: 0;
-  }
-  to {
-    transform: translateX(0);
-    opacity: 1;
-  }
-}
-
-/* Responsividade para telas menores */
-@media (max-width: 768px) {
-  .swal2-popup.colored-toast {
-    min-width: 320px !important;
-    max-width: 90vw !important;
-  }
-  
-  .swal2-popup.colored-toast .swal2-title {
-    white-space: normal !important;
-  }
-  
-  .swal2-popup.colored-toast .swal2-html-container {
-    white-space: normal !important;
-  }
 }

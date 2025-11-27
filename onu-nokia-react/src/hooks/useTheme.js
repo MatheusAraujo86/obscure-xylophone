@@ -1,32 +1,19 @@
 import { useState, useEffect } from "react";
 
 export const useTheme = () => {
-  const [theme, setTheme] = useState(() => {
-    return localStorage.getItem("theme") || "fui";
-  });
+  // Tema fixo: dark-green
+  const [theme] = useState("dark-green");
 
   useEffect(() => {
-    document.documentElement.setAttribute("data-theme", theme);
-    localStorage.setItem("theme", theme);
-  }, [theme]);
+    // Remove o atributo data-theme já que não precisamos mais
+    document.documentElement.removeAttribute("data-theme");
+    document.body.removeAttribute("data-theme");
+  }, []);
 
-  const toggleTheme = () => {
-    const themes = [
-      "fui",
-      "light-green",
-      "dark",
-      "dark-green",
-      "dark-purple",
-      "dark-red",
-    ];
-    const currentIndex = themes.indexOf(theme);
-    const nextIndex = (currentIndex + 1) % themes.length;
-    setTheme(themes[nextIndex]);
-  };
-
-  const setSpecificTheme = (newTheme) => {
-    setTheme(newTheme);
-  };
+  // Funções vazias para manter compatibilidade
+  const toggleTheme = () => {};
+  const setTheme = () => {};
+  const setSpecificTheme = () => {};
 
   return { theme, setTheme, toggleTheme, setSpecificTheme };
 };

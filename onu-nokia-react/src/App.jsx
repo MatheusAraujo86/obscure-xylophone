@@ -1,26 +1,26 @@
-import { useMemo } from 'react';
+import { useMemo, lazy, Suspense } from 'react';
 import './App.css';
 import { useAppContext } from './context/AppContext';
 import { menuItems } from './config/menuItems';
 import { useToast } from './hooks/useToast';
 import { useKeyboardShortcuts } from './hooks/useKeyboardShortcuts';
-import ThemeToggle from './components/ThemeToggle';
 import ToastContainer from './components/ToastContainer';
 import Logo from './components/Logo';
 import PosicaoCliente from './components/PosicaoCliente';
-import PesquisaCliente from './components/PesquisaCliente';
-import OutrasOpcoes from './components/OutrasOpcoes';
-import ProvisionarCliente from './components/ProvisionarCliente';
-import ConfiguracaoWifi from './components/ConfiguracaoWifi';
-import ConfiguracaoTelefone from './components/ConfiguracaoTelefone';
-import AlterarVlanPppoe from './components/AlterarVlanPppoe';
-import AlterarSenhaWeb from './components/AlterarSenhaWeb';
-import ConferenciaCaixa from './components/ConferenciaCaixa';
-import BridgeOntNokia from './components/BridgeOntNokia';
+import Loading from './components/Loading';
+
+// Lazy loading dos componentes principais
+const PesquisaCliente = lazy(() => import('./components/PesquisaCliente'));
+const OutrasOpcoes = lazy(() => import('./components/OutrasOpcoes'));
+const ProvisionarCliente = lazy(() => import('./components/ProvisionarCliente'));
+const ConfiguracaoWifi = lazy(() => import('./components/ConfiguracaoWifi'));
+const ConfiguracaoTelefone = lazy(() => import('./components/ConfiguracaoTelefone'));
+const AlterarVlanPppoe = lazy(() => import('./components/AlterarVlanPppoe'));
+const AlterarSenhaWeb = lazy(() => import('./components/AlterarSenhaWeb'));
+const ConferenciaCaixa = lazy(() => import('./components/ConferenciaCaixa'));
+const BridgeOntNokia = lazy(() => import('./components/BridgeOntNokia'));
 
 function App() {
-  console.log('App iniciando...');
-  
   const { 
     posicaoData, 
     handlePosicaoChange, 
@@ -30,8 +30,6 @@ function App() {
     toggleSidebar, 
     closeSidebar 
   } = useAppContext();
-
-  console.log('Context carregado, activeComponent:', activeComponent);
 
   const { toasts, removeToast, success, error, info } = useToast();
 
@@ -52,49 +50,38 @@ function App() {
 
   useKeyboardShortcuts(shortcuts);
 
-  // Função para renderizar componente ativo
-  const renderActiveComponent = () => {
-    console.log('Renderizando componente:', activeComponent);
+  // Função para renderizar componente ativo com memoização
+  const renderActiveComponent = useMemo(() => {
     const componentProps = { posicaoData };
     
-    try {
-      switch (activeComponent) {
-        case 'pesquisar':
-          return <PesquisaCliente />;
-        case 'provisionar':
-          return <ProvisionarCliente {...componentProps} />;
-        case 'bridge':
-          return <BridgeOntNokia {...componentProps} />;
-        case 'wifi':
-          return <ConfiguracaoWifi {...componentProps} />;
-        case 'telefone':
-          return <ConfiguracaoTelefone {...componentProps} />;
-        case 'vlan':
-          return <AlterarVlanPppoe {...componentProps} />;
-        case 'senha':
-          return <AlterarSenhaWeb {...componentProps} />;
-        case 'conferencia':
-          return <ConferenciaCaixa />;
-        case 'outras':
-          return <OutrasOpcoes {...componentProps} />;
-        default:
-          return <PesquisaCliente />;
-      }
-    } catch (error) {
-      console.error('Erro ao renderizar componente:', error);
-      return <div>Erro ao carregar componente: {error.message}</div>;
+    switch (activeComponent) {
+      case 'pesquisar':
+        return <PesquisaCliente />;
+      case 'provisionar':
+        return <ProvisionarCliente {...componentProps} />;
+      case 'bridge':
+        return <BridgeOntNokia {...componentProps} />;
+      case 'wifi':
+        return <ConfiguracaoWifi {...componentProps} />;
+      case 'telefone':
+        return <ConfiguracaoTelefone {...componentProps} />;
+      case 'vlan':
+        return <AlterarVlanPppoe {...componentProps} />;
+      case 'senha':
+        return <AlterarSenhaWeb {...componentProps} />;
+      case 'conferencia':
+        return <ConferenciaCaixa />;
+      case 'outras':
+        return <OutrasOpcoes {...componentProps} />;
+      default:
+        return <PesquisaCliente />;
     }
-  };
-
-  console.log('Antes do return do App');
+  }, [activeComponent, posicaoData]);
 
   return (
     <div className="app-container">
       {/* Toast Notifications */}
       <ToastContainer toasts={toasts} onRemove={removeToast} />
-      
-      {/* Theme Toggle */}
-      <ThemeToggle />
       
       <header className="header">
         <div className="toolbar">
@@ -144,7 +131,9 @@ function App() {
 
           {/* Componente ativo */}
           <div className={`dynamic-section ${activeComponent === 'conferencia' ? 'dynamic-section-full' : ''}`}>
-            {renderActiveComponent()}
+            <Suspense fallback={<Loading />}>
+              {renderActiveComponent}
+            </Suspense>
           </div>
 
           {/* Footer integrado ao grid */}
@@ -153,9 +142,7 @@ function App() {
               <div className="footer-logo">
                 <Logo size={50} showTitle={false} />
               </div>
-              <div className="footer-title">【 DESENVOLVIDO POR 】</div>
-              <div className="footer-authors">◈ Matheus ◊ Esteban ◈</div>
-              <div className="footer-subtitle">━━━━━ SISTEMA DE CONTROLE ONT ━━━━━</div>
+              <div className="footer-title">Desenvolvido pelo Suporte Técnico</div>
             </div>
           </div>
         </main>

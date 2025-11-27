@@ -26,7 +26,7 @@
 
 /* Conteúdo do modal */
 .help-modal-content {
-  background: var(--card-bg);
+  background: #000000;
   border-radius: 12px;
   max-width: 900px;
   width: 100%;
@@ -56,7 +56,7 @@
   align-items: center;
   padding: 20px 24px;
   border-bottom: 2px solid var(--border-primary);
-  background: var(--header-bg);
+  background: #000000;
 }
 
 .help-modal-header h2 {
@@ -100,7 +100,7 @@
   padding: 24px;
   overflow-y: auto;
   flex: 1;
-  background: var(--bg-primary);
+  background: #000000;
 }
 
 .help-modal-body::-webkit-scrollbar {
@@ -108,7 +108,7 @@
 }
 
 .help-modal-body::-webkit-scrollbar-track {
-  background: var(--bg-secondary);
+  background: #000000;
   border-radius: 4px;
 }
 
@@ -142,7 +142,7 @@
 
 /* Items de ajuda */
 .help-item {
-  background: var(--bg-secondary);
+  background: #000000;
   border: 1px solid var(--border-primary);
   border-radius: 8px;
   padding: 16px;
@@ -181,7 +181,7 @@
 }
 
 .help-item-command {
-  background: var(--bg-accent);
+  background: #000000;
   border-left: 3px solid var(--accent-secondary);
   padding: 12px;
   border-radius: 4px;
@@ -211,7 +211,7 @@
   border-top: 2px solid var(--border-primary);
   display: flex;
   justify-content: flex-end;
-  background: var(--bg-secondary);
+  background: #000000;
 }
 
 .help-modal-button {

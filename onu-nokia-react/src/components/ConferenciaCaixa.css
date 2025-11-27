@@ -69,7 +69,7 @@
 /* Progress Bar */
 .progress-container {
   width: 100%;
-  background: var(--bg-secondary);
+  background: #000000;
   border-radius: 10px;
   height: 8px;
   margin-bottom: 2rem;
@@ -163,7 +163,7 @@
   height: 200px;
   min-height: 200px;
   max-height: 200px;
-  background: var(--bg-secondary);
+  background: #000000;
   color: var(--text-primary);
   border: 1px solid var(--accent-primary);
   padding: 1rem;
@@ -187,11 +187,11 @@
   outline: none;
   border-color: var(--accent-secondary);
   box-shadow: 0 0 25px var(--shadow-glow);
-  background: var(--bg-primary);
+  background: #000000;
 }
 
 .conferencia-caixa textarea:disabled {
-  background: var(--bg-secondary);
+  background: #000000;
   opacity: 0.6;
   cursor: not-allowed;
 }
